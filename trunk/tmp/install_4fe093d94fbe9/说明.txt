@@ -1,0 +1,6 @@
+这两个语言文件请全部复制到前台和后台的语言文件夹：
+前台:/language/zh-CN
+后台:/administrator/language/zh-CN
+
+星仔
+http://www.xingzai.org
