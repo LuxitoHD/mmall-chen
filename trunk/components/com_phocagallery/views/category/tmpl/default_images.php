@@ -6,7 +6,7 @@ $document					= JFactory::getDocument();
 $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/js/jquery-1.6.min.js');
 ?>
  <script type="text/javascript">
-       function test(id,para) {
+     /*  function test(id,para) {
     	    jQuery.ajax({
     	        type: 'POST',
     	        url:  'ajax2.php',
@@ -19,6 +19,21 @@ $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/js/jq
         	        }else{
         	        	alert("失败");
         	        } 
+    	        }
+    	    })
+    	} */
+		//joomla 友好链接下修改	
+		function test(id,para) {
+    	    jQuery.ajax({
+    	        type: 'POST',
+    	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
+    	        data: {id:id,para:para},
+    	        success: function(data) {
+        	        if(data == "succ"){
+						alert("评价成功");
+        	        }else{
+        	        	alert("失败");
+        	        }
     	        }
     	    })
     	}  
