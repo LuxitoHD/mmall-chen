@@ -27,6 +27,8 @@ $para = $_POST['para'];
 	}elseif($para == "bad"){
 		//不喜欢操作
 		echo badsAction($id);
+	}elseif($para == "love"){
+		echo lovesAction($id);
 	}
 //----------------------------	
 	/*
@@ -39,7 +41,11 @@ $para = $_POST['para'];
 			
 		$db->setQuery($query_c);
 		if($db->Query()){
-			return 'succ';//成功 喜欢人数自动加1
+			$query_s = "select goods from #__phocagallery where id = ".$id;
+			$db->setQuery($query_s);
+			$goods_counts = $db->loadResult();
+			
+			return $goods_counts;
 		}else{
 			return "fail";
 		}
@@ -54,7 +60,29 @@ $para = $_POST['para'];
 			
 		$db->setQuery($query_c);
 		if($db->Query()){
-			return 'succ';//成功 不喜欢人数自动加1
+			$query_s = "select bads from #__phocagallery where id = ".$id;
+			$db->setQuery($query_s);
+			$bads_counts = $db->loadResult();
+			return $bads_counts;
+		}else{
+			return "fail";
+		}
+	}
+
+	/*
+	 * 爱人数自动加一操作
+	 */
+	function lovesAction($id = 0){
+		
+		$db = JFactory::getDbo();
+	    $query_c = "update #__phocagallery set loves = loves +1 where id = ".$id;
+			
+		$db->setQuery($query_c);
+		if($db->Query()){
+			$query_s = "select loves from #__phocagallery where id = ".$id;
+			$db->setQuery($query_s);
+			$loves_counts = $db->loadResult();
+			return $loves_counts;
 		}else{
 			return "fail";
 		}

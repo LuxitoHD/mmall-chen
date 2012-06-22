@@ -23,20 +23,49 @@ $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/js/jq
     	    })
     	} */
 		//joomla 友好链接下修改	
-		function test(id,para) {
+		function test_g(id) {
     	    jQuery.ajax({
     	        type: 'POST',
     	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
-    	        data: {id:id,para:para},
+    	        data: {id:id,para:"good"},
     	        success: function(data) {
-        	        if(data == "succ"){
-						alert("评价成功");
+        	        if(data == "fail"){
+						alert("失败");
         	        }else{
-        	        	alert("失败");
+						$("#gid"+id).text(data);
         	        }
     	        }
     	    })
     	}  
+		function test_b(id) {
+    	    jQuery.ajax({
+    	        type: 'POST',
+    	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
+    	        data: {id:id,para:"bad"},
+    	        success: function(data) {
+        	        if(data == "fail"){
+						alert("失败");
+        	        }else{
+						$("#bid"+id).text(data);
+        	        }
+    	        }
+    	    })
+    	} 
+
+		function test_love(id) {
+    	    jQuery.ajax({
+    	        type: 'POST',
+    	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
+    	        data: {id:id,para:"love"},
+    	        success: function(data) {
+        	        if(data == "fail"){
+						alert("失败");
+        	        }else{
+						$("#lid"+id).text(data);
+        	        }
+    	        }
+    	    })
+    	} 
 </script>     
 
 <?php
@@ -198,14 +227,23 @@ if (!empty($this->items)) {
 			
 			
 			if($value->item_type == 'image'){
-				$valg = "'good'";
-				$valb = "'bad'";
-				echo '<div style="font-size:12px;color:#B36B00;margin-top:2px;padding:0;text-align:left">';
-				echo '<span>次数'.$value->hits.'</span>';
-				echo '<span><a href="javascript:void(0)" onclick="test('.$value->id.','.$valg.')" title="good">good</a></span>';
-				echo '<span><a href="javascript:void(0)" onclick="test('.$value->id.','.$valb.')" title="bad">bad</a></span>';
-				echo '<span><a href="#" title="share">share</a></span>';
-				echo '</div>';
+	?>
+				<div style="font-size:12px;color:#B36B00;margin-top:2px;padding:0;text-align:left">
+					<span>
+						<a href="javascript:void(0)" onclick="test_love(<?php echo $value->id; ?>)" title="love">love</a>
+					</span>
+					<span id="lid<?php echo $value->id; ?>"><? echo $value->loves;?><span>
+
+					<span>
+						<a href="javascript:void(0)" onclick="test_g(<?php echo $value->id; ?>)" title="good">good</a>
+					</span>
+					<span id="gid<?php echo $value->id; ?>"><? echo $value->goods;?><span>
+					<span><a href="javascript:void(0)" onclick="test_b(<?php echo $value->id; ?>)" title="bad">bad</a></span>
+					<span id="bid<?php echo $value->id; ?>"><? echo $value->bads;?><span>
+					<span><a href="#" title="share">share</a></span>
+				</div>
+
+	<?php
 			}
 			
 			
