@@ -100,6 +100,10 @@
 
 <field name="hits" type="Text" class="inputbox" size="6" label="COM_PHOCAGALLERY_FIELD_HITS" description="COM_PHOCAGALLERY_FIELD_HITS_DESC" />
 
+<field name="goods" type="Text" class="inputbox" size="6" label="喜欢人数" description="喜欢人数-" />
+
+<field name="bads" type="Text" class="inputbox" size="6" label="不喜欢人数" description="不喜欢人数-" />
+
 <field name="language" type="contentlanguage" label="JFIELD_LANGUAGE_LABEL" description="COM_PHOCAGALLERY_FIELD_LANGUAGE_IMAGE_DESC" class="inputbox">
 	<option value="*">JALL</option>
 </field>
