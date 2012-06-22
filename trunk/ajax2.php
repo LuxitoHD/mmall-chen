@@ -14,8 +14,12 @@
 	require_once JPATH_BASE.'/includes/framework.php';
 	
 	
-	$para = JRequest::getVar('para');
+	/*$para = JRequest::getVar('para');
 	$id = JRequest::getVar('id');
+	*/
+$id = $_POST['id'];
+$para = $_POST['para'];
+
 	$id = (int)$id;
 	if($para == "good"){
 		//喜欢操作
