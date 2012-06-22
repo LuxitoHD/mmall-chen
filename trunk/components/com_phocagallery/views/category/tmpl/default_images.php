@@ -2,7 +2,29 @@
 // - - - - - - - - - - 
 // Images
 // - - - - - - - - - -
+$document					= JFactory::getDocument();
+$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/js/jquery-1.6.min.js');
+?>
+ <script type="text/javascript">
+       function test(id,para) {
+    	    jQuery.ajax({
+    	        type: 'POST',
+    	        url:  'ajax2.php',
+    	        data: 'id='  + id + '&para='+para,
+    	        dataType: 'html',
+    	        beforeSend: function() {},
+    	        success: function(data) {
+        	        if(data == "succ"){
+						alert("评价成功");
+        	        }else{
+        	        	alert("失败");
+        	        } 
+    	        }
+    	    })
+    	}  
+</script>     
 
+<?php
 if (!empty($this->items)) {
 	foreach($this->items as $key => $value) {
 	
@@ -24,7 +46,12 @@ if (!empty($this->items)) {
 		}
 		
 		if ($rightDisplay == 1) {
-		
+			//tian_ff.如果是父级目录或者子级目录，那么就不显示
+			if($value->cls == "pg-box-parentfolder" || $value->cls == "pg-box-subfolder"){
+				continue;
+			}
+			
+			//end
 			// BOX Start
 			echo "\n\n";
 			echo '<div class="phocagallery-box-file '.$value->cls.'" style="height:'. $this->tmpl['imageheight']['boxsize'].'px; width:'.$this->tmpl['imagewidth']['boxsize'].'px;">'. "\n";
@@ -55,6 +82,7 @@ if (!empty($this->items)) {
 			if ($value->type == 2 ) {
 				
 				// Render OnClick, Rel
+				//iframe 形式 展示资源   tian_ff
 				echo PhocaGalleryRenderFront::renderAAttribute($this->tmpl['detailwindow'], $value->button->options, $value->linkorig, $this->tmpl['highslideonclick'], '', $value->linknr, $value->catalias);
 				
 				// SWITCH OR OVERLIB 
@@ -151,6 +179,20 @@ if (!empty($this->items)) {
 					echo '<div class="pg-name" style="font-size:'.$this->tmpl['fontsizename'].'px">&nbsp;</div>';
 				}
 			}
+			//添加点击次数  喜欢  不喜欢  分享 button  tian_ff
+			
+			
+			if($value->item_type == 'image'){
+				$valg = "'good'";
+				$valb = "'bad'";
+				echo '<div style="font-size:12px;color:#B36B00;margin-top:2px;padding:0;text-align:left">';
+				echo '<span>次数'.$value->hits.'</span>';
+				echo '<span><a href="javascript:void(0)" onclick="test('.$value->id.','.$valg.')" title="good">good</a></span>';
+				echo '<span><a href="javascript:void(0)" onclick="test('.$value->id.','.$valb.')" title="bad">bad</a></span>';
+				echo '<span><a href="#" title="share">share</a></span>';
+				echo '</div>';
+			}
+			
 			
 			// Rate Image
 			if($value->item_type == 'image' && $this->tmpl['displayratingimg'] == 1) {
@@ -193,7 +235,7 @@ if (!empty($this->items)) {
 					echo '</a>';
 				}
 				
-				// ICON DETAIL	
+				// ICON DETAIL	//图片详情button
 				if ($value->displayicondetail == 1) {				
 				
 			
@@ -215,7 +257,7 @@ if (!empty($this->items)) {
 					echo '</a>';
 				}
 				
-				// ICON DOWNLOAD
+				// ICON DOWNLOAD //图片下载button
 				if ($value->displayicondownload > 0) {
 					// Direct Download but not if there is a youtube
 					if ($value->displayicondownload == 2 && $value->videocode == '') {
@@ -232,7 +274,7 @@ if (!empty($this->items)) {
 					echo '</a>';
 				}
 				
-				// ICON GEO
+				// ICON GEO 
 				if ($value->displayicongeo == 1) {
 					echo ' <a class="'.$value->buttonother->methodname.'" title="'.JText::_('COM_PHOCAGALLERY_GEOTAGGING').'"'
 						.' href="'. JRoute::_('index.php?option=com_phocagallery&view=map&catid='.$value->catslug.'&id='.$value->slug.$this->tmpl['tmplcom'].'&Itemid='. JRequest::getVar('Itemid', 0, '', 'int') ).'"';
@@ -256,7 +298,7 @@ if (!empty($this->items)) {
 					echo '</a>';
 				}
 				
-				// ICON COMMENT
+				// ICON COMMENT//图片评论button
 				if ($value->displayiconcommentimg == 1) {
 					if ($this->tmpl['detailwindow'] == 7 || $this->tmpl['display_comment_nopup'] == 1) {
 						$tmplClass	= '';
