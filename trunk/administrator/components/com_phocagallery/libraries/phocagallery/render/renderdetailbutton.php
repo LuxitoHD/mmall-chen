@@ -154,7 +154,7 @@ class PhocaGalleryRenderDetailButton
 	  /*
 	* Get the prev button in Gallery - in openwindow
 	*/
-	function getPrevious ($catid, $id, $ordering) {
+	function getPrevious ($catid, $id, $ordering, $hrefOnly = 0) {
 	
 		$app	= JFactory::getApplication();
 		$db 			= &JFactory::getDBO();
@@ -220,14 +220,16 @@ class PhocaGalleryRenderDetailButton
 			$imgName	= 'icon-prev-multibox';
 			$idCss		= ' id="phocagallerymultiboxprev" ';
 		}
-	
+		
+		//tian
+		$href_pre = "";
 		$prev = '<div class="'.$class.'"'.$idCss.'>'
 		.JHTML::_('image', 'components/com_phocagallery/assets/images/'.$imgName.'-grey.' . $formatIcon, JText::_( 'COM_PHOCAGALLERY_PREV_IMAGE' )).'</div>';//non-active button will be displayed as Default, we will see if we find active link
 		foreach ($prevAll as $key => $value) {
 			
 			// Is there some next id, if not end this and return grey link
 			if (isset($value->id) && $value->id > 0) {
-				
+				$href_pre = JRoute::_('index.php?option=com_phocagallery&view=detail&catid='. $value->catslug.'&id='.$value->slug.$tmplCom.'&Itemid='. JRequest::getVar('Itemid', 1, 'get', 'int'));
 				//onclick="disableBackAndPrev()"
 				$prev = '<div class="'.$class.'"'.$idCss.'>' // because of not conflict with beez 
 				.'<a href="'.JRoute::_('index.php?option=com_phocagallery&view=detail&catid='. $value->catslug.'&id='.$value->slug.$tmplCom.'&Itemid='. JRequest::getVar('Itemid', 1, 'get', 'int')).'"'
@@ -241,6 +243,11 @@ class PhocaGalleryRenderDetailButton
 				break;// end it, we must need not to find next ordering
 			}
 		} 
+		
+		if($hrefOnly == 1){
+			return $href_pre;
+		}
+		
 		return $prev;
 	}
 	
@@ -359,14 +366,25 @@ class PhocaGalleryRenderDetailButton
 				$description 	= str_replace("\r", '', $description);
 				if (isset($value->extl) && $value->extl != '') {
 					$jsSlideshowData['files'] .= '["'. $value->extl .'", "", "", "'.$description.'"]'.$endComma."\n"; 
+					 
 				} else {
 					$fileThumbnail 	= PhocaGalleryFileThumbnail::getThumbnailName($value->filename, 'large');
 					$imgLink		= JURI::base(true) . '/' . $fileThumbnail->rel;
+					
+					//tian  缩略图路径
+					$fileThumbnail_tian 	= PhocaGalleryFileThumbnail::getThumbnailName($value->filename, 'small');
+					$imgLink_tian		= JURI::base(true) . '/' . $fileThumbnail_tian->rel;
+					$thumbnail_link = JRoute::_('index.php?option=com_phocagallery&view=detail&catid='. (int) $catid .'&id='.$value->id.'&Itemid='. JRequest::getVar('Itemid', 0, '', 'int')  );
+					
 					if (JFile::exists($fileThumbnail->abs)) {
-						$jsSlideshowData['files'] .= '["'. $imgLink .'", "", "", "'.$description.'"]'.$endComma."\n"; ; 
+						$jsSlideshowData['files'] .= '["'. $imgLink .'", "", "", "'.$description.'"]'.$endComma."\n";
+						//tian
+						$jsSlideshowData['files_t'] .= '["'. $imgLink_tian .'", "'.$value->id.'", "'.(int) $catid.'", "'.$thumbnail_link.'"]'.$endComma."\n";
 					} else {
 						$fileThumbnail = JURI::base(true).'/' . "components/com_phocagallery/assets/images/phoca_thumb_l_no_image." . $this->_formaticon;
 						$jsSlideshowData['files'] .= '["'.$fileThumbnail.'", "", "", ""]'.$endComma."\n";
+						//tian
+						$jsSlideshowData['files_t'] .= '["'.$imgLink_tian.'", "'.$value->id.'", "'.(int) $catid.'", "'.$thumbnail_link.'"]'.$endComma."\n";
 					}
 				}
 				
