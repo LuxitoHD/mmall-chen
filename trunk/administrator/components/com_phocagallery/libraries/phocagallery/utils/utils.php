@@ -115,7 +115,7 @@ class PhocaGalleryUtils
 	}
 	
 	public function footer() {
-	 echo '<div style="text-align: center; color: rgb(211, 211, 211);">Powe'.'red by <a href="http://www.ph' .'oca.cz" style="text-decoration: none;" target="_blank" title="Phoc'.'a.cz">Phoca</a> <a href="http://www.phoca.cz/phocaga'.'llery" style="text-decoration: none;" target="_blank" title="Phoca Gal' .'lery">Gall'.'ery</a></div>';
+//	 echo '<div style="text-align: center; color: rgb(211, 211, 211);">Powe'.'red by <a href="http://www.ph' .'oca.cz" style="text-decoration: none;" target="_blank" title="Phoc'.'a.cz">Phoca</a> <a href="http://www.phoca.cz/phocaga'.'llery" style="text-decoration: none;" target="_blank" title="Phoca Gal' .'lery">Gall'.'ery</a></div>';
 
 	}
 }
