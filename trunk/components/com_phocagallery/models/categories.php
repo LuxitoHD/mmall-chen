@@ -14,6 +14,10 @@ jimport('joomla.application.component.model');
 class PhocagalleryModelCategories extends JModel
 {
 	var $_data 				= null;
+	var $_data1 			= null;
+	var $_tagData			= null;
+	var $_tagData1			= null;
+	var $_tagData2			= null;
 	var $_total 			= null;
 	var $_context 			= 'com_phocagallery.categories';
 	private $_ordering		= null;
@@ -52,8 +56,47 @@ class PhocagalleryModelCategories extends JModel
 			$text = ''; // test is tree name e.g. Category >> Subcategory
 			$tree = array();
 			
-			$this->_data = $this->_categoryTree($this->_data, $tree, 0, $text, -1);
+			$this->_data = $this->_categoryTree($this->_data, $tree, 1, $text, -1);
 			return $this->_data;
+		}
+	}
+	
+	function getData1() {
+		$app	= JFactory::getApplication();
+		if (empty($this->_data)) {
+			$query = $this->_buildQuery();
+			$this->_data = $this->_getList( $query );// We need all data because of tree
+
+			// Order Categories to tree
+			$text = ''; // test is tree name e.g. Category >> Subcategory
+			$tree = array();
+			
+			$this->_data1 = $this->_categoryTree($this->_data, $tree, 2, $text, -1);
+			return $this->_data1;
+		}
+	}
+	
+	function getTagData(){
+		if(empty($this->$_tagData)){
+			$query = $this->_buildTagQuery(0);
+			$this->_tagData = $this->_getList($query);
+			return $this->_tagData;
+		}
+	}
+	
+	function getTagData1(){
+		if(empty($this->$_tagData1)){
+			$query = $this->_buildTagQuery(1);
+			$this->_tagData1 = $this->_getList($query);
+			return $this->_tagData1;
+		}
+	}
+	
+	function getTagData2(){
+		if(empty($this->$_tagData2)){
+			$query = $this->_buildTagQuery(2);
+			$this->_tagData2 = $this->_getList($query);
+			return $this->_tagData2;
 		}
 	}
 
@@ -84,6 +127,11 @@ class PhocagalleryModelCategories extends JModel
 			$this->_ordering = PhocaGalleryOrdering::renderOrderingFront($this->getState('catordering'), 2);
 		}
 		return $this->_ordering;
+	}
+	
+	function _buildTagQuery($tag_cat){
+		$query ='SELECT * FROM #__phocagallery_tags t where t.tag_cat = '.$tag_cat;
+		return $query;
 	}
 	
 	function _buildQuery() {
