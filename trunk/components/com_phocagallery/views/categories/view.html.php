@@ -117,7 +117,29 @@ class PhocaGalleryViewCategories extends JView
 		$model					= &$this->getModel();
 		$this->tmpl['ordering']	= &$model->getOrdering();
 		$this->categories					= $this->get('data');
+		$this->categories1					= $this->get('data1');
+		$this->tagData						= $this->get('tagData');
+		$this->tagData1						= $this->get('tagData1');
+		$this->tagData2						= $this->get('tagData2');
 		
+		$rightDisplayKey  = 1;
+		foreach ($this->tagData as $key => $item){
+			$this->tagData[$key]->link = PhocaGalleryRoute::getCategoryRouteByTag($item->id);
+			$fileThumbnail	= PhocaGalleryImageFront::displayCategoriesImageOrFolder($this->tagData[$key]->filename, $image_categories_size, $rightDisplayKey);
+			$this->tagData[$key]->linkthumbnailpath	= $fileThumbnail->rel;
+		}
+		
+		foreach ($this->tagData1 as $key => $item){
+			$this->tagData1[$key]->link = PhocaGalleryRoute::getCategoryRouteByTag($item->id);
+			$fileThumbnail	= PhocaGalleryImageFront::displayCategoriesImageOrFolder($this->tagData1[$key]->filename, $image_categories_size, $rightDisplayKey);
+			$this->tagData1[$key]->linkthumbnailpath	= $fileThumbnail->rel;
+		}
+		
+		foreach ($this->tagData2 as $key => $item){
+			$this->tagData2[$key]->link = PhocaGalleryRoute::getCategoryRouteByTag($item->id);
+			$fileThumbnail	= PhocaGalleryImageFront::displayCategoriesImageOrFolder($this->tagData2[$key]->filename, $image_categories_size, $rightDisplayKey);
+			$this->tagData2[$key]->linkthumbnailpath	= $fileThumbnail->rel;
+		}
 		
 		// Add link and unset the categories which user cannot see (if it is enabled in params)
 		// If it will be unset while access view, we must sort the keys from category array - ACCESS
@@ -186,7 +208,7 @@ class PhocaGalleryViewCategories extends JView
 			// Second Check - if we can display hidden category, set Key icon for them
 			//                if we don't have access right to see them
 			// Display Key Icon (in case we want to display unaccessable categories in list view)
-			$rightDisplayKey  = 1;
+			
 		
 			if ($display_access_category == 1) {
 				// we simulate that we want not to display unaccessable categories
