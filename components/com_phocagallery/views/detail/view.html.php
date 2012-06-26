@@ -40,6 +40,7 @@ class PhocaGalleryViewDetail extends JView
 		$neededAccessLevels		= PhocaGalleryAccess::getNeededAccessLevels();
 		$access					= PhocaGalleryAccess::isAccess($user->authorisedLevels(), $neededAccessLevels);
 
+	
 		
 		// Information from the plugin - window is displayed after plugin action
 		$get				= array();
@@ -250,9 +251,12 @@ class PhocaGalleryViewDetail extends JView
 		$item->nextbutton		= $detailButton->getNext((int)$item->catid, (int)$item->id, (int)$item->ordering);
 		$item->nextbuttonhref	= $detailButton->getNext((int)$item->catid, (int)$item->id, (int)$item->ordering, 1);
 		$item->prevbutton		= $detailButton->getPrevious((int)$item->catid, (int)$item->id, (int)$item->ordering);
+		$item->prevbuttonhref		= $detailButton->getPrevious((int)$item->catid, (int)$item->id, (int)$item->ordering,1);
 		$slideshowData			= $detailButton->getJsSlideshow((int)$item->catid, (int)$item->id, (int)$var['slideshow'], $item->catslug, $item->slug);
 		$item->slideshowbutton	= $slideshowData['icons'];
 		$item->slideshowfiles	= $slideshowData['files'];
+		//tian 缩略图
+		$item->slideshowfiles_t	= $slideshowData['files_t'];
 		$item->slideshow		= $var['slideshow'];
 		$item->download			= $var['download'];
 		
