@@ -41,11 +41,68 @@ if ($this->tmpl['detailwindow'] == 4 || $this->tmpl['detailwindow'] == 5 || $thi
 	echo '<td align="center">'. str_replace("%onclickclose%", $this->tmpl['detailwindowclose'], $this->item->closebutton).'</td>';
 }
 echo '<td align="right" width="30%" style="padding-right:48px">'. $this->item->nextbutton .'</td>'
-.'</tr>'
-.'</table>'
+.'</tr>';
+//tian_ff
+?>
+
+<tr>
+	<td colspan="6">
+		<?php //echo  $this->item->slideshowfiles_t;?>
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+			    jQuery('#mycarousel').jcarousel();
+			});
+		
+			var tian = [<?php echo $this->item->slideshowfiles_t ;?>];
+			var tian_arr = [];
+			document.write("<ul  id='mycarousel' class='jcarousel-skin-tango'>");
+			for(var i=0;i<tian.length;i++){
+				//tian_arr[i]  = tian[i][0];
+				document.write("<li><a href='"+tian[i][3]+"'><img src='"+tian[i][0]+"'></href></li>");
+			}
+			document.write("</ul>");
+		</script>
+		
+		<script type="text/javascript">	
+			jQuery.noConflict();
+			jQuery(document).keydown(function(event){
+			    //判断当event.keyCode 为37时（即左方面键）;
+			    //判断当event.keyCode 为39时（即右方面键）;
+			    <?php 
+			    	$leftbutton = $this->item->prevbuttonhref;
+			    	$rightbutton = $this->item->nextbuttonhref;
+			    	
+			    	if($leftbutton){
+			    		$leftbutton = "http://".$_SERVER["SERVER_NAME"].$leftbutton;
+			    	}else{
+			    		$leftbutton = "#";
+			    	}
+			    	
+			    	if($rightbutton){
+			    		$rightbutton = "http://".$_SERVER["SERVER_NAME"].$rightbutton;
+			    	}else{
+			    		$rightbutton = "#";
+			    	}
+			    	
+			    	
+			    	
+			    ?>
+			    if(event.keyCode == 37){
+			    	//document.write(777777777777);
+			       window.location.href="<?php echo $leftbutton;?>";
+			    }else if (event.keyCode == 39){
+			       window.location.href="<?php echo $rightbutton;?>";
+			    }
+			});
+		</script>
+		
+	</td>
+</tr>
+<?php
+echo '</table>'
 .'</center>';
 
 if ($this->tmpl['detailwindow'] == 7) {
-	PhocaGalleryUtils::footer();
+	//PhocaGalleryUtils::footer();
 }
 echo '</div>';

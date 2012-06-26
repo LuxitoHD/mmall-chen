@@ -1,4 +1,9 @@
 <?php defined('_JEXEC') or die('Restricted access');
+$document			= &JFactory::getDocument();
+$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/js/jquery.jcarousel.min.js');
+$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/js/skin.css');
+
+
 echo '<div id="phocagallery" class="pg-detail-view'.$this->params->get( 'pageclass_sfx' ).'">';
 if ($this->tmpl['backbutton'] != '') {
 	echo $this->tmpl['backbutton'];
@@ -73,7 +78,63 @@ if ($this->tmpl['detailbuttons'] == 1){
 	.'<td align="right" width="30%" style="padding-right:48px">'.$this->item->nextbutton.'</td>'
 	.'</tr>';
 }
-
+//tian_ff
+?>
+<tr>
+	<td colspan="6">
+	 <?php //echo  $this->item->slideshowfiles_t;?>
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+			    jQuery('#mycarousel').jcarousel();
+			});
+		
+			var tian = [<?php echo $this->item->slideshowfiles_t ;?>];
+			var tian_arr = [];
+			document.write("<ul  id='mycarousel' class='jcarousel-skin-tango'>");
+			for(var i=0;i<tian.length;i++){
+				//tian_arr[i]  = tian[i][0];
+				document.write("<li><a href='"+tian[i][3]+"'><img width='80' height='70' src='"+tian[i][0]+"'></href></li>");
+			}
+			document.write("</ul>");
+		</script>
+		
+		<script type="text/javascript">	
+			jQuery.noConflict();
+			jQuery(document).keydown(function(event){
+			    //判断当event.keyCode 为37时（即左方面键）;
+			    //判断当event.keyCode 为39时（即右方面键）;
+			    <?php 
+			    	$leftbutton = $this->item->prevbuttonhref;
+			    	$rightbutton = $this->item->nextbuttonhref;
+			    	
+			    	if($leftbutton){
+			    		$leftbutton = "http://".$_SERVER["SERVER_NAME"].$leftbutton;
+			    	}else{
+			    		$leftbutton = "#";
+			    	}
+			    	
+			    	if($rightbutton){
+			    		$rightbutton = "http://".$_SERVER["SERVER_NAME"].$rightbutton;
+			    	}else{
+			    		$rightbutton = "#";
+			    	}
+			    	
+			    	
+			    	
+			    ?>
+			    if(event.keyCode == 37){
+			    	//document.write(777777777777);
+			       window.location.href="<?php echo $leftbutton;?>";
+			    }else if (event.keyCode == 39){
+			       window.location.href="<?php echo $rightbutton;?>";
+			    }
+			});
+			
+			
+		</script>
+	</td>
+</tr>
+<?php 
 echo '</table></center>';
 echo $this->loadTemplate('rating');
 // Tags
@@ -91,7 +152,7 @@ if ($this->tmpl['detailwindow'] == 7) {
 		}
 	}
 	
-	echo PhocaGalleryRenderFront::renderInfo();
+	//echo PhocaGalleryRenderFront::renderInfo();
 }
 echo '</div>';
 echo '<div id="phocaGallerySlideshowC" style="display:none"></div>';

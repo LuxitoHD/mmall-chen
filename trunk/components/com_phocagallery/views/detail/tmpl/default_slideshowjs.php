@@ -3,6 +3,8 @@ defined('_JEXEC') or die('Restricted access');
 $document			= &JFactory::getDocument();
 $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jquery/jquery-1.6.4.min.js');
 $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/fadeslideshow/fadeslideshow.js');
+$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/js/jquery.jcarousel.min.js');
+$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/js/skin.css');
 
 ?><script type="text/javascript">
 /***********************************************
