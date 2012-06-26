@@ -58,7 +58,7 @@ echo '<td align="right" width="30%" style="padding-right:48px">'. $this->item->n
 			document.write("<ul  id='mycarousel' class='jcarousel-skin-tango'>");
 			for(var i=0;i<tian.length;i++){
 				//tian_arr[i]  = tian[i][0];
-				document.write("<li><a href='"+tian[i][3]+"'><img src='"+tian[i][0]+"'></href></li>");
+				document.write("<li><a href='"+tian[i][3]+"'><img width='80' height='70' src='"+tian[i][0]+"'></href></li>");
 			}
 			document.write("</ul>");
 		</script>
