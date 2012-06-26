@@ -71,9 +71,9 @@
 
 #phocagallery a:hover, #phocagallery a:active, #phocagallery a:focus,
 #phocagallery-statistics a:hover, #phocagallery-statistics a:active, #phocagallery-statistics a:focus {
-	background: none;
+	/*background: none;*/
 	border:0px;
-	text-decoration:none;
+	text-decoration:underline;
 }
 
 #phocagallery .pg-name,
@@ -756,12 +756,20 @@ div.current dd {
 	border: 0px;
 }
 
-#phocagallery table tr td div.pg-imgbg a,
-#phocagallery table tr td div.pg-imgbg a img,
-#phocagallery table tr td div.pg-imgbg {
-	margin:0 auto;
-	padding:0;
-	text-align: center;
+#phocagallery table tr td div.pg-imgbg{
+	background-color: #FFFFFF;
+    border: 1px solid #DFDFE1;
+    display: inline;
+    float: left;
+    height: 302px;
+    margin-right: 20px;
+    margin-top: 20px;
+    padding: 8px 7px 8px 8px;
+    width: 303px;	
+}
+
+#phocagallery table tr td div.pg-imgbg:hover{
+	border-color: #ff3366;	
 }
 
 #phocagallery table tr td div.pg-imgbgd a,
@@ -771,6 +779,27 @@ div.current dd {
 	padding:0;
 }
 
+.pg-imgbg-box{
+	float: left;
+    position: relative;
+    width: 33.3333%;	
+}
+
+.pg-imgbg:hover{
+	border-color: #ff3366;	
+}
+
+.pg-imgbg{
+	background-color: #FFFFFF;
+    border: 1px solid #DFDFE1;
+    display: inline;
+    float: left;
+    height: 302px;
+    margin-right: 20px;
+    margin-top: 20px;
+    padding: 8px 7px 8px 8px;
+    width: 303px;	
+}
 
 /*
  * If Beez template is not used, the following code
@@ -808,29 +837,6 @@ div.current dd {
 #phocagallery-pane ul#flash_uploader_filelist
 {
         margin:0px;
-}
-
-
-#phocagallery div.phocagallery-box-file-third a:hover,
-#phocagallery div.phocagallery-box-file-third a:active,
-#phocagallery div.phocagallery-box-file-third a:focus,
-#phocagallery table tr td div#phocaGalleryImageBox a:hover,
-#phocagallery table tr td div#phocaGalleryImageBox a:active,
-#phocagallery table tr td div#phocaGalleryImageBox a:focus,
-#phocagallery table tr td div.pg-imgbg a:hover,
-#phocagallery table tr td div.pg-imgbg a:active,
-#phocagallery table tr td div.pg-imgbg a:focus,
-#phocagallery table tr td a:hover img,
-#phocagallery table tr td a:active img,
-#phocagallery table tr td a:focus img,
-#phocagallery a:hover img,
-#phocagallery a:active img,
-#phocagallery a:focus img,
-#main #phocagallery a:hover img,
-#main #phocagallery a:active img,
-#main #phocagallery a:focus img {
-		 background-color: transparent;
-		 background: none;
 }
 
 /* Plugin */
