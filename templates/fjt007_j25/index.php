@@ -16,7 +16,7 @@ $templateparams	= $app->getTemplate(true)->params; ?>
 <link href='http://fonts.googleapis.com/css?family=Ledger' rel='stylesheet' type='text/css'>
 <?php require(YOURBASEPATH . DS . "functions.php"); ?>
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/styles.css" type="text/css" />
-<?php if ($jquery == 'yes' ) : ?><script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script><?php endif; ?> 
+<?php if ($jquery == 'yes' ) : ?><script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/jquery-1.6.4.min.js"></script><?php endif; ?> 
 <?php if ($scrolltop == 'yes' ) : ?><script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/scrolltopcontrol.js"></script><?php endif; ?>
 <?php if ($superfish == 'yes' ) : ?>
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/hoverIntent.js"></script>
