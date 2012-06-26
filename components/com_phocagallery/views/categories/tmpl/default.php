@@ -24,11 +24,72 @@ if ($this->tmpl['categories_description'] != '') {
 	echo '<div class="phocagallery-cat-desc" >'.$this->tmpl['categories_description'].'</div>';
 }
 
+//第一列表
+echo '<div class="sectionWrap">';
+echo '<h2 class="hdTitle">装客们喜欢的<span>风格</span></h2>
+    <ul class="cate-nav-list">';
+foreach ($this->tagData as $i => $item){
+	echo '<li><a title="" href="'.$item->link.'">'.$item->title.'</a></li>';
+}
+echo'</ul>';
+
+
 echo '<form action="'.$this->tmpl['action'].'" method="post" name="adminForm">';
-
-
 if ($this->tmpl['displayimagecategories'] == 1) {	
 	echo $this->loadTemplate('catimg');// TABLE LAYOUT - Categories and Images
+} else if ($this->tmpl['displayimagecategories'] == 2){
+	echo $this->loadTemplate('catimgdetail');// DETAIL LAYOUT 2 (with columns)
+} else if ($this->tmpl['displayimagecategories'] == 3){
+	echo $this->loadTemplate('catimgdetailfloat');// DETAIL LAYOUT 3 - FLOAT - Every categoy will float Categories, images and detail information (Float)
+} else if ($this->tmpl['displayimagecategories'] == 4){
+	echo $this->loadTemplate('catimgdesc');// LAYOUT 4 (with columns) (easy categories, images and description)
+} else if ($this->tmpl['displayimagecategories'] == 5){
+	echo $this->loadTemplate('custom');// LAYOUT 5 Custom - float
+} else {
+	echo $this->loadTemplate('noimg');// UL LAYOUT - Categories Without Images
+}
+
+if (count($this->categories)) {
+	echo '<div class="pg-center"><div class="pagination">';
+	if ($this->params->get('show_ordering_categories')) {
+		echo '<div class="pg-inline">'
+			.JText::_('COM_PHOCAGALLERY_ORDER_FRONT') .'&nbsp;'
+			.$this->tmpl['ordering']
+			.'</div>';
+	}
+	if ($this->params->get('show_pagination_limit_categories')) {	
+		echo '<div class="pg-inline">'
+			.JText::_('COM_PHOCAGALLERY_DISPLAY_NUM') .'&nbsp;'
+			.$this->tmpl['pagination']->getLimitBox()
+			.'</div>';
+	}
+	if ($this->params->get('show_pagination_categories')) {
+		echo '<div style="margin:0 10px 0 10px;display:inline;" class="sectiontablefooter'.$this->params->get( 'pageclass_sfx' ).'" id="pg-pagination" >'
+			.$this->tmpl['pagination']->getPagesLinks()
+			.'</div>'
+		
+			.'<div style="margin:0 10px 0 10px;display:inline;" class="pagecounter">'
+			.$this->tmpl['pagination']->getPagesCounter()
+			.'</div>';
+	}
+	echo '</div></div>'. "\n";
+}
+
+echo '</form>';
+echo '</div>';
+
+//第二列表
+echo '<div class="sectionWrap">';
+echo '<h2 class="hdTitle">装客们喜欢的<span>空间</span></h2>
+    <ul class="cate-nav-list">';
+foreach ($this->tagData1 as $i => $item){
+	echo '<li><a title="" href="'.$item->link.'">'.$item->title.'</a></li>';
+}
+echo '</ul>';
+
+echo '<form action="'.$this->tmpl['action'].'" method="post" name="adminForm">';
+if ($this->tmpl['displayimagecategories'] == 1) {
+	echo $this->loadTemplate('catimg1');// TABLE LAYOUT - Categories and Images
 } else if ($this->tmpl['displayimagecategories'] == 2){
 	echo $this->loadTemplate('catimgdetail');// DETAIL LAYOUT 2 (with columns)
 } else if ($this->tmpl['displayimagecategories'] == 3){
@@ -68,5 +129,63 @@ if (count($this->categories)) {
 	echo '</div></div>'. "\n";
 }
 
-echo '</form></div>';
+echo '</form>';
+echo '</div>';
+
+
+//第三列表
+echo '<div class="sectionWrap">';
+echo '<h2 class="hdTitle">最活跃的<span>装客</span></h2>
+    <ul class="cate-nav-list">';
+foreach ($this->tagData2 as $i => $item){
+	echo '<li><a title="" href="'.$item->link.'">'.$item->title.'</a></li>';
+}
+echo '</ul>';
+
+echo '<form action="'.$this->tmpl['action'].'" method="post" name="adminForm">';
+if ($this->tmpl['displayimagecategories'] == 1) {	
+	echo $this->loadTemplate('catimg2');// TABLE LAYOUT - Categories and Images
+} else if ($this->tmpl['displayimagecategories'] == 2){
+	echo $this->loadTemplate('catimgdetail');// DETAIL LAYOUT 2 (with columns)
+} else if ($this->tmpl['displayimagecategories'] == 3){
+	echo $this->loadTemplate('catimgdetailfloat');// DETAIL LAYOUT 3 - FLOAT - Every categoy will float Categories, images and detail information (Float)
+} else if ($this->tmpl['displayimagecategories'] == 4){
+	echo $this->loadTemplate('catimgdesc');// LAYOUT 4 (with columns) (easy categories, images and description)
+} else if ($this->tmpl['displayimagecategories'] == 5){
+	echo $this->loadTemplate('custom');// LAYOUT 5 Custom - float
+} else {
+	echo $this->loadTemplate('noimg');// UL LAYOUT - Categories Without Images
+}
+
+
+if (count($this->categories)) {
+	echo '<div class="pg-center"><div class="pagination">';
+	if ($this->params->get('show_ordering_categories')) {
+		echo '<div class="pg-inline">'
+			.JText::_('COM_PHOCAGALLERY_ORDER_FRONT') .'&nbsp;'
+			.$this->tmpl['ordering']
+			.'</div>';
+	}
+	if ($this->params->get('show_pagination_limit_categories')) {	
+		echo '<div class="pg-inline">'
+			.JText::_('COM_PHOCAGALLERY_DISPLAY_NUM') .'&nbsp;'
+			.$this->tmpl['pagination']->getLimitBox()
+			.'</div>';
+	}
+	if ($this->params->get('show_pagination_categories')) {
+		echo '<div style="margin:0 10px 0 10px;display:inline;" class="sectiontablefooter'.$this->params->get( 'pageclass_sfx' ).'" id="pg-pagination" >'
+			.$this->tmpl['pagination']->getPagesLinks()
+			.'</div>'
+		
+			.'<div style="margin:0 10px 0 10px;display:inline;" class="pagecounter">'
+			.$this->tmpl['pagination']->getPagesCounter()
+			.'</div>';
+	}
+	echo '</div></div>'. "\n";
+}
+
+echo '</form>';
+echo '</div>';
+
+echo '</div>';
 echo PhocaGalleryUtils::footer();
