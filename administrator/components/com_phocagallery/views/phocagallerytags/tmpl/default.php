@@ -50,9 +50,13 @@ $saveOrder	= 'a.ordering';
 		<th width="1%">
 			<input type="checkbox" name="toggle" value="" onclick="checkAll(this)" />
 		</th>
-
+		<th class="image" width="1%" align="center"><?php echo JText::_( 'COM_PHOCAGALLERY_IMAGE' ); ?></th>
 		<th width="40%" align="center">
 			<?php echo JHtml::_('grid.sort', 'COM_PHOCAGALLERY_TITLE', 'a.title', $listDirn, $listOrder); ?>
+		</th>
+		
+		<th width="5%">
+			<?php echo JHtml::_('grid.sort', 'COM_PHOCAGALLERY_TAG_CAT_TITLE', 'a.tag_cat', $listDirn, $listOrder); ?>
 		</th>
 
 		
@@ -91,7 +95,34 @@ $canCreate	= $user->authorise('core.create',		'com_phocagallery');
 	<td class="center">
 		<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 	</td>
-	
+	<td>
+		<div class="phocagallery-box-file">
+			<center>
+				<div class="phocagallery-box-file-first">
+					<div class="phocagallery-box-file-second">
+						<div class="phocagallery-box-file-third">
+							<center>
+								<?php 
+									if (isset ($item->fileoriginalexist) && $item->fileoriginalexist == 1) {
+										
+										$imageRes			= PhocaGalleryImage::getRealImageSize($item->filename, 'small');
+										$correctImageRes 	= PhocaGalleryImage::correctSizeWithRate($imageRes['w'], $imageRes['h'], 50, 50);
+										$imgLink			= PhocaGalleryFileThumbnail::getThumbnailName($item->filename, 'large');
+										
+									
+										echo '<a class="'. $this->button->modalname.'" title="'. $this->button->text.'" href="'. JURI::root(). $imgLink->rel.'" rel="'. $this->button->options.'" >'
+										//. JHTML::_( 'image', $item->linkthumbnailpath.'?imagesid='.md5(uniqid(time())), '', array('width' => $correctImageRes['width'], 'height' => $correctImageRes['height']))
+										. '<img src="'.JURI::root().$item->linkthumbnailpath.'?imagesid='.md5(uniqid(time())).'" width="'.$correctImageRes['width'].'" height="'.$correctImageRes['height'].'" alt="'.JText::_('COM_PHOCAGALLERY_ENLARGE_IMAGE').'" />'
+										.'</a>';
+									}
+								?>
+							</center>
+						</div>
+					</div>
+				</div>
+			</center>
+		</div>
+	</td>
 	
 	<td>
 	<?php if ($item->checked_out) {
@@ -104,7 +135,16 @@ $canCreate	= $user->authorise('core.create',		'com_phocagallery');
 	}  ?>
 	</td>
 	
-	
+	<td class="center">
+		<?php 
+			if($item->tag_cat==0) 
+				echo '风格';
+			else if($item->tag_cat==1)
+				echo '空间';
+			else if($item->tag_cat==2)
+				echo '装客';
+		?>
+	</td>
 	
 	<td class="center"><?php echo JHtml::_('jgrid.published', $item->published, $i, 'phocagallerytags.', $canChange); ?></td>
 	

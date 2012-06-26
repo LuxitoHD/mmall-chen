@@ -30,7 +30,7 @@ class phocagalleryCpViewPhocaGalleryTags extends JView
 			JError::raiseError(500, implode("\n", $errors));
 			return false;
 		}
-		
+		$this->processImages();
 		$this->addToolbar();
 		parent::display($tpl);
 		
@@ -64,6 +64,78 @@ class phocagalleryCpViewPhocaGalleryTags extends JView
 		}
 		JToolBarHelper::divider();
 		JToolBarHelper::help( 'screen.phocagallery', true );
+	}
+	
+	protected function processImages() {
+	
+		if (!empty($this->items)) {
+			
+			$params							= &JComponentHelper::getParams( 'com_phocagallery' );
+			$pagination_thumbnail_creation 	= $params->get( 'pagination_thumbnail_creation', 0 );
+			$clean_thumbnails 				= $params->get( 'clean_thumbnails', 0 );		
+		
+		
+			//Server doesn't have CPU power
+			//we do thumbnail for all images - there is no pagination...
+			//or we do thumbanil for only listed images
+			if (empty($this->items_thumbnail)) {	
+				if ($pagination_thumbnail_creation == 1) {
+					$this->items_thumbnail 	= $this->items;
+				} else {
+					$this->items_thumbnail	= $this->get('ItemsThumbnail');
+				
+				}
+			}
+
+			// - - - - - - - - - - - - - - - - - - - -
+			// Check if the file stored in database is on the server. If not please refer to user
+			// Get filename from every object there is stored in database	
+			// file - abc.img, file_no - folder/abc.img
+			// Get folder variables from Helper
+			$path 				= PhocaGalleryPath::getPath();
+			$origPath 			= $path->image_abs;
+			$origPathServer 	= str_replace(DS, '/', $path->image_abs);
+		
+			//-----------------------------------------
+			//Do all thumbnails no limit no pagination
+			if (!empty($this->items_thumbnail)) {
+				foreach ($this->items_thumbnail as $key => $value) {	
+					$fileOriginalThumb = PhocaGalleryFile::getFileOriginal($value->filename);
+					//Let the user know that the file doesn't exists and delete all thumbnails
+					if (JFile::exists($fileOriginalThumb)) {
+						$refreshUrlThumb = 'index.php?option=com_phocagallery&view=phocagalleryimgs';
+						$fileThumb = PhocaGalleryFileThumbnail::getOrCreateThumbnail( $value->filename, $refreshUrlThumb, 1, 1, 1);	
+					}
+				}
+			}
+		
+			$this->items_thumbnail = null; // delete data to reduce memory
+		
+			//Only the the site with limitation or pagination...
+			if (!empty($this->items)) {
+				foreach ($this->items as $key => $value) {	
+					$fileOriginal = PhocaGalleryFile::getFileOriginal($value->filename);
+					//Let the user know that the file doesn't exists and delete all thumbnails
+					
+					if (!JFile::exists($fileOriginal)) {
+						$this->items[$key]->filename = JText::_( 'COM_PHOCAGALLERY_IMG_FILE_NOT_EXISTS' );
+						$this->items[$key]->fileoriginalexist = 0;
+					} else {
+						//Create thumbnails small, medium, large
+						$refresh_url 	= 'index.php?option=com_phocagallery&view=phocagalleryimgs';
+						$fileThumb 		= PhocaGalleryFileThumbnail::getOrCreateThumbnail($value->filename, $refresh_url, 1, 1, 1);
+						
+						$this->items[$key]->linkthumbnailpath 	= $fileThumb['thumb_name_s_no_rel'];
+						$this->items[$key]->fileoriginalexist = 1;	
+					}
+				}
+			}
+		
+			//Clean Thumbs Folder if there are thumbnail files but not original file
+			if ($clean_thumbnails == 1) {
+				PhocaGalleryFileFolder::cleanThumbsFolder();
+			}
+		}
 	}
 }
 ?>
