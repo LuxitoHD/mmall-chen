@@ -70,7 +70,7 @@ class PhocaGalleryViewDetail extends JView
 		$this->tmpl['display_multibox']				= $this->params->get( 'display_multibox', array(1,2));
 		
 		// CSS
-		JHtml::stylesheet('components/com_phocagallery/assets/phocagallery.css' );
+		//JHtml::stylesheet('components/com_phocagallery/assets/phocagallery.css' );
 		if ($this->tmpl['enablecustomcss'] == 1) {
 			JHtml::stylesheet('components/com_phocagallery/assets/phocagallerycustom.css' );
 			PhocaGalleryRenderFront::displayCustomCSS($this->tmpl['customcss']);
@@ -136,7 +136,7 @@ class PhocaGalleryViewDetail extends JView
 		
 	
 		// CSS
-		JHtml::stylesheet('components/com_phocagallery/assets/phocagallery.css' );
+		//JHtml::stylesheet('components/com_phocagallery/assets/phocagallery.css' );
 		if ($this->tmpl['enablecustomcss'] == 1) {
 			JHtml::stylesheet('components/com_phocagallery/assets/phocagallerycustom.css' );
 			if ($this->tmpl['customcss'] != ''){
@@ -159,6 +159,7 @@ class PhocaGalleryViewDetail extends JView
 		
 		
 		// No bar in Detail View
+		/* tian_ff
 		if ($this->tmpl['detailwindow'] == 7) {
 	
 		} else {
@@ -176,7 +177,7 @@ class PhocaGalleryViewDetail extends JView
 		// Download from the detail view which is not in the popupbox
 		if ($var['download'] == 2 ){
 			$this->tmpl['displayicondownload'] = 2;
-		}
+		}*/
 
 		// Plugin Information
 		if (isset($get['ratingimg']) && $get['ratingimg'] != '') {
@@ -187,7 +188,26 @@ class PhocaGalleryViewDetail extends JView
 		
 		// Model
 		$model	= &$this->getModel();
-		$item	= $model->getData();
+		$item	= $model->getData();//当前图片信息
+		if($item->filename){
+			$small_img 	= PhocaGalleryFileThumbnail::getThumbnailName($item->filename, 'small');
+			$small_img_Link		= JURI::base(true) . '/' . $small_img->rel;
+			
+			if (JFile::exists($small_img->abs)) {
+				$item->fileThumbnail_small = $small_img_Link; //当前缩略小图片
+			}
+			
+			
+			$large_img = PhocaGalleryFileThumbnail::getThumbnailName($item->filename, 'large');
+			
+			$large_img_Link		= JURI::base(true) . '/' . $large_img->rel;
+			
+			if (JFile::exists($large_img->abs)) {
+				$item->fileThumbnail_large = $large_img_Link;//当前缩略大图片
+			}
+			
+		}
+		
 		
 		//Multibox Thumbnails
 		$this->tmpl['mb_thumbs_data'] = '';
@@ -238,10 +258,10 @@ class PhocaGalleryViewDetail extends JView
 		}
 	
 		// - - - - - - - - - - - - - - - - - - - - 
-
 		phocagalleryimport('phocagallery.image.image');
 		phocagalleryimport('phocagallery.render.renderdetailbutton'); // Javascript Slideshow buttons
 		$detailButton 			= new PhocaGalleryRenderDetailButton();
+		/* tian_ff  原来的按钮注销掉
 		if ($this->tmpl['enable_multibox'] == 1) {
 			$detailButton->setType('multibox');
 		}
@@ -252,11 +272,10 @@ class PhocaGalleryViewDetail extends JView
 		$item->nextbuttonhref	= $detailButton->getNext((int)$item->catid, (int)$item->id, (int)$item->ordering, 1);
 		$item->prevbutton		= $detailButton->getPrevious((int)$item->catid, (int)$item->id, (int)$item->ordering);
 		$item->prevbuttonhref		= $detailButton->getPrevious((int)$item->catid, (int)$item->id, (int)$item->ordering,1);
+		*/
 		$slideshowData			= $detailButton->getJsSlideshow((int)$item->catid, (int)$item->id, (int)$var['slideshow'], $item->catslug, $item->slug);
 		$item->slideshowbutton	= $slideshowData['icons'];
 		$item->slideshowfiles	= $slideshowData['files'];
-		//tian 缩略图
-		$item->slideshowfiles_t	= $slideshowData['files_t'];
 		$item->slideshow		= $var['slideshow'];
 		$item->download			= $var['download'];
 		
@@ -358,7 +377,9 @@ class PhocaGalleryViewDetail extends JView
 		
 		
 		// Back button
-		$this->tmpl['backbutton'] = '';
+		/*
+		 * tian_ff
+		 $this->tmpl['backbutton'] = '';
 		if ($this->tmpl['detailwindow'] == 7) {
 			phocagalleryimport('phocagallery.image.image');
 			$formatIcon = &PhocaGalleryImage::getFormatIcon();
@@ -366,7 +387,7 @@ class PhocaGalleryViewDetail extends JView
 				.' title="'.JText::_( 'COM_PHOCAGALLERY_BACK_TO_CATEGORY' ).'">'
 				. JHtml::_('image', 'components/com_phocagallery/assets/images/icon-up-images.' . $formatIcon, JText::_( 'COM_PHOCAGALLERY_BACK_TO_CATEGORY' )).'</a></div>';
 				
-		}
+		}*/
 		
 		
 		
@@ -374,7 +395,10 @@ class PhocaGalleryViewDetail extends JView
 		$this->assignRef( 'tmpl', $this->tmpl );
 		$this->assignRef( 'item', $item );
 		$this->_prepareDocument($item);
+		//tian_ff
+		parent::display($tpl);
 		
+		/* tian_ff 
 		if ($this->tmpl['enable_multibox'] == 1) {
 			
 			if ($item->download > 0) {
@@ -412,7 +436,7 @@ class PhocaGalleryViewDetail extends JView
 			
 			parent::display('video');
 		} else {
-			parent::display('slideshowjs');
+			//parent::display('slideshowjs');//tian_ff
 			if ($item->slideshow == 1) {
 				parent::display('slideshow');
 			} else if ($item->download > 0) {
@@ -432,9 +456,10 @@ class PhocaGalleryViewDetail extends JView
 			} else {
 				parent::display($tpl);
 			}
-		}
+		}*/
+		
 	}
-	
+
 	protected function _prepareDocument($item) {
 		
 		$app		= JFactory::getApplication();
