@@ -372,19 +372,18 @@ class PhocaGalleryRenderDetailButton
 					$imgLink		= JURI::base(true) . '/' . $fileThumbnail->rel;
 					
 					//tian  缩略图路径
-					$fileThumbnail_tian 	= PhocaGalleryFileThumbnail::getThumbnailName($value->filename, 'small');
-					$imgLink_tian		= JURI::base(true) . '/' . $fileThumbnail_tian->rel;
+					$fileThumbnail_small 	= PhocaGalleryFileThumbnail::getThumbnailName($value->filename, 'small');
+					$imgLink_small		= JURI::base(true) . '/' . $fileThumbnail_small->rel;
+					
 					$thumbnail_link = JRoute::_('index.php?option=com_phocagallery&view=detail&catid='. (int) $catid .'&id='.$value->id.'&Itemid='. JRequest::getVar('Itemid', 0, '', 'int')  );
 					
 					if (JFile::exists($fileThumbnail->abs)) {
-						$jsSlideshowData['files'] .= '["'. $imgLink .'", "", "", "'.$description.'"]'.$endComma."\n";
-						//tian
-						$jsSlideshowData['files_t'] .= '["'. $imgLink_tian .'", "'.$value->id.'", "'.(int) $catid.'", "'.$thumbnail_link.'"]'.$endComma."\n";
+						$jsSlideshowData['files'] .= '["'. $imgLink .'", "'. $imgLink_small .'", "", "'.$description.'"]'.$endComma."\n";
 					} else {
 						$fileThumbnail = JURI::base(true).'/' . "components/com_phocagallery/assets/images/phoca_thumb_l_no_image." . $this->_formaticon;
-						$jsSlideshowData['files'] .= '["'.$fileThumbnail.'", "", "", ""]'.$endComma."\n";
+						$jsSlideshowData['files'] .= '["'.$fileThumbnail.'", "'.$fileThumbnail.'", "", ""]'.$endComma."\n";
 						//tian
-						$jsSlideshowData['files_t'] .= '["'.$imgLink_tian.'", "'.$value->id.'", "'.(int) $catid.'", "'.$thumbnail_link.'"]'.$endComma."\n";
+						//$jsSlideshowData['files_t'] .= '["'.$imgLink_tian.'", "'.$value->id.'", "'.(int) $catid.'", "'.$thumbnail_link.'"]'.$endComma."\n";
 					}
 				}
 				
