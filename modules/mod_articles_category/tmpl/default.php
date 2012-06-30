@@ -9,135 +9,71 @@
 // no direct access
 defined('_JEXEC') or die;
 ?>
-<ul class="category-module<?php echo $moduleclass_sfx; ?>">
-<?php if ($grouped) : ?>
-	<?php foreach ($list as $group_name => $group) : ?>
-	<li>
-		<h<?php echo $item_heading; ?>><?php echo $group_name; ?></h<?php echo $item_heading; ?>>
-		<ul>
-			<?php foreach ($group as $item) : ?>
-				<li>
-					<h<?php echo $item_heading+1; ?>>
-					   	<?php if ($params->get('link_titles') == 1) : ?>
-						<a class="mod-articles-category-title <?php echo $item->active; ?>" href="<?php echo $item->link; ?>">
-						<?php echo $item->title; ?>
-				        <?php if ($item->displayHits) :?>
-							<span class="mod-articles-category-hits">
-				            (<?php echo $item->displayHits; ?>)  </span>
-				        <?php endif; ?></a>
-				        <?php else :?>
-				        <?php echo $item->title; ?>
-				        	<?php if ($item->displayHits) :?>
-							<span class="mod-articles-category-hits">
-				            (<?php echo $item->displayHits; ?>)  </span>
-				        <?php endif; ?></a>
-				            <?php endif; ?>
-			        </h<?php echo $item_heading+1; ?>>
 
-
-				<?php if ($params->get('show_author')) :?>
-					<span class="mod-articles-category-writtenby">
-					<?php echo $item->displayAuthorName; ?>
-					</span>
-				<?php endif;?>
-
-				<?php if ($item->displayCategoryTitle) :?>
-					<span class="mod-articles-category-category">
-					(<?php echo $item->displayCategoryTitle; ?>)
-					</span>
-				<?php endif; ?>
-				<?php if ($item->displayDate) : ?>
-					<span class="mod-articles-category-date"><?php echo $item->displayDate; ?></span>
-				<?php endif; ?>
-				<?php if ($params->get('show_introtext')) :?>
-			<p class="mod-articles-category-introtext">
-			<?php echo $item->displayIntrotext; ?>
-			</p>
-		<?php endif; ?>
-
-		<?php if ($params->get('show_readmore')) :?>
-			<p class="mod-articles-category-readmore">
-				<a class="mod-articles-category-title <?php echo $item->active; ?>" href="<?php echo $item->link; ?>">
-				<?php if ($item->params->get('access-view')== FALSE) :
-						echo JText::_('MOD_ARTICLES_CATEGORY_REGISTER_TO_READ_MORE');
-					elseif ($readmore = $item->alternative_readmore) :
-						echo $readmore;
-						echo JHtml::_('string.truncate', $item->title, $params->get('readmore_limit'));
-						if ($params->get('show_readmore_title', 0) != 0) :
-							echo JHtml::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
-						endif;
-					elseif ($params->get('show_readmore_title', 0) == 0) :
-						echo JText::sprintf('MOD_ARTICLES_CATEGORY_READ_MORE_TITLE');
-					else :
-
-						echo JText::_('MOD_ARTICLES_CATEGORY_READ_MORE');
-						echo JHtml::_('string.truncate', ($item->title), $params->get('readmore_limit'));
-					endif; ?>
-	        </a>
-			</p>
-			<?php endif; ?>
-		</li>
-			<?php endforeach; ?>
-		</ul>
-	</li>
-	<?php endforeach; ?>
-<?php else : ?>
+<?php 
+	function cut_str1($string, $sublen, $start = 0, $code = 'UTF-8') 
+     {
+     	if($code == 'UTF-8')
+     	{
+     		$pa ="/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|\xe0[\xa0-\xbf][\x80-\xbf]|[\xe1-\xef][\x80-\xbf][\x80-\xbf]|\xf0[\x90-\xbf][\x80-\xbf][\x80-\xbf]|[\xf1-\xf7][\x80-\xbf][\x80-\xbf][\x80-\xbf]/";
+     		preg_match_all($pa, $string, $t_string); if(count($t_string[0]) - $start > $sublen) return join('', array_slice($t_string[0], $start, $sublen));
+     		return join('', array_slice($t_string[0], $start, $sublen));
+     	}
+     	else
+     	{
+     		$start = $start*2;
+     		$sublen = $sublen*2;
+     		$strlen = strlen($string);
+     		$tmpstr = ''; for($i=0; $i<$strlen; $i++)
+     		{
+     			if($i>=$start && $i<($start+$sublen))
+     			{
+     				if(ord(substr($string, $i, 1))>129)
+     				{
+     					$tmpstr.= substr($string, $i, 2);
+     				}
+     				else
+     				{
+     					$tmpstr.= substr($string, $i, 1);
+     				}
+     			}
+     			if(ord(substr($string, $i, 1))>129) $i++;
+     		}
+     		if(strlen($tmpstr)<$strlen ) $tmpstr.= "";
+     		return $tmpstr;
+     	}
+     }
+?>
+<div class="waterSupposed_body">
 	<?php foreach ($list as $item) : ?>
-	    <li>
-	   	<h<?php echo $item_heading; ?>>
-	   	<?php if ($params->get('link_titles') == 1) : ?>
-		<a class="mod-articles-category-title <?php echo $item->active; ?>" href="<?php echo $item->link; ?>">
-		<?php echo $item->title; ?>
-        <?php if ($item->displayHits) :?>
-			<span class="mod-articles-category-hits">
-            (<?php echo $item->displayHits; ?>)  </span>
-        <?php endif; ?></a>
-        <?php else :?>
-        <?php echo $item->title; ?>
-        	<?php if ($item->displayHits) :?>
-			<span class="mod-articles-category-hits">
-            (<?php echo $item->displayHits; ?>)  </span>
-        <?php endif; ?></a>
-            <?php endif; ?>
-        </h<?php echo $item_heading; ?>>
-
-       	<?php if ($params->get('show_author')) :?>
-       		<span class="mod-articles-category-writtenby">
-			<?php echo $item->displayAuthorName; ?>
-			</span>
-		<?php endif;?>
-		<?php if ($item->displayCategoryTitle) :?>
-			<span class="mod-articles-category-category">
-			(<?php echo $item->displayCategoryTitle; ?>)
-			</span>
-		<?php endif; ?>
-        <?php if ($item->displayDate) : ?>
-			<span class="mod-articles-category-date"><?php echo $item->displayDate; ?></span>
-		<?php endif; ?>
-		<?php if ($params->get('show_introtext')) :?>
+	    <dl>
+		    <?php $images = json_decode($item->images);?>
+		    <dt>
+		    	<img style="width: 134px;" title="<?php echo $item->title;?>" alt="<?php echo $item->title;?>" src="<?php echo $images->image_intro;?>"/>
+		    </dt>
+		    <dd>
+		   	<h3>
+		   	<?php if ($params->get('link_titles') == 1) : ?>
+			<a class="mod-articles-category-title <?php echo $item->active; ?>" href="<?php echo $item->link; ?>">
+			<?php echo $item->title; ?>
+	        <?php if ($item->displayHits) :?>
+				<span class="mod-articles-category-hits">
+	            (<?php echo $item->displayHits; ?>)  </span>
+	        <?php endif; ?></a>
+	        <?php else :?>
+	        <?php echo $item->title; ?>
+	        	<?php if ($item->displayHits) :?>
+				<span class="mod-articles-category-hits">
+	            (<?php echo $item->displayHits; ?>)  </span>
+	        <?php endif; ?></a>
+	            <?php endif; ?>
+	        </h3>
+	
 			<p class="mod-articles-category-introtext">
-			<?php echo $item->displayIntrotext; ?>
+				<?php echo cut_str1($item->introtext,100,0,'UTF-8'); ?>
 			</p>
-		<?php endif; ?>
-
-		<?php if ($params->get('show_readmore')) :?>
-			<p class="mod-articles-category-readmore">
-				<a class="mod-articles-category-title <?php echo $item->active; ?>" href="<?php echo $item->link; ?>">
-		        <?php if ($item->params->get('access-view')== FALSE) :
-						echo JText::_('MOD_ARTICLES_CATEGORY_REGISTER_TO_READ_MORE');
-					elseif ($readmore = $item->alternative_readmore) :
-						echo $readmore;
-						echo JHtml::_('string.truncate', $item->title, $params->get('readmore_limit'));
-					elseif ($params->get('show_readmore_title', 0) == 0) :
-						echo JText::sprintf('MOD_ARTICLES_CATEGORY_READ_MORE_TITLE');
-					else :
-						echo JText::_('MOD_ARTICLES_CATEGORY_READ_MORE');
-						echo JHtml::_('string.truncate', $item->title, $params->get('readmore_limit'));
-					endif; ?>
-	        </a>
-			</p>
-		<?php endif; ?>
-	</li>
+	
+			</dd>
+		</dl>
 	<?php endforeach; ?>
-<?php endif; ?>
-</ul>
+</div>

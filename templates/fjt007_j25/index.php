@@ -104,14 +104,18 @@ $templateparams	= $app->getTemplate(true)->params; ?>
                     <?php endif; ?>
 		<div class="clr"></div>
         </div>
-					<?php if ($this->countModules('user4 or user5 or user6')) : ?>
-                    <div id="mods2" class="spacer<?php echo $mainmod2_width; ?>">
-                                <jdoc:include type="modules" name="user4" style="jaw" />
-                                <jdoc:include type="modules" name="user5" style="jaw" />
-                                <jdoc:include type="modules" name="user6" style="jaw" />
-                                <div class="clr"></div>
+					<!--<?php if ($this->countModules('user4 or user5 or user6')) : ?>-->
+                    <div id="mods2" class="spacer">
+                    	<div class="module" style="float: left;width: 500px;">
+                    		<jdoc:include type="modules" name="user4" style="jaw" />
+                    		<jdoc:include type="modules" name="user5" style="jaw" />
+                    	</div>
+                        <div class="module" style="float: right;width: 500px;">
+                            <jdoc:include type="modules" name="user6" style="jaw" />
+                        </div>
+                        <div class="clr"></div>
                     </div>
-                    <?php endif; ?>              
+                    <!--<?php endif; ?>-->              
         </div>        
   </div>  
 </div>

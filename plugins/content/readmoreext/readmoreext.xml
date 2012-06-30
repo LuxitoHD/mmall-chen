@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.7" type="plugin" group="content">
+	<name>PLG_CONTENT_READMOREEXT</name>
+	<author>Joomla Tags</author>
+	<creationDate>July 2008</creationDate>
+	<copyright>Copyright (C) 2009 JoomlaTags.org. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>joomlatags@gmail.com</authorEmail>
+	<authorUrl>www.joomlatags.org</authorUrl>
+	<version>2.5</version>
+	<description>READMOREEXT_DESC</description>
+	<files>
+		<filename plugin="readmoreext">readmoreext.php</filename>
+                <folder>readmoreext</folder>
+                <folder>language</folder>
+	</files>
+	
+	
+<config>
+	<fields name="params">
+	 <fieldset name="basic">
+	  <field name="Only_For_Com_Content" type="radio" default="1" label="ONLY_FOR_COM_CONTENT" description="ONLY_FOR_COM_CONTENT_DESC">
+  	    	<option value="0">No</option>
+  	    	<option value="1">Yes</option>
+     </field>  	
+      <field name="ImgTitlePrefix" type="text" default="Read Article:" label="IMG_TITLE_PREFIX" description="IMG_TITLE_PREFIX_DESC"></field>
+      <field name="ImgAltPrefix" type="text" default="" label="IMG_ALT_PREFIX" description="IMG_ALT_PREFIX_DESC"></field>
+      <field name="Exclude_Article_Ids" type="text" default="" label="EXCLUDE_ARTICLE_IDS" description="EXCLUDE_ARTICLE_IDS_DESC"></field>
+      <field name="Exclude_Category_Ids" type="text" default="" label="EXCLUDE_CATEGORY_IDS" description="EXCLUDE_CATEGORY_IDS_DESC"></field>
+      <field name="Only_For_First_Image" type="radio" default="0" label="ONLY_FOR_FIRST_IMAGE" description="ONLY_FOR_FIRST_IMAGE_DESC">
+  	    	<option value="0">No</option>
+  	    	<option value="1">Yes</option>
+    	</field>     
+	
+	 </fieldset>
+	</fields>
+</config>
+
+	<languages folder="language">
+	  <language tag="en-GB">en-GB/en-GB.plg_content_readmoreext.ini</language>
+          <language tag="zh-CN">zh-CN/zh-CN.plg_content_readmoreext.ini</language>
+          <language tag="it-IT">it-IT/it-IT.plg_content_readmoreext.ini</language>
+   </languages>
+</extension>
+

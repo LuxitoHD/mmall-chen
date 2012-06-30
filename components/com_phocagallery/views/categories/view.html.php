@@ -121,6 +121,9 @@ class PhocaGalleryViewCategories extends JView
 		$this->tagData						= $this->get('tagData');
 		$this->tagData1						= $this->get('tagData1');
 		$this->tagData2						= $this->get('tagData2');
+		$this->items						= $this->get('Items');
+		
+		$this->lead_items 					=&$this->items[0];
 		
 		$rightDisplayKey  = 1;
 		foreach ($this->tagData as $key => $item){

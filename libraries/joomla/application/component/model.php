@@ -191,7 +191,6 @@ abstract class JModel extends JObject
 	{
 		$type = preg_replace('/[^A-Z0-9_\.-]/i', '', $type);
 		$modelClass = $prefix . ucfirst($type);
-
 		if (!class_exists($modelClass))
 		{
 			jimport('joomla.filesystem.path');
