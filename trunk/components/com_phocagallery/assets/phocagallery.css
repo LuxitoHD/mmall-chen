@@ -922,12 +922,6 @@ div.current dd {
 	text-align: center;
 }
 
-/*icons - buttons*/
-#phocagallery #pg-icons{
-	float:right;
-	margin-right:5px;
-}
-
 /* Multibox */
 #phocagallery.pg-detail-view-multibox {
 	margin:	0px;
@@ -1057,4 +1051,149 @@ div.current dd {
 		 background: none !important;
 		 border: none !important;
 		 text-decoration: none !important;
+}
+
+.firstScreen {
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0 3px 0 #E5E5E5;
+    font-family: simsun,Arial,Helvetica,sans-serif;
+    height: 465px;
+    line-height: 1.5;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+.firstScreen .aside_wrap {
+    border-right: 1px solid #CCCCCC;
+    display: inline;
+    float: left;
+    height: 465px;
+    overflow: hidden;
+    width: 275px;
+}
+
+.firstScreen .item_style, .firstScreen .item_speace, .firstScreen .item_group {
+    border-bottom: 1px solid #CCCCCC;
+    height: 80px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+.firstScreen .item_style dt {
+    background-position: center 0;
+}
+
+.firstScreen .item_style dd, .firstScreen .item_speace dd, .firstScreen .item_group dd {
+    height: 55px;
+    margin-left: 70px;
+    padding-top: 10px;
+}
+
+.firstScreen .item_style dd a, .firstScreen .item_speace dd a, .firstScreen .item_group dd a {
+    color: #666666;
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    margin-right: 1%;
+    margin-top: 5px;
+    overflow: hidden;
+    vertical-align: top;
+    width: 30%;
+}
+
+.firstScreen .item_style dt, .firstScreen .item_speace dt, .firstScreen .item_group dt {
+    background-image: url("images/bg_ico_img.png?20120629220948");
+    background-repeat: no-repeat;
+    display: inline;
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    height: 80px;
+    line-height: 80px;
+    margin-right: -70px;
+    overflow: hidden;
+    text-align: center;
+    width: 65px;
+}
+
+.firstScreen .item_style dt span, .firstScreen .item_speace dt span, .firstScreen .item_group dt span {
+    position: relative;
+    z-index: -1;
+}
+
+.firstScreen .item_speace {
+    background-color: #F5F5F5;
+}
+
+.firstScreen .item_speace dt {
+    background-position: center -80px;
+}
+
+.firstScreen .item_group dt {
+    background-position: center -160px;
+}
+
+.firstScreen .pic_text {
+    border-bottom: 1px dashed #CCCCCC;
+    height: 84px;
+    margin: 14px 10px 0;
+    overflow: hidden;
+}
+
+.firstScreen .pic_text dt {
+    display: inline;
+    float: left;
+    height: 70px;
+    margin-right: -100px;
+    overflow: hidden;
+    width: 90px;
+}
+
+.firstScreen .pic_text dt img{
+    width: 90px;
+}
+
+.firstScreen .pic_text dd {
+    height: 70px;
+    margin-left: 100px;
+    overflow: hidden;
+}
+
+.firstScreen .pic_text h3 {
+    font-size: 12px;
+    height: 22px;
+    line-height: 22px;
+    margin-bottom: 3px;
+    overflow: hidden;
+}
+
+.firstScreen .pic_text a {
+    color: #0066CC;
+}
+
+.firstScreen .pic_text p {
+    color: #999999;
+    /*height: 42px;*/
+    line-height: 20px;
+    overflow: hidden;
+    margin-bottom: 0px;
+}
+.firstScreen .list {
+    margin: 5px 10px 0;
+    overflow: hidden;
+}
+
+.firstScreen .list li {
+    background: url("images/bg_square1.gif?20120630194422") no-repeat scroll 0 12px transparent;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    padding-left: 10px;
+}
+
+.firstScreen .list li a {
+    color: #666666;
 }
