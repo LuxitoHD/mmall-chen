@@ -41,11 +41,12 @@ $para = $_POST['para'];
 			
 		$db->setQuery($query_c);
 		if($db->Query()){
-			$query_s = "select goods from #__phocagallery where id = ".$id;
+			/*$query_s = "select goods from #__phocagallery where id = ".$id;
 			$db->setQuery($query_s);
 			$goods_counts = $db->loadResult();
 			
-			return $goods_counts;
+			return $goods_counts;*/
+			return "succ";
 		}else{
 			return "fail";
 		}
@@ -60,10 +61,11 @@ $para = $_POST['para'];
 			
 		$db->setQuery($query_c);
 		if($db->Query()){
-			$query_s = "select bads from #__phocagallery where id = ".$id;
+			/*$query_s = "select bads from #__phocagallery where id = ".$id;
 			$db->setQuery($query_s);
 			$bads_counts = $db->loadResult();
-			return $bads_counts;
+			return $bads_counts;*/
+			return "succ";
 		}else{
 			return "fail";
 		}
@@ -79,10 +81,12 @@ $para = $_POST['para'];
 			
 		$db->setQuery($query_c);
 		if($db->Query()){
-			$query_s = "select loves from #__phocagallery where id = ".$id;
+			/*$query_s = "select loves from #__phocagallery where id = ".$id;
 			$db->setQuery($query_s);
 			$loves_counts = $db->loadResult();
 			return $loves_counts;
+			*/
+			return "succ";
 		}else{
 			return "fail";
 		}
