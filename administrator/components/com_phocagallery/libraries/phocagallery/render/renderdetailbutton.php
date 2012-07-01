@@ -332,7 +332,7 @@ class PhocaGalleryRenderDetailButton
 		
 		
 		
-		$query = 'SELECT a.id, a.filename, a.extl, a.description' 
+		$query = 'SELECT a.id,a.title, a.filename, a.extl, a.description' 
 		.' FROM #__phocagallery AS a'
 		.' LEFT JOIN #__phocagallery_img_votes_statistics AS r ON r.imgid = a.id'
 		.' WHERE a.catid='.(int) $catid
@@ -364,6 +364,9 @@ class PhocaGalleryRenderDetailButton
 				$description 	= trim($description);
 				$description 	= str_replace("\n", '', $description);
 				$description 	= str_replace("\r", '', $description);
+
+				$tags =PhocaGalleryTag::displayTags_th($value->id);
+
 				if (isset($value->extl) && $value->extl != '') {
 					$jsSlideshowData['files'] .= '["'. $value->extl .'", "", "", "'.$description.'"]'.$endComma."\n"; 
 					 
@@ -378,7 +381,7 @@ class PhocaGalleryRenderDetailButton
 					$thumbnail_link = JRoute::_('index.php?option=com_phocagallery&view=detail&catid='. (int) $catid .'&id='.$value->id.'&Itemid='. JRequest::getVar('Itemid', 0, '', 'int')  );
 					
 					if (JFile::exists($fileThumbnail->abs)) {
-						$jsSlideshowData['files'] .= '["'. $imgLink .'", "'. $imgLink_small .'", "", "'.$description.'"]'.$endComma."\n";
+						$jsSlideshowData['files'] .= '["'. $imgLink .'", "'. $imgLink_small .'", "'.$value->title.'", "'.$tags.'" , "'.$description.'"]'.$endComma."\n";
 					} else {
 						$fileThumbnail = JURI::base(true).'/' . "components/com_phocagallery/assets/images/phoca_thumb_l_no_image." . $this->_formaticon;
 						$jsSlideshowData['files'] .= '["'.$fileThumbnail.'", "'.$fileThumbnail.'", "", ""]'.$endComma."\n";
@@ -421,6 +424,7 @@ class PhocaGalleryRenderDetailButton
 		
 		return $jsSlideshowData;//files (javascript) and icons (buttons)		
 	}
+
 		
 }
 ?>
