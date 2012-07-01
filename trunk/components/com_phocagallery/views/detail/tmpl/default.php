@@ -50,7 +50,7 @@ $img_small = $this->item->fileThumbnail_small;
 
 <div id="content">
   <div class="section_con"> 
-    <div class="crumbs clearfix">
+    <div class="crumbs clearfix" style="display:none">
 	  <ul>
 		<li class="base">
 		  <div class="logo"></div>
@@ -62,7 +62,7 @@ $img_small = $this->item->fileThumbnail_small;
 	  </ul>
 	</div>
 
-    <h2 class="photos_title">名家之作 2012卫生间装修效果大全</h2>
+    <h2 class="photos_title" id="hxm_title">名家之作 2012卫生间装修效果大全</h2>
     <div class="photos_tips">支持键盘&lt;&nbsp;&gt;键翻阅</div>
     <div class="photosWrap">
 		<div class="picView" id="picView"> 
@@ -77,7 +77,7 @@ $img_small = $this->item->fileThumbnail_small;
 				<a href="#" title="" hidefocus="true" class="autoPlay" id="stopPlay" style="display:none;">停止播放</a>
 				<a href="#" title="下一张" hidefocus="true" class="next2" id="next2">下一张</a>
 			</div>
-			<div class="tagsWrap">
+			<div class="tagsWrap" id="hxm_tags">
 				<strong>标签：</strong>
 				<span class="txt-data">客厅</span>
 				<span class="txt-data">欧式</span>
@@ -110,10 +110,10 @@ $img_small = $this->item->fileThumbnail_small;
 							document.write("<li><img width='100' height='74'  src='"+tian[i][1]+"' alt='' title='' data_source='"+tian[i][0]+"' /></li>");
 						}
 						//tian  重复添加
-						for(var i=0;i<tian.length;i++){
+						/*for(var i=0;i<tian.length;i++){
 							//document.write("<li><a href='"+tian[i][3]+"'><img src='"+tian[i][0]+"'></href></li>");
 							document.write("<li><img width='100' height='74' src='"+tian[i][1]+"' alt='' title='' data_source='"+tian[i][0]+"' /></li>");
-						}
+						}*/
 					</script>
 					<!-- 	
 					<li><img width="10" height="10" src="images/info/room_pic_0.jpg" alt="" title="" data_source="images/info/news_pic.jpg" /></li>
@@ -160,12 +160,14 @@ $img_small = $this->item->fileThumbnail_small;
 			 autoPlay:true, //是否自动播放,默认不播放
 			 eventType:"click", //鼠标事件设置
 			 eventSpeed:"normal", //动画速度，设0则无动画
-			 eventTime:2000, //轮播间隔时间，设0则不自动轮播
+			 eventTime:4000, //轮播间隔时间，设0则不自动轮播
 			 scrollDirection:0, //动画滚动方向
 			 curNum: parseInt(location.hash.replace("#pic_", '')) || curNum_t,//标识默认停在第几个
 			 scrollNub:7, //每次滚动数量
 			 defaultNum:3
 		});
+		$("#hxm_title").html(tian[curNum_t][2]);
+		$("#hxm_tags").html(tian[curNum_t][3]);
 	}(this, jQuery);
 </script> 
 
