@@ -12,13 +12,7 @@ defined('_JEXEC') or die;
 // Note. It is important to remove spaces between elements.
 ?>
 
-<ul class="menu<?php echo $class_sfx;?>"<?php
-	$tag = '';
-	if ($params->get('tag_id')!=NULL) {
-		$tag = $params->get('tag_id').'';
-		echo ' id="'.$tag.'"';
-	}
-?>>
+<ul class="n_list">
 <?php
 foreach ($list as $i => &$item) :
 	$class = 'item-'.$item->id;

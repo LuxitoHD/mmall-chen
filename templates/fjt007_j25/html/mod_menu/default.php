@@ -12,19 +12,12 @@ defined('_JEXEC') or die;
 
 // Note. It is important to remove spaces between elements.
 ?>
-
-<ul class="menu<?php echo $class_sfx;?>"<?php
-	$tag = '';
-	if ($params->get('tag_id')!=NULL) {
-		$tag = $params->get('tag_id').'';
-		echo ' id="'.$tag.'"';
-	}
-?>>
+<ul id="n_list">
 <?php
 foreach ($list as $i => &$item) :
 	$class = 'item-'.$item->id;
 	if ($item->id == $active_id) {
-		$class .= ' current';
+		$class .= ' this';
 	}
 
 	if (	$item->type == 'alias' &&
@@ -57,7 +50,7 @@ foreach ($list as $i => &$item) :
 		$class = ' class="'.trim($class) .'"';
 	}
 
-	echo '<li'.$class.'><span class="li-l"></span><span class="li-r"></span>';
+	echo '<li'.$class.'>';
 
 	// Render the menu item.
 	switch ($item->type) :
@@ -72,18 +65,8 @@ foreach ($list as $i => &$item) :
 			break;
 	endswitch;
 
-	// The next item is deeper.
-	if ($item->deeper) {
-		echo '<ul>';
-	}
-	// The next item is shallower.
-	else if ($item->shallower) {
-		echo '</li>';
-		echo str_repeat('</ul></li>', $item->level_diff);
-	}
-	// The next item is on the same level.
-	else {
-		echo '</li>';
-	}
+	echo '<i class="vline"></i></li>';
 endforeach;
-?></ul>
+?>
+	<li class="logo"><a id="n_sample" href="#"><img title="" alt="" src="/mmall/templates/fjt007_j25/images/nav_logo.png"></a></li>
+</ul>
