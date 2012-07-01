@@ -177,4 +177,42 @@ class PhocaGalleryTag
 
 		return $o;
 	}
+
+//获得图片tag
+	public function displayTags_th($imgId, $popupLink = 0) {
+	
+		$o 		= '';
+		$db 	= JFactory::getDBO();
+		//$params = JComponentHelper::getParams('com_phocagallery') ;
+				
+		$query = 'SELECT a.id, a.title, a.link_ext, a.link_cat'
+		.' FROM #__phocagallery_tags AS a'
+		.' LEFT JOIN #__phocagallery_tags_ref AS r ON r.tagid = a.id'
+		.' WHERE r.imgid = '.(int)$imgId;
+
+		$db->setQuery($query);
+		$imgObject = $db->loadObjectList();
+		
+		if (!$db->query()) {
+			$this->setError($db->getErrorMsg());
+			return false;
+		}
+		
+		/*
+		if ($popupLink == 1) {
+			$tl	= 0;
+		} else  {
+			$tl	= $params->get( 'tags_links', 0 );
+		}*/
+		$o = "<strong>标签：</strong>";
+
+		foreach ($imgObject as $k => $v) {
+			$o .= "<span class='txt-data'>";
+			$o .= $v->title;
+			$o .= '</span> ';
+		}
+
+		return $o;
+	}
+	
 }
