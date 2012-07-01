@@ -174,6 +174,13 @@ void function($){
                 function addTitleTags(curNum){
 					$("#hxm_title").text(tian[curNum][2]);
 					$("#hxm_tags").html(tian[curNum][3]);
+					$("#loves_id").html(tian[curNum][5]);
+					$("#goods_id").html(tian[curNum][6]);
+					$("#bads_id").html(tian[curNum][7]);
+					//var imgid = tian[curNum][8];
+					$("#loves_id").attr("onclick","test_love("+tian[curNum][8]+")");
+					$("#goods_id").attr("onclick","test_good("+tian[curNum][8]+")");
+					$("#bads_id").attr("onclick","test_bad("+tian[curNum][8]+")");
 					//alert(tian);
                 };
                 //滚动动画程序
