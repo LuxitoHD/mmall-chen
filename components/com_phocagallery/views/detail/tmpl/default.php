@@ -1,14 +1,14 @@
 <?php defined('_JEXEC') or die('Restricted access');
 $document			= &JFactory::getDocument();
 //js
-$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery-1.6.min.js');
+//$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery-1.6.min.js');
 $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.cookie.js');
 $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.easing.1.3.js');
-$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.focus.js');
+//$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.focus.js');
 $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.infinitescroll.min.js');
 $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.lazyload.min.js');
 $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.masonry.min.js');
-$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.photos.js');
+//$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.photos.js');
 $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/underscore-1.3.1.min.js');
 //css
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/base.css');
@@ -50,15 +50,15 @@ $img_small = $this->item->fileThumbnail_small;
 
 <div id="content">
   <div class="section_con"> 
-    <div class="crumbs clearfix" style="display:none">
+    <div class="crumbs clearfix" style="">
 	  <ul>
 		<li class="base">
 		  <div class="logo"></div>
-		  <span>您现在的位置：<a href="#" title="">首页</a></span> </li>
+		  <span>您现在的位置：<a href="index.php" title="">首页</a></span> </li>
 		<li class="arrow">&gt;</li>
-		<li><a href="#" title="">用户中心</a></li>
+		<li><a href="<? echo JRoute::_('/index.php?option=com_phocagallery&view=categories&Itemid='. JRequest::getVar('Itemid', 1, 'get', 'int')); ?>" title="装客">装客</a></li>
 		<li class="arrow">&gt;</li>
-		<li class="terminal">我的报名</li>
+		<li class="terminal"><?php echo $this->item->catname;?></li>
 	  </ul>
 	</div>
 
@@ -85,10 +85,10 @@ $img_small = $this->item->fileThumbnail_small;
 				<span class="txt-data">简洁储物架</span>
 			</div>
 			<div class="share">
-				<a href="#" title="" class="ico_love">1023</a>
-				<a href="#" title="" class="ico_like">502</a>
-				<a href="#" title="" class="ico_hate">21</a>
-				<a href="#" title="" class="ico_share">分享</a>
+				<a  href="javascript:void(0)" onclick="test_love(<?php echo $this->item->id; ?>)" title="" class="ico_love"  id="loves_id"></a>
+				<a href="javascript:void(0)" onclick="test_good(<?php echo $this->item->id; ?>)" title="" class="ico_like"  id="goods_id"></a>
+				<a href="javascript:void(0)" onclick="test_bad(<?php echo $this->item->id; ?>)" title="" class="ico_hate"  id="bads_id"></a>
+				<a href="#" title="" class="ico_share" >分享</a>
 			</div>
       </div>
       <div class="picsWrap" id="pics_wrap">
@@ -98,6 +98,7 @@ $img_small = $this->item->fileThumbnail_small;
 				
 					<script type="text/javascript">
 						var curNum_t = 0;
+						//var curNum_c = 0;
 						//前台js变量取得小缩略图的路径
 						var img_small_js = "<?php echo $this->item->fileThumbnail_small;?>";
 						
@@ -160,7 +161,7 @@ $img_small = $this->item->fileThumbnail_small;
 			 autoPlay:true, //是否自动播放,默认不播放
 			 eventType:"click", //鼠标事件设置
 			 eventSpeed:"normal", //动画速度，设0则无动画
-			 eventTime:4000, //轮播间隔时间，设0则不自动轮播
+			 eventTime:50000, //轮播间隔时间，设0则不自动轮播
 			 scrollDirection:0, //动画滚动方向
 			 curNum: parseInt(location.hash.replace("#pic_", '')) || curNum_t,//标识默认停在第几个
 			 scrollNub:7, //每次滚动数量
@@ -168,7 +169,64 @@ $img_small = $this->item->fileThumbnail_small;
 		});
 		$("#hxm_title").html(tian[curNum_t][2]);
 		$("#hxm_tags").html(tian[curNum_t][3]);
+		$("#loves_id").html(tian[curNum_t][5]);
+		$("#goods_id").html(tian[curNum_t][6]);
+		$("#bads_id").html(tian[curNum_t][7]);
 	}(this, jQuery);
+</script> 
+
+
+ <script type="text/javascript">
+     	
+		function test_good(id) {
+    	    jQuery.ajax({
+    	        type: 'POST',
+    	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
+    	        data: {id:id,para:"good"},
+    	        success: function(data) {
+        	        if(data == "fail"){
+						alert("失败");
+        	        }else if(data=="succ"){
+						//tian[curNum_c][6] = parseInt(tian[curNum_c][6])+1;
+						//$("#goods_id").text(tian[curNum_c][6]);
+						$("#goods_id").text(parseInt($("#goods_id").text())+1);
+        	        }
+    	        }
+    	    })
+    	}  
+		function test_bad(id) {
+    	    jQuery.ajax({
+    	        type: 'POST',
+    	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
+    	        data: {id:id,para:"bad"},
+    	        success: function(data) {
+        	        if(data == "fail"){
+						alert("失败");
+        	        }else if(data=="succ"){
+						//tian[curNum_c][7] = parseInt(tian[curNum_c][7])+1;
+						//$("#bads_id").text(tian[curNum_c][7]);
+						$("#bads_id").text(parseInt($("#bads_id").text())+1);
+        	        }
+    	        }
+    	    })
+    	} 
+
+		function test_love(id) {
+    	   jQuery.ajax({
+    	        type: 'POST',
+    	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
+    	        data: {id:id,para:"love"},
+    	        success: function(data) {
+        	        if(data == "fail"){
+						alert("失败");
+        	        }else if(data=="succ"){
+						//tian[curNum_c][5] = parseInt(tian[curNum_c][5])+1;
+						$("#loves_id").text(parseInt($("#loves_id").text())+1);
+						//alert(parseInt($("#loves_id").text())+1);
+        	        }
+    	        }
+    	    })
+    	} 
 </script> 
 
 <div id="phocaGallerySlideshowC" style="display:none"></div>
