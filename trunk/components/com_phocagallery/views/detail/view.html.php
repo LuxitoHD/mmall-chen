@@ -359,6 +359,7 @@ class PhocaGalleryViewDetail extends JView
 		}
 		
 		// Tags
+		/*
 		$this->tmpl['displaying_tags_output'] = '';
 		if ($this->tmpl['display_tags_links'] == 1 || $this->tmpl['display_tags_links'] == 3 || $this->tmpl['mb_tags'])  {
 			
@@ -367,7 +368,7 @@ class PhocaGalleryViewDetail extends JView
 			} else {
 				$this->tmpl['displaying_tags_output'] = PhocaGalleryTag::displayTags($item->id, 1);
 			}
-		}
+		}*/
 		
 		
 		
