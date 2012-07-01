@@ -76,6 +76,7 @@ void function($){
                         $(prev).add(prev2).bind("click",function(e){
 								e.preventDefault();
                                 curNumAdd(false,size);
+								addTitleTags(opt.curNum);
                                 scrollAnimate(opt.curNum);
                                 return false;
                         });
@@ -83,6 +84,7 @@ void function($){
                         $(next).add(next2).bind("click",function(e){
 								e.preventDefault();
                                 curNumAdd(true,size);
+								addTitleTags(opt.curNum);
                                 scrollAnimate(opt.curNum);
                                 return false;
                         });
@@ -125,6 +127,7 @@ void function($){
                                 setinterval:function(){
                                         this.itv = setInterval(function(){
                                                 curNumAdd(true,size);
+												addTitleTags(opt.curNum);
                                                 scrollAnimate(opt.curNum);
 												location.hash = "#pic_" + opt.curNum;
                                         },eventTime);
@@ -166,6 +169,13 @@ void function($){
                                 opt.curNum = (--curNum < 0)? size-1 : curNum;
                         }
                 };
+
+				//图片标题 图片标签
+                function addTitleTags(curNum){
+					$("#hxm_title").text(tian[curNum][2]);
+					$("#hxm_tags").html(tian[curNum][3]);
+					//alert(tian);
+                };
                 //滚动动画程序
                 function scrollAnimate(i){
                         //滚动动画
@@ -184,6 +194,7 @@ void function($){
                         //当前on状态标示
                         $this.removeClass(curClass);
                         $this.eq(i).addClass(curClass);
+						addTitleTags(i);
 						$(phosView).attr('src',$this.eq(i).find('img').attr('data_source'));
                 };
         };
