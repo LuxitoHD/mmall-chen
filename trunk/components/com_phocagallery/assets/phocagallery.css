@@ -69,13 +69,6 @@
 	border: 0px;
 }
 
-#phocagallery a:hover, #phocagallery a:active, #phocagallery a:focus,
-#phocagallery-statistics a:hover, #phocagallery-statistics a:active, #phocagallery-statistics a:focus {
-	/*background: none;*/
-	border:0px;
-	text-decoration:underline;
-}
-
 #phocagallery .pg-name,
 #phocagallery-statistics .pg-name{ 
 	margin:0px;
@@ -1196,4 +1189,106 @@ div.current dd {
 
 .firstScreen .list li a {
     color: #666666;
+}
+
+.firstScreen .focusWrap {
+    display: inline;
+    float: right;
+    height: 445px;
+    margin-right: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+    width: 700px;
+}
+
+.firstScreen .focus_pics {
+    height: 445px;
+    overflow: hidden;
+    position: relative;
+    width: 700px;
+    z-index: 1;
+}
+
+.firstScreen .focus_handle {
+    bottom: 10px;
+    height: 25px;
+    position: absolute;
+    right: 10px;
+    z-index: 2;
+}
+.firstScreen .focusWrap .prev, .firstScreen .focusWrap .next {
+    background: none repeat scroll 0 0 rgba(111, 111, 112, 0.6);
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: simsun,Arial,Helvetica,sans-serif;
+    font-size: 30px;
+    height: 74px;
+    line-height: 74px;
+    margin-top: -37px;
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    top: 50%;
+    width: 26px;
+    z-index: 3;
+}
+
+.firstScreen .focusWrap .prev {
+    left: 0;
+}
+
+.firstScreen .focusWrap .next {
+    right: 0;
+}
+
+.firstScreen .focus_pics ul li {
+    display: inline;
+    float: left;
+    overflow: hidden;
+    width: 700px;
+}
+
+.firstScreen .focus_handle ul {
+    float: right;
+}
+
+.firstScreen .focus_handle li {
+    float: left;
+    margin: 0 0 0 3px;
+}
+
+.firstScreen .focus_handle li a {
+    background-color: #002742;
+    color: #FFFFFF;
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    text-decoration: none;
+    width: 25px;
+}
+
+ul, ol, li {
+    list-style: none outside none;
+}
+
+.firstScreen .focus_pics ul {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.firstScreen .focusWrap .prev:hover, .firstScreen .focusWrap .next:hover {
+    background: none repeat scroll 0 0 rgba(45, 45, 45, 0.6);
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.firstScreen .focus_handle li a:hover {
+    background-color: #FF3366;
+}
+.firstScreen .focus_handle li.on a {
+    background-color: #FF3366;
 }

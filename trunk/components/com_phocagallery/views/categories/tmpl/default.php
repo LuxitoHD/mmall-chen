@@ -107,7 +107,38 @@ echo '		<ul class="list">';
 			}
 echo '      </ul>';
 echo '	</div>';
+$baseUri = JURI::root().'/images/';
+echo '	<div id="js_focusWrap" class="focusWrap">
+      <div class="focus_pics" id="js_focus_pics">
+        <ul style="width: 2100px; left: 0px;">';
+			foreach ($this->images as $i => $image){
+				echo '<li><a href="#"><img title="" alt="" style="width:700px;" src="'.$baseUri.$image->path_relative.'"></a></li>';
+			}
+//          <li><a href="#"><img title="" alt="" style="width:700px;" src="/mmall/images/phocagallery/style/european/20120404033.jpg"></a></li>
+//          <li><a href="#"><img title="" alt="" style="width:700px;" src="/mmall/images/phocagallery/style/european/20120404034.jpg"></a></li>
+//          <li><a href="#"><img title="" alt="" style="width:700px;" src="/mmall/images/phocagallery/style/european/20120404035.jpg"></a></li>
+echo'        </ul>
+      </div>
+      <div class="focus_handle" id="js_focus_handle">
+        <ul>
+          <li class="on"><a href="###">1</a></li>
+          <li class=""><a href="###">2</a></li>
+          <li class=""><a href="###">3</a></li>
+        </ul>
+      </div>
+      <a hidefocus="true" id="prev" class="prev" title="" href="###">&lt;</a><a hidefocus="true" id="next" class="next" title="" href="###">&gt;</a> </div>';
 echo '</div>';
+echo '<script type="text/javascript" defer="defer" async="async">
+void function(window, $){
+$("#js_focus_handle > ul > li").setFocus({
+focusWrap:"#js_focusWrap",
+focusBox:"#js_focus_pics > ul",
+focusPics:"#js_focus_pics > ul > li",
+curClass:"on",
+eventType:"click"
+});
+}(this, jQuery)
+</script> ';
 echo '<div style="clear:both"></div>';
 
 if ($this->tmpl['categories_description'] != '') {
