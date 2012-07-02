@@ -56,6 +56,10 @@ $saveOrder	= 'a.ordering';
 		</th>
 		
 		<th width="5%">
+			<?php echo JHtml::_('grid.sort', 'COM_PHOCAGALLERY_TAG_IS_CY_TITLE', 'a.is_cy', $listDirn, $listOrder); ?>
+		</th>
+		
+		<th width="5%">
 			<?php echo JHtml::_('grid.sort', 'COM_PHOCAGALLERY_TAG_CAT_TITLE', 'a.tag_cat', $listDirn, $listOrder); ?>
 		</th>
 
@@ -134,7 +138,9 @@ $canCreate	= $user->authorise('core.create',		'com_phocagallery');
 		echo $this->escape($item->title);
 	}  ?>
 	</td>
-	
+	<td class="center">
+		<?php echo $item->is_cy;?>
+	</td>
 	<td class="center">
 		<?php 
 			if($item->tag_cat==0) 

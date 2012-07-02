@@ -77,7 +77,7 @@ echo '</div>';
 		<ul class="adminformlist">
 			<?php
 			// Extid is hidden - only for info if this is an external image (the filename field will be not required)
-			$formArray = array ('title', 'alias', 'catid', 'ordering',
+			$formArray = array ('title', 'alias', 'catid','source', 'ordering',
 			'filename','latitude', 'longitude', 'zoom', 'geotitle', 'videocode', 'vmproductid');
 			foreach ($formArray as $value) {
 				echo '<li>'.$this->form->getLabel($value) . $this->form->getInput($value).'</li>' . "\n";
@@ -87,24 +87,6 @@ echo '</div>';
 		<?php echo $this->form->getInput('extid');?>
 		
 		<div class="clr"></div>
-		<div><?php echo JText::_('COM_PHOCAGALLERY_EXTERNAL_LINKS1');?></div>
-		<ul class="adminformlist">
-			<?php 
-			$formArray = array ('extlink1link', 'extlink1title', 'extlink1target', 'extlink1icon');
-			foreach ($formArray as $value) {
-				echo '<li>'.$this->form->getLabel($value) . $this->form->getInput($value).'</li>' . "\n";
-			} ?>
-		</ul>
-		
-		<div class="clr"></div>
-		<div><?php echo JText::_('COM_PHOCAGALLERY_EXTERNAL_LINKS2');?></div>
-		<ul class="adminformlist">
-			<?php 
-			$formArray = array ('extlink2link', 'extlink2title', 'extlink2target', 'extlink2icon');
-			foreach ($formArray as $value) {
-				echo '<li>'.$this->form->getLabel($value) . $this->form->getInput($value).'</li>' . "\n";
-			} ?>
-		</ul>
 		
 			<?php echo $this->form->getLabel('description'); ?>
 			<div class="clr"></div>

@@ -77,6 +77,9 @@ if (isset($this->tmpl['notapproved']->count) && (int)$this->tmpl['notapproved']-
 					<th width="15%"  class="title">
 						<?php echo JHTML::_('grid.sort',  'COM_PHOCAGALLERY_CATEGORY', 'category_id',$listDirn, $listOrder ); ?>
 					</th>
+					<th width="10%"  class="title">
+						<?php echo JHTML::_('grid.sort',  'COM_PHOCAGALLERY_FIELD_SOURCE_LABEL', 'source',$listDirn, $listOrder ); ?>
+					</th>
 					
 					<th width="15%">
 					<?php echo JHtml::_('grid.sort',  'JGRID_HEADING_ORDERING', 'a.ordering', $listDirn, $listOrder);
@@ -219,6 +222,10 @@ if ($canEditCat) {
 } else {
 	echo $this->escape($item->category_title);
 }
+echo '</td>';
+
+echo '<td class="center">';
+echo $this->escape($item->source);
 echo '</td>';
 	
 $cntx = 'phocagalleryimgs';

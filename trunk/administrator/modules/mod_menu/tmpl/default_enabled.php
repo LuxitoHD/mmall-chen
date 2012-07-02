@@ -245,6 +245,7 @@ if ($user->authorise('core.manage', 'com_content'))
 		$menu->getParent();
 	}
 
+	
 	$menu->addChild(
 		new JMenuNode(JText::_('MOD_MENU_COM_CONTENT_CATEGORY_MANAGER'), 'index.php?option=com_categories&extension=com_content', 'class:category'), $createContent
 	);
@@ -258,6 +259,13 @@ if ($user->authorise('core.manage', 'com_content'))
 	$menu->addChild(
 		new JMenuNode(JText::_('MOD_MENU_COM_CONTENT_FEATURED'), 'index.php?option=com_content&view=featured', 'class:featured')
 	);
+	
+	$menu->addChild(new JMenuNode(JText::_('COM_PHOCAGALLERY_IMAGES'),'index.php?option=com_phocagallery&view=phocagalleryimgs','components/com_phocagallery/assets/images/icon-16-pg-menu-gal.png'));
+	$menu->addChild(new JMenuNode(JText::_('COM_PHOCAGALLERY_CATEGORIES'),'index.php?option=com_phocagallery&view=phocagallerycs','components/com_phocagallery/assets/images/icon-16-pg-menu-cat.png'));
+	
+	$menu->addChild(new JMenuNode(JText::_('COM_PHOCAGALLERY_TAGS'),'index.php?option=com_phocagallery&view=phocagallerytags','components/com_phocagallery/assets/images/icon-16-pg-menu-tags.png'));
+	
+	
 	$menu->addSeparator();
 	if ($user->authorise('core.manage', 'com_media'))
 	{

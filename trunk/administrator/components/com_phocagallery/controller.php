@@ -13,15 +13,15 @@ jimport('joomla.application.component.controller');
 $l['cp']	= array('COM_PHOCAGALLERY_CONTROL_PANEL', '');
 $l['i']		= array('COM_PHOCAGALLERY_IMAGES', 'phocagalleryimgs');
 $l['c']		= array('COM_PHOCAGALLERY_CATEGORIES', 'phocagallerycs');
-$l['t']		= array('COM_PHOCAGALLERY_THEMES', 'phocagalleryt');
-$l['cr']	= array('COM_PHOCAGALLERY_CATEGORY_RATING', 'phocagalleryra');
-$l['ir']	= array('COM_PHOCAGALLERY_IMAGE_RATING', 'phocagalleryraimg');
-$l['cc']	= array('COM_PHOCAGALLERY_CATEGORY_COMMENTS', 'phocagallerycos');
-$l['ic']	= array('COM_PHOCAGALLERY_IMAGE_COMMENTS', 'phocagallerycoimgs');
-$l['u']		= array('COM_PHOCAGALLERY_USERS', 'phocagalleryusers');
-$l['fb']	= array('COM_PHOCAGALLERY_FB', 'phocagalleryfbs');
+//$l['t']		= array('COM_PHOCAGALLERY_THEMES', 'phocagalleryt');
+//$l['cr']	= array('COM_PHOCAGALLERY_CATEGORY_RATING', 'phocagalleryra');
+//$l['ir']	= array('COM_PHOCAGALLERY_IMAGE_RATING', 'phocagalleryraimg');
+//$l['cc']	= array('COM_PHOCAGALLERY_CATEGORY_COMMENTS', 'phocagallerycos');
+//$l['ic']	= array('COM_PHOCAGALLERY_IMAGE_COMMENTS', 'phocagallerycoimgs');
+//$l['u']		= array('COM_PHOCAGALLERY_USERS', 'phocagalleryusers');
+//$l['fb']	= array('COM_PHOCAGALLERY_FB', 'phocagalleryfbs');
 $l['tg']	= array('COM_PHOCAGALLERY_TAGS', 'phocagallerytags');
-$l['in']	= array('COM_PHOCAGALLERY_INFO', 'phocagalleryin');
+//$l['in']	= array('COM_PHOCAGALLERY_INFO', 'phocagalleryin');
 
 // Submenu view
 $view	= JRequest::getVar( 'view', '', '', 'string', JREQUEST_ALLOWRAW );

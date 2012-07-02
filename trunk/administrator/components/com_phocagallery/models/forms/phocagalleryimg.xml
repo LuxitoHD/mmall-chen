@@ -25,26 +25,15 @@
 			label="COM_PHOCAGALLERY_FIELD_FILENAME_LABEL" required="true"
 			description="COM_PHOCAGALLERY_FIELD_FILENAME_DESC" class="inputbox"
 			size="40" />
-
+		<field name="source" type="list"
+			label="COM_PHOCAGALLERY_FIELD_SOURCE_LABEL" description="COM_PHOCAGALLERY_FIELD_SOURCE_LABEL"
+			class="inputbox" size="1" default="装客后台">
+			<option value="装客后台">装客后台</option>
+			<option value="其它">其它</option>
+		</field>
+		
 		<field name="extid" type="hidden" />
 
-		<field name="latitude" type="phocaselectmap"
-			label="COM_PHOCAGALLERY_FIELD_LATITUDE_LABEL" description="COM_PHOCAGALLERY_FIELD_LATITUDE_DESC"
-			class="inputbox" size="40" />
-		<field name="longitude" type="phocaselectmap"
-			label="COM_PHOCAGALLERY_FIELD_LONGITUDE_LABEL" description="COM_PHOCAGALLERY_FIELD_LONGITUDE_DESC"
-			class="inputbox" size="40" />
-		<field name="zoom" type="phocaselectmap" label="COM_PHOCAGALLERY_FIELD_ZOOM_LABEL"
-			description="COM_PHOCAGALLERY_FIELD_ZOOM_DESC" class="inputbox" size="40" />
-		<field name="geotitle" type="text" class="inputbox" size="40"
-			label="COM_PHOCAGALLERY_FIELD_GEOTITLE_LABEL" description="COM_PHOCAGALLERY_FIELD_GEOTITLE_DESC" />
-
-		<field name="videocode" type="phocaselectytb" rows="3" cols="5"
-			label="COM_PHOCAGALLERY_FIELD_VIDEOCODE_LABEL" description="COM_PHOCAGALLERY_FIELD_VIDEOCODE_DESC"
-			filter="raw" />
-
-		<field name="vmproductid" type="text" class="inputbox" size="40"
-			label="COM_PHOCAGALLERY_FIELD_VMPRODUCT_ID_LABEL" description="COM_PHOCAGALLERY_FIELD_VMPRODUCT_ID_DESC" />
 
 		<field name="description" type="editor" buttons="true"
 			hide="pagebreak,readmore" class="inputbox"
@@ -57,48 +46,6 @@
 			label="COM_PHOCAGALLERY_FIELD_PICASA_ALBUM_LABEL" description="COM_PHOCAGALLERY_FIELD_PICASA_ALBUM_DESC" />
 		<field name="extauth" type="Text" class="inputbox" size="40"
 			label="COM_PHOCAGALLERY_FIELD_PICASA_AUTHKEY_LABEL" description="COM_PHOCAGALLERY_FIELD_PICASA_AUTHKEY_DESC" />
-
-		<field name="extlink1link" type="Text" class="inputbox" size="40"
-			label="COM_PHOCAGALLERY_EXTERNAL_LINK_LINK_LABEL" description="COM_PHOCAGALLERY_FIELD_EXTERNAL_LINK_LINK_DESC" />
-		<field name="extlink1title" type="Text" class="inputbox" size="40"
-			label="COM_PHOCAGALLERY_EXTERNAL_LINK_TITLE_LABEL" description="COM_PHOCAGALLERY_FIELD_EXTERNAL_LINK_TITLE_DESC" />
-
-		<field name="extlink1target" type="list" class="inputbox"
-			label="COM_PHOCAGALLERY_EXTERNAL_LINK_TARGET_LABEL" description="COM_PHOCAGALLERY_FIELD_EXTERNAL_LINK_TARGET_DESC"
-			default="_self">
-			<option value="_self">COM_PHOCAGALLERY_OPEN_WINDOW_SELF</option>
-			<option value="_blank">COM_PHOCAGALLERY_OPEN_WINDOW_BLANK</option>
-			<option value="_parent">COM_PHOCAGALLERY_OPEN_WINDOW_PARENT</option>
-			<option value="_top">COM_PHOCAGALLERY_OPEN_WINDOW_TOP</option>
-		</field>
-
-		<field name="extlink1icon" type="list" class="inputbox"
-			label="COM_PHOCAGALLERY_EXTERNAL_LINK_ICON_LABEL" description="COM_PHOCAGALLERY_FIELD_EXTERNAL_LINK_ICON_DESC"
-			default="1">
-			<option value="0">COM_PHOCAGALLERY_NO</option>
-			<option value="1">COM_PHOCAGALLERY_YES</option>
-		</field>
-
-		<field name="extlink2link" type="Text" class="inputbox" size="40"
-			label="COM_PHOCAGALLERY_EXTERNAL_LINK_LINK2_LABEL" description="COM_PHOCAGALLERY_FIELD_EXTERNAL_LINK_LINK2_DESC" />
-		<field name="extlink2title" type="Text" class="inputbox" size="40"
-			label="COM_PHOCAGALLERY_EXTERNAL_LINK_TITLE2_LABEL" description="COM_PHOCAGALLERY_FIELD_EXTERNAL_LINK_TITLE2_DESC" />
-
-		<field name="extlink2target" type="list" class="inputbox"
-			label="COM_PHOCAGALLERY_EXTERNAL_LINK_TARGET2_LABEL" description="COM_PHOCAGALLERY_FIELD_EXTERNAL_LINK_TARGET2_DESC"
-			default="_self">
-			<option value="_self">COM_PHOCAGALLERY_OPEN_WINDOW_SELF</option>
-			<option value="_blank">COM_PHOCAGALLERY_OPEN_WINDOW_BLANK</option>
-			<option value="_parent">COM_PHOCAGALLERY_OPEN_WINDOW_PARENT</option>
-			<option value="_top">COM_PHOCAGALLERY_OPEN_WINDOW_TOP</option>
-		</field>
-
-		<field name="extlink2icon" type="list" class="inputbox"
-			label="COM_PHOCAGALLERY_EXTERNAL_LINK_ICON2_LABEL" description="COM_PHOCAGALLERY_FIELD_EXTERNAL_LINK_ICON2_DESC"
-			default="1">
-			<option value="0">COM_PHOCAGALLERY_NO</option>
-			<option value="1">COM_PHOCAGALLERY_YES</option>
-		</field>
 
 		<field name="metakey" type="textarea" label="JField_Meta_Keywords_Label"
 			description="JField_Meta_Keywords_Desc" class="inputbox" rows="3"
