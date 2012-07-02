@@ -23,6 +23,7 @@ class PhocaGalleryCpModelPhocaGalleryTags extends JModelList
 				'id', 'a.id',
 				'title', 'a.title',
 				'tag_cat', 'a.tag_cat',
+				'is_cy', 'a.is_cy',
 				'alias', 'a.alias',
 				'checked_out', 'a.checked_out',
 				'checked_out_time', 'a.checked_out_time',

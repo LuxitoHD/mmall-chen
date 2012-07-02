@@ -70,7 +70,7 @@ defined('_JEXEC') or die;
 	        </h3>
 	
 			<p class="mod-articles-category-introtext">
-				<?php echo cut_str1($item->introtext,100,0,'UTF-8'); ?>
+				<?php echo htmlspecialchars(cut_str1($item->introtext,100,0,'UTF-8')); ?>
 			</p>
 	
 			</dd>

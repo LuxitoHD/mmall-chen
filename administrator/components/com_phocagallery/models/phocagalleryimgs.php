@@ -26,6 +26,7 @@ class PhocaGalleryCpModelPhocaGalleryImgs extends JModelList
 				'id', 'a.id',
 				'title', 'a.title',
 				'alias', 'a.alias',
+				'source','a.source',
 				'checked_out', 'a.checked_out',
 				'checked_out_time', 'a.checked_out_time',
 				'category_id', 'category_id',

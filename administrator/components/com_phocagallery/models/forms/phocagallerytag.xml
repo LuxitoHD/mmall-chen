@@ -12,16 +12,20 @@
 		<field name="alias" type="text" class="inputbox" size="40"
 			label="COM_PHOCAGALLERY_FIELD_ALIAS_LABEL" description="COM_PHOCAGALLERY_FIELD_ALIAS_DESC" />
 
-		<field name="link_cat" type="phocagallerycategory"
-			label="COM_PHOCAGALLERY_FIELD_CATEGORY_LINK_LABEL" description="COM_PHOCAGALLERY_FIELD_CATEGORY_LINK_DESC"
-			class="inputbox" />
-		
+		<field name="is_cy" type="list"
+			label="COM_PHOCAGALLERY_FIELD_TAG_IS_CY_LABEL" description="COM_PHOCAGALLERY_FIELD_TAG_IS_CY_LABEL"
+			class="inputbox" size="1" default="是">
+			<option value="是">是</option>
+			<option value="否">否</option>
+		</field>
+
 		<field name="tag_cat" type="list"
 			label="COM_PHOCAGALLERY_FIELD_TAG_CAT_LABEL" description="COM_PHOCAGALLERY_FIELD_TAG_CAT_DESC"
 			class="inputbox" size="1" default="0">
 			<option value="0">风格</option>
 			<option value="1">空间</option>
 			<option value="2">装客</option>
+			<option value="3">其它</option>
 		</field>
 		
 		<field name="filename" type="phocaselectfilename"
@@ -29,18 +33,10 @@
 			description="COM_PHOCAGALLERY_FIELD_FILENAME_DESC" class="inputbox"
 			size="40" />
 
-		<field name="link_ext" type="text"
-			label="COM_PHOCAGALLERY_FIELD_EXT_LINK_TAG_LABEL" description="COM_PHOCAGALLERY_FIELD_EXT_LINK_TAG_DESC"
-			class="inputbox" size="40" />
-
 		<field name="ordering" type="phocagalleryOrdering" table="tag"
 			class="inputbox" label="COM_PHOCAGALLERY_FIELD_ORDERING_LABEL"
 			description="COM_PHOCAGALLERY_FIELD_ORDERING_DESC" />
 
-		<field name="description" type="editor" buttons="true"
-			hide="pagebreak,readmore" class="inputbox"
-			label="COM_PHOCAGALLERY_FIELD_DESCRIPTION_LABEL" filter="safehtml"
-			description="COM_PHOCAGALLERY_FIELD_DESCRIPTION_DESC" />
 	</fieldset>
 
 	<fieldset name="publish"
