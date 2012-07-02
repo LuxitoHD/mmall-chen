@@ -84,12 +84,18 @@ $img_small = $this->item->fileThumbnail_small;
 				<span class="txt-data">品质舒适族</span>
 				<span class="txt-data">简洁储物架</span>
 			</div>
-			<div class="share">
+			<div class="bshare-custom">
+					<a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis">分享</a>
+					<!--<span class="BSHARE_COUNT bshare-share-count">0</span>-->
+			</div>
+			<div class="share" style="width:20%">
 				<a  href="javascript:void(0)" onclick="test_love(<?php echo $this->item->id; ?>)" title="" class="ico_love"  id="loves_id"></a>
 				<a href="javascript:void(0)" onclick="test_good(<?php echo $this->item->id; ?>)" title="" class="ico_like"  id="goods_id"></a>
 				<a href="javascript:void(0)" onclick="test_bad(<?php echo $this->item->id; ?>)" title="" class="ico_hate"  id="bads_id"></a>
-				<a href="#" title="" class="ico_share" >分享</a>
+				<!--<a href="#" title="" class="ico_share" >分享</a>-->
 			</div>
+			<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=3&amp;lang=zh"></script>
+			<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
       </div>
       <div class="picsWrap" id="pics_wrap">
 			<a href="#" class="scrollL" id="scrollL" hidefocus="true" title="上一张">上一张</a>
