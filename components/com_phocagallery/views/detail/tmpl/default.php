@@ -92,6 +92,7 @@ $img_small = $this->item->fileThumbnail_small;
 				<a  href="javascript:void(0)" onclick="test_love(<?php echo $this->item->id; ?>)" title="" class="ico_love"  id="loves_id"></a>
 				<a href="javascript:void(0)" onclick="test_good(<?php echo $this->item->id; ?>)" title="" class="ico_like"  id="goods_id"></a>
 				<a href="javascript:void(0)" onclick="test_bad(<?php echo $this->item->id; ?>)" title="" class="ico_hate"  id="bads_id"></a>
+				<div style="display:none" id="cur_num_id"></div>
 				<!--<a href="#" title="" class="ico_share" >分享</a>-->
 			</div>
 			<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=3&amp;lang=zh"></script>
@@ -178,6 +179,7 @@ $img_small = $this->item->fileThumbnail_small;
 		$("#loves_id").html(tian[curNum_t][5]);
 		$("#goods_id").html(tian[curNum_t][6]);
 		$("#bads_id").html(tian[curNum_t][7]);
+		$("#cur_num_id").text(curNum_t);
 	}(this, jQuery);
 </script> 
 
@@ -195,7 +197,11 @@ $img_small = $this->item->fileThumbnail_small;
         	        }else if(data=="succ"){
 						//tian[curNum_c][6] = parseInt(tian[curNum_c][6])+1;
 						//$("#goods_id").text(tian[curNum_c][6]);
+						//tian[$("#cur_num_id")]
+						var cur_num_id_t =parseInt($("#cur_num_id").text());
+						tian[cur_num_id_t][6] = parseInt($("#goods_id").text())+1;
 						$("#goods_id").text(parseInt($("#goods_id").text())+1);
+						//alert(cur_num_id_t);
         	        }
     	        }
     	    })
@@ -211,6 +217,8 @@ $img_small = $this->item->fileThumbnail_small;
         	        }else if(data=="succ"){
 						//tian[curNum_c][7] = parseInt(tian[curNum_c][7])+1;
 						//$("#bads_id").text(tian[curNum_c][7]);
+						var cur_num_id_t =parseInt($("#cur_num_id").text());
+						tian[cur_num_id_t][7] = parseInt($("#bads_id").text())+1;
 						$("#bads_id").text(parseInt($("#bads_id").text())+1);
         	        }
     	        }
@@ -227,6 +235,8 @@ $img_small = $this->item->fileThumbnail_small;
 						alert("失败");
         	        }else if(data=="succ"){
 						//tian[curNum_c][5] = parseInt(tian[curNum_c][5])+1;
+						var cur_num_id_t =parseInt($("#cur_num_id").text());
+						tian[cur_num_id_t][5] = parseInt($("#loves_id").text())+1;
 						$("#loves_id").text(parseInt($("#loves_id").text())+1);
 						//alert(parseInt($("#loves_id").text())+1);
         	        }
