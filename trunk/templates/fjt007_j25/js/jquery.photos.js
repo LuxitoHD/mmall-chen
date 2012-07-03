@@ -181,6 +181,7 @@ void function($){
 					$("#loves_id").attr("onclick","test_love("+tian[curNum][8]+")");
 					$("#goods_id").attr("onclick","test_good("+tian[curNum][8]+")");
 					$("#bads_id").attr("onclick","test_bad("+tian[curNum][8]+")");
+					$("#cur_num_id").text(curNum);
 					//alert(tian);
                 };
                 //滚动动画程序
