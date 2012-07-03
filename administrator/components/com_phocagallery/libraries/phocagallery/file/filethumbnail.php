@@ -395,7 +395,8 @@ class PhocaGalleryFileThumbnail
 					//larger
 					phocagalleryimport('phocagallery.image.imagemagic');
 					if ($width > $fileResize['width'] || $height > $fileResize['height']) {
-					
+						//tian_ff 修改 。宽度确定  高度自适应
+						 $fileResize['height'] = (int)($fileResize['width']*$height/$width);
 						$imageMagic = PhocaGalleryImageMagic::imageMagic($fileOriginal, $fileThumbnail, $fileResize['width'] , $fileResize['height'], $crop, null, $watermarkParams, $frontUpload, $errorMsg);
 						
 					} else {
