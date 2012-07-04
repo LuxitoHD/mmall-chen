@@ -135,19 +135,12 @@ if (!empty($this->items)) {
 				
 
 				
-				<div class="share" style="width:70%;float:left">
+				<div class="share">
 					<a  href="javascript:void(0)" onclick="test_love(<?php echo $value->id; ?>)" title="" class="ico_love"  id="lid<?php echo $value->id;?>"><?php echo $value->loves;?></a>
 					<a href="javascript:void(0)" onclick="test_good(<?php echo $value->id; ?>)" title="" class="ico_like"   id="gid<?php echo $value->id;?>"><?php echo $value->goods;?></a>
 					<a href="javascript:void(0)" onclick="test_bad(<?php echo $value->id; ?>)" title="" class="ico_hate"   id="bid<?php echo $value->id;?>"><?php echo $value->bads;?></a>
 					<!--<a href="#" title="" class="ico_share" >分享</a>-->
 				</div>
-				<div class="bshare-custom" style="width:50px;float:left">
-						<a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis">分享</a>
-						<!--<span class="BSHARE_COUNT bshare-share-count">0</span>-->
-				</div>
-				<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=3&amp;lang=zh"></script>
-				<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
-
 
         	</div>
 			
@@ -301,44 +294,44 @@ if (!empty($this->items)) {
       <h2>热门应用</h2>
       <div class="appList">
         <dl>
-          <dt><a href="#" title=""><img src="images/info/appimg_0.jpg" alt="" title=""></a></dt>
+          <dt><a title="" href="http://tools.mmall.com/calc.html#calc_tuliao.html"><img title="" alt="" src="images/info/appimg_0.jpg"></a></dt>
           <dd>
-            <h3><a href="#" title="">涂料计算器</a></h3>
+            <h3><a title="" href="http://tools.mmall.com/calc.html#calc_tuliao.html">涂料计算器</a></h3>
             <p class="desc">按照房屋信息和涂料覆盖率，算出所需涂料</p>
           </dd>
         </dl>
         <dl>
-          <dt><a href="#" title=""><img src="images/info/appimg_1.jpg" alt="" title=""></a></dt>
+          <dt><a title="" href="http://tools.mmall.com/calc.html#calc_diban.html"><img title="" alt="" src="images/info/appimg_1.jpg"></a></dt>
           <dd>
-            <h3><a href="#" title="">地板计算器</a></h3>
+            <h3><a title="" href="http://tools.mmall.com/calc.html#calc_diban.html">地板计算器</a></h3>
             <p class="desc">根据照房屋信息及地板规格，算出所需地板数量</p>
           </dd>
         </dl>
         <dl>
-          <dt><a href="#" title=""><img src="images/info/appimg_2.jpg" alt="" title=""></a></dt>
+          <dt><a title="" href="http://tools.mmall.com/calc.html#calc_bizhi.html"><img title="" alt="" src="images/info/appimg_2.jpg"></a></dt>
           <dd>
-            <h3><a href="#" title="">壁纸计算器</a></h3>
+            <h3><a title="" href="http://tools.mmall.com/calc.html#calc_bizhi.html">壁纸计算器</a></h3>
             <p class="desc">按照房屋信息及壁纸规格，算出所需壁纸卷数</p>
           </dd>
         </dl>
         <dl>
-          <dt><a href="#" title=""><img src="images/info/appimg_3.jpg" alt="" title=""></a></dt>
+          <dt><a title="" href="http://tools.mmall.com/calc.html#calc_dizhuan.html"><img title="" alt="" src="images/info/appimg_3.jpg"></a></dt>
           <dd>
-            <h3><a href="#" title="">地砖计算器</a></h3>
+            <h3><a title="" href="http://tools.mmall.com/calc.html#calc_dizhuan.html">地砖计算器</a></h3>
             <p class="desc">根据照房屋信息及地砖规格，算出所需地砖数量</p>
           </dd>
         </dl>
         <dl>
-          <dt><a href="#" title=""><img src="images/info/appimg_4.jpg" alt="" title=""></a></dt>
+          <dt><a title="" href="http://tools.mmall.com/calc.html#calc_chuanlian.html"><img title="" alt="" src="images/info/appimg_4.jpg"></a></dt>
           <dd>
-            <h3><a href="#" title="">窗帘计算器</a></h3>
+            <h3><a title="" href="http://tools.mmall.com/calc.html#calc_chuanlian.html">窗帘计算器</a></h3>
             <p class="desc">根据窗户和布料的信息，计算出所需布料</p>
           </dd>
         </dl>
         <dl>
-          <dt><a href="#" title=""><img src="images/info/appimg_5.jpg" alt="" title=""></a></dt>
+          <dt><a title="" href="http://tools.mmall.com/calc.html#cal_qiangzhuan.html"><img title="" alt="" src="images/info/appimg_5.jpg"></a></dt>
           <dd>
-            <h3><a href="#" title="">墙砖计算器</a></h3>
+            <h3><a title="" href="http://tools.mmall.com/calc.html#cal_qiangzhuan.html">墙砖计算器</a></h3>
             <p class="desc">根据照房屋信息及墙砖规格，算出所需墙砖数</p>
           </dd>
         </dl>

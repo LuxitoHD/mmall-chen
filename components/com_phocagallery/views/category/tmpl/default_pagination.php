@@ -4,7 +4,7 @@ echo '<form action="'.$this->tmpl['action'].'" method="post" name="adminForm">'.
 
 if (count($this->items)) {
 	echo '<div class="pg-center"><div class="pagination">';
-	if ($this->params->get('show_ordering_images')) {
+	/*if ($this->params->get('show_ordering_images')) {
 		echo '<div class="pg-inline">'
 			.JText::_('COM_PHOCAGALLERY_ORDER_FRONT') .'&nbsp;'
 			.$this->tmpl['ordering']
@@ -15,7 +15,7 @@ if (count($this->items)) {
 			.JText::_('COM_PHOCAGALLERY_DISPLAY_NUM') .'&nbsp;'
 			.$this->tmpl['pagination']->getLimitBox()
 			.'</div>';
-	}
+	}*/
 	if ($this->params->get('show_pagination_category')) {
 	
 		echo '<div style="margin:0 10px 0 10px;display:inline;" class="sectiontablefooter'.$this->params->get( 'pageclass_sfx' ).'" id="pg-pagination" >'
