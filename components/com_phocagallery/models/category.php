@@ -91,6 +91,25 @@ class PhocagalleryModelCategory extends JModel
 		return $this->_ordering;
 	}
 	
+	function getTagName($tagID){
+		$query = "select title from  #__phocagallery_tags where id = $tagID";
+		$this->_db->setQuery($query);
+		$tagname = $this->_db->loadResult();
+		return $tagname;
+	}
+	
+	function addHits($tagID){
+		$query = "update #__phocagallery_tags set hits = hits + 1 where id = $tagID";
+		
+		$this->_db->setQuery( $query );
+		if (!$this->_db->query()) {
+			$this->setError('tag hits add failure');
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
 	function _buildQuery($rightDisplayDelete = 0, $tagId = 0) {
 		
 		$app		= JFactory::getApplication();
