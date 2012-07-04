@@ -202,6 +202,7 @@ class PhocaGalleryViewCategory extends JView
 		// = = = = = = = = = = 
 		// CSS
 		// = = = = = = = = = =
+		/*
 		JHtml::stylesheet('components/com_phocagallery/assets/phocagallery.css' );
 		if ($this->tmpl['enablecustomcss'] == 1) {
 			JHtml::stylesheet('components/com_phocagallery/assets/phocagallerycustom.css' );
@@ -259,6 +260,7 @@ class PhocaGalleryViewCategory extends JView
 				$library->setLibrary('pg-css-ie-hover', 1);
 			}
 		}
+		*/
 		// = = = = = = = = = = 
 		
 		
@@ -854,18 +856,19 @@ window.addEvent(\'domready\', function(){
 			$itemId = $itemsLink[0]->id;
 		}	
 		$backLink = 'index.php?option=com_phocagallery&view=categories&Itemid='.$itemId;*/
-		
+		/*
 		$posItemid		= $posItemidNull = $backLinkItemId = false;
 		$backLink 		= PhocaGalleryRoute::getCategoriesRoute();
 		$posItemidNull 	= strpos($backLink, "Itemid=0");
 		$posItemid 		= strpos($backLink, "Itemid=");
 		if ($posItemidNull === false && $posItemid) {
 			$backLinkItemId = 1;
-		}
+		}*/
 	   
-
+/*
 		$parentCategory = $this->get('parentcategory');  
-
+		//wuyong
+		
 		if ($display_back_button == 1) {
 			if (!empty($parentCategory)) {
 				
@@ -955,11 +958,12 @@ window.addEvent(\'domready\', function(){
 				}
 			}
 		}
-		
+		*/
 	
 		// ----------------------------------------
 		// PARENT FOLDERS(II) or Back Button CATEGORIES VIEW IN CATEGORY VIEW
-		// ---------------------------------------- 
+		// ---------------------------------------- 无用
+		/*
 		if ($display_back_button_cv == 1 && $this->tmpl['displaycategoriescv'] == 1) {
 			if (!empty($parentCategory)) {
 				
@@ -1014,12 +1018,13 @@ window.addEvent(\'domready\', function(){
 				}
 			}
 		}
-	
+	*/
 		
 		// ----------------------------------------
 		// SUB FOLDERS(1) STANDARD
 		// ----------------------------------------
 		// Display subcategories on every page
+		/*
 		if ($display_subcat_page == 1) {
 
 			$subCategory = $this->get('subcategory'); 
@@ -1133,11 +1138,12 @@ window.addEvent(\'domready\', function(){
 				}
 			}	
 		}
-		
+		*/
 		// ----------------------------------------
 		// SUB FOLDERS(II) or Back Button CATEGORIES VIEW IN CATEGORY VIEW
 		// ----------------------------------------
-		//display subcategories on every page
+		//display subcategories on every page//wuyong
+		/*
 		if ($display_subcat_page_cv == 1 && $this->tmpl['displaycategoriescv'] == 1) {	
 			$subCategory = $this->get('subcategory'); 
 			$totalSubCat = count($subCategory);
@@ -1229,9 +1235,14 @@ window.addEvent(\'domready\', function(){
 				}
 			}
 		}
-	
+	*/
 		
 		
+		$addhits = &$model->addHits($this->tagId);
+		//tag 取得
+		$tagname = &$model->getTagName($this->tagId);
+		
+		$this->assignRef( 'tagname',				$tagname);	
 		// ----------------------------------------
 		// IMAGES
 		// ----------------------------------------
@@ -1282,6 +1293,7 @@ window.addEvent(\'domready\', function(){
 				$items[$iS]->extpic	= 1;
 				$items[$iS]->linkthumbnailpath = '';
 			} else {
+				//缩略图路径
 				$items[$iS]->linkthumbnailpath 	= PhocaGalleryImageFront::displayCategoryImageOrNoImage($items[$iS]->filename, 'medium');
 			}
 			
