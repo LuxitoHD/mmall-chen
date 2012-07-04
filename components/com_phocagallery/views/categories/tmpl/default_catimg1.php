@@ -13,7 +13,7 @@ foreach ($this->tagData1 as $i => $item){
 	echo JHtml::_( 'image', $this->tagData1[$i]->linkthumbnailpath, str_replace('&raquo;','-',$this->tagData1[$i]->title),array('style' => ''));
 	
 	echo '</a>';
-	echo '<p class="follow-num">有112234人关注</p><div class="other"><a class="btn-link" title="去看看" href="'.$this->tagData1[$i]->link.'">去看看</a></div>';
+	echo '<p class="follow-num">有'.$item->hits.'人关注</p><div class="other"><a class="btn-link" title="去看看" href="'.$this->tagData1[$i]->link.'">去看看</a></div>';
 	echo '</div>';
 	echo '</div>';
 }
