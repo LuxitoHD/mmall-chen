@@ -14,7 +14,10 @@ $templateparams	= $app->getTemplate(true)->params; ?>
 <link href='http://fonts.googleapis.com/css?family=Ledger' rel='stylesheet' type='text/css'>
 <?php require(YOURBASEPATH . DS . "functions.php"); ?>
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/styles.css" type="text/css" />
-<?php if ($jquery == 'yes' ) : ?><script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/jquery-1.7.2.min.js"></script><?php endif; ?>
+<?php if ($jquery == 'yes' ){
+$document			= &JFactory::getDocument();
+$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery-1.7.2.min.js');
+} ?>
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/jquery.photos.js"></script> 
 <script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/js/jquery.focus.js"></script>
 </head>
