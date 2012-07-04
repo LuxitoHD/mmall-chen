@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die('Restricted access');
 $document			= &JFactory::getDocument();
 //js
-//$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery-1.6.min.js');
+$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery-1.7.2.min.js');
 $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.cookie.js');
 $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.easing.1.3.js');
 //$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.focus.js');
