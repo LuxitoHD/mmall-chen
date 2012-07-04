@@ -2,51 +2,80 @@
 // - - - - - - - - - - 
 // Images
 // - - - - - - - - - -
-$document					= JFactory::getDocument();
-$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/js/jquery-1.6.min.js');
+$document			= &JFactory::getDocument();
+//js
+$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery-1.7.2.min.js');
+$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.cookie.js');
+$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.easing.1.3.js');
+$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.focus.js');
+$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.infinitescroll.min.js');
+$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.lazyload.min.js');
+$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.masonry.min.js');
+$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.photos.js');
+$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/underscore-1.3.1.min.js');
+//css
+$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/base.css');
+$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/global.css');
+$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/info.css');
+$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/layout.css');
+$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/reset.css');
+$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/jqwater.css');
+
 ?>
+<script type="text/javascript" async="async" defer="defer">
+	void function(window,$){
+		try{
+			$(function(){
+				$(document.body).attr("spellcheck","false");
+
+				//lazyload
+				$("img.lazyload").lazyload({effect:"fadeIn"});
+			});
+
+			//设置公共变量 begin
+			window.config = {
+				
+			};
+			//设置公共变量 end
+		}
+		catch(e){
+
+		}
+	}(this,jQuery);
+</script>
+<script type="text/javascript" async="async" defer="defer">
+	void function(window, $){
+		
+	}(this, jQuery)
+</script>
+
  <script type="text/javascript">
-     /*  function test(id,para) {
-    	    jQuery.ajax({
-    	        type: 'POST',
-    	        url:  'ajax2.php',
-    	        data: 'id='  + id + '&para='+para,
-    	        dataType: 'html',
-    	        beforeSend: function() {},
-    	        success: function(data) {
-        	        if(data == "succ"){
-						alert("评价成功");
-        	        }else{
-        	        	alert("失败");
-        	        } 
-    	        }
-    	    })
-    	} */
+     
 		//joomla 友好链接下修改	
-		function test_g(id) {
+		function test_good(id) {
     	    jQuery.ajax({
     	        type: 'POST',
     	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
     	        data: {id:id,para:"good"},
     	        success: function(data) {
-        	        if(data == "fail"){
-						alert("失败");
+        	        if(data == "succ"){
+        	        	$("#gid"+id).text(parseInt($("#gid"+id).text())+1);
         	        }else{
-						$("#gid"+id).text(data);
+        	        	alert("失败");
         	        }
     	        }
     	    })
     	}  
-		function test_b(id) {
+		function test_bad(id) {
     	    jQuery.ajax({
     	        type: 'POST',
     	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
     	        data: {id:id,para:"bad"},
     	        success: function(data) {
-        	        if(data == "fail"){
-						alert("失败");
+        	        if(data == "succ"){
+        	        	$("#bid"+id).text(parseInt($("#bid"+id).text())+1);
         	        }else{
-						$("#bid"+id).text(data);
+        	        	alert("失败");
         	        }
     	        }
     	    })
@@ -58,16 +87,24 @@ $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/js/jq
     	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
     	        data: {id:id,para:"love"},
     	        success: function(data) {
-        	        if(data == "fail"){
-						alert("失败");
+        	        if(data == "succ"){
+        	        	$("#lid"+id).text(parseInt($("#lid"+id).text())+1);
         	        }else{
-						$("#lid"+id).text(data);
+						alert("失败");
         	        }
     	        }
     	    })
     	} 
 </script>     
 
+<div id="content">
+  <h2 class="infolist-title"><?php echo $this->tagname;?></h2>
+  <div class="articleWrap">
+    <div class="infolist">
+      <div id="js_container" class="itemsBox">
+      
+      
+      
 <?php
 if (!empty($this->items)) {
 	foreach($this->items as $key => $value) {
@@ -90,372 +127,258 @@ if (!empty($this->items)) {
 		}
 		
 		if ($rightDisplay == 1) {
-			//tian_ff.如果是父级目录或者子级目录，那么就不显示
-			if($value->cls == "pg-box-parentfolder" || $value->cls == "pg-box-subfolder"){
-				continue;
-			}
+?>
 			
-			//end
-			// BOX Start
-			echo "\n\n";
-			echo '<div class="phocagallery-box-file '.$value->cls.'" style="height:'. $this->tmpl['imageheight']['boxsize'].'px; width:'.$this->tmpl['imagewidth']['boxsize'].'px;">'. "\n";
-			echo '<div class="phocagallery-box-file-first" style="height:'.$this->tmpl['imageheight']['size'].'px;width:'.$this->tmpl['imagewidth']['size'].'px;margin:auto;">'. "\n";
-			echo '<div class="phocagallery-box-file-second">'. "\n";
-			echo '<div class="phocagallery-box-file-third">'. "\n";
-			
-			// A Start
-			echo '<a class="'.$value->button->methodname.'"';
-			
-			if ($value->type == 2) {
-				if ($value->overlib == 0) {
-					echo ' title="'.$value->odesctitletag.'"';
-				}
-			}
-			echo ' href="'. $value->link.'"';
-								
-			// Correct size for external Image (Picasa) - subcategory
-			$extImage = false;
-			if (isset($value->extid)) {
-				$extImage = PhocaGalleryImage::isExtImage($value->extid);
-			}
-			if ($extImage && isset($value->extw) && isset($value->exth)) {
-				$correctImageRes = PhocaGalleryPicasa::correctSizeWithRate($value->extw, $value->exth, $this->tmpl['picasa_correct_width_m'], $this->tmpl['picasa_correct_height_m']);
-			}
+			<div class="items">
+				<div class="pic"><a href="<?php echo $value->link;?>" title="<?php echo $value->title;?>"><img src="<?php echo $value->linkthumbnailpath;?>" alt="" title=""></a></div>
+				<p class="desc"><a href="<?php echo $value->link;?>" title="<?php echo $value->title;?>"><?php echo $value->description;?></a></p>
 				
-			// Image Box (image, category, folder)
-			if ($value->type == 2 ) {
-				
-				// Render OnClick, Rel
-				//iframe 形式 展示资源   tian_ff
-				echo PhocaGalleryRenderFront::renderAAttribute($this->tmpl['detailwindow'], $value->button->options, $value->linkorig, $this->tmpl['highslideonclick'], '', $value->linknr, $value->catalias);
-				
-				// SWITCH OR OVERLIB 
-				if ($this->tmpl['switchimage'] == 1) {
-					echo PhocaGalleryRenderFront::renderASwitch($this->tmpl['switchwidth'], $this->tmpl['switchheight'], $this->tmpl['switchfixedsize'], $value->extwswitch, $value->exthswitch, $value->extl, $value->linkthumbnailpath);
-				} else {
-					echo $value->overlib_value;					
-				}
-				echo ' >';// A End
 
-				// IMG Start
-				if ($extImage) {
-					echo JHtml::_( 'image', $value->extm, $value->altvalue, array('width' => $correctImageRes['width'], 'height' => $correctImageRes['height'], 'class' => 'pg-image'));
-				} else {
-					echo JHtml::_( 'image', $value->linkthumbnailpath, $value->oimgalt, array('class' => $value->ooverlibclass ));
-				}
 				
-				if ($value->type == 2 && $value->enable_cooliris == 1) {
-					if ($extImage) {
-						echo '<span class="mbf-item">#phocagallerypiclens '.$value->catid.'-phocagallerypiclenscode-'.$value->extid.'</span>';
-					} else {
-						echo '<span class="mbf-item">#phocagallerypiclens '.$value->catid.'-phocagallerypiclenscode-'.$value->filename.'</span>';
-					}
-				}
-				// IMG End
-			
-			} else if ($value->type == 1) {
-				// Other than image
-				// A End
-				echo ' >';
-				// IMG Start
-				if ($extImage && isset($value->extm) && isset($correctImageRes['width']) && isset($correctImageRes['width'])) {
-					
-					echo JHtml::_( 'image', $value->extm, '', array('width' => $correctImageRes['width'], 'height' => $correctImageRes['height'], 'class' => PhocaGalleryRenderFront::renderImageClass($value->extm)));
-				} else {
-					echo JHtml::_( 'image', $value->linkthumbnailpath, '', array( 'class' => PhocaGalleryRenderFront::renderImageClass($value->linkthumbnailpath)) );
-				}
-				// IMG END
-				
-			} else {
-				// Other than image
-				// A End
-				echo ' >';
-				// IMG Start
-				if ($extImage && isset($value->extm) && isset($correctImageRes['width']) && isset($correctImageRes['width'])) {
-					echo JHtml::_( 'image', $value->extm, '', array('width' => $correctImageRes['width'], 'height' => $correctImageRes['height']));
-				} else {
-					echo JHtml::_( 'image', $value->linkthumbnailpath, '');
-				}
-				// IMG END
-				
-			} // if type 2 else type 0, 1 (image, category, folder)
-			
-			// A CLOSE
-			echo '</a>';
-			
-			// Highslide Caption, Description
-			if ( $this->tmpl['detailwindow'] == 5) {
-				if ($this->tmpl['displaytitleindescription'] == 1) {
-					echo '<div class="highslide-heading">';
-					echo $value->title;
-					echo '</div>';
-				}
-				if ($this->tmpl['displaydescriptiondetail'] == 1) {
-					echo '<div class="highslide-caption">';
-					echo $value->description;
-					echo '</div>';
-				}
-			}
-			
-			// Hot, New
-			if ($value->type == 2) {
-				echo PhocaGalleryRenderFront::getOverImageIcons($value->date, $value->hits);
-				
-			}
-			echo "\n".'</div></div></div>'. "\n";
-			// BOX End
-				
-				
-			// Subfolder Name
-			if ($value->type == 1) {
-				if ($value->displayname == 1 || $value->displayname == 2) {
-					echo '<div class="pg-name" style="font-size:'.$this->tmpl['fontsizename'].'px">'
-					.PhocaGalleryText::wordDelete($value->title, $this->tmpl['charlengthname'], '...').'</div>';
-				}
-			}
-			// Image Name
-			if ($value->type == 2) {
-				if ($value->displayname == 1) {
-					echo '<div class="pg-name" style="font-size:'.$this->tmpl['fontsizename'].'px">'
-					.PhocaGalleryText::wordDelete($value->title, $this->tmpl['charlengthname'], '...').'</div>';
-				}
-				if ($value->displayname == 2) {
-					echo '<div class="pg-name" style="font-size:'.$this->tmpl['fontsizename'].'px">&nbsp;</div>';
-				}
-			}
-			//添加点击次数  喜欢  不喜欢  分享 button  tian_ff
-			
-			
-			if($value->item_type == 'image'){
-	?>
-				<div style="font-size:12px;color:#B36B00;margin-top:2px;padding:0;text-align:left">
-					<span>
-						<a href="javascript:void(0)" onclick="test_love(<?php echo $value->id; ?>)" title="love">love</a>
-					</span>
-					<span id="lid<?php echo $value->id; ?>"><? echo $value->loves;?><span>
-
-					<span>
-						<a href="javascript:void(0)" onclick="test_g(<?php echo $value->id; ?>)" title="good">good</a>
-					</span>
-					<span id="gid<?php echo $value->id; ?>"><? echo $value->goods;?><span>
-					<span><a href="javascript:void(0)" onclick="test_b(<?php echo $value->id; ?>)" title="bad">bad</a></span>
-					<span id="bid<?php echo $value->id; ?>"><? echo $value->bads;?><span>
-					<span><a href="#" title="share">share</a></span>
+				<div class="share" style="width:70%;float:left">
+					<a  href="javascript:void(0)" onclick="test_love(<?php echo $value->id; ?>)" title="" class="ico_love"  id="lid<?php echo $value->id;?>"><?php echo $value->loves;?></a>
+					<a href="javascript:void(0)" onclick="test_good(<?php echo $value->id; ?>)" title="" class="ico_like"   id="gid<?php echo $value->id;?>"><?php echo $value->goods;?></a>
+					<a href="javascript:void(0)" onclick="test_bad(<?php echo $value->id; ?>)" title="" class="ico_hate"   id="bid<?php echo $value->id;?>"><?php echo $value->bads;?></a>
+					<!--<a href="#" title="" class="ico_share" >分享</a>-->
 				</div>
+				<div class="bshare-custom" style="width:50px;float:left">
+						<a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis">分享</a>
+						<!--<span class="BSHARE_COUNT bshare-share-count">0</span>-->
+				</div>
+				<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=3&amp;lang=zh"></script>
+				<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
 
-	<?php
-			}
-			
-			
-			// Rate Image
-			if($value->item_type == 'image' && $this->tmpl['displayratingimg'] == 1) {
-				echo '<div><a class="'.$value->buttonother->methodname.'" title="'.JText::_('COM_PHOCAGALLERY_RATE_IMAGE').'"'
-					.' href="'.JRoute::_('index.php?option=com_phocagallery&view=detail&catid='.$value->catslug.'&id='.$value->slug.$this->tmpl['tmplcom'].'&Itemid='. JRequest::getVar('Itemid', 0, '', 'int') ).'"';
-					
-				echo PhocaGalleryRenderFront::renderAAttributeOther($this->tmpl['detailwindow'], $value->buttonother->optionsrating, $this->tmpl['highslideonclick'], $this->tmpl['highslideonclick2']);
-				
-				echo ' >';
-						
-				echo '<div><ul class="star-rating-small">'
-				.'<li class="current-rating" style="width:'.$value->voteswidthimg.'px"></li>'
-				.'<li><span class="star1"></span></li>';
-				for ($iV = 2;$iV < 6;$iV++) {
-					echo '<li><span class="stars'.$iV.'"></span></li>';
-				}
-				echo '</ul></div>'."\n";
-				echo '</a></div>'."\n";
-			}
 
-			if ($value->displayicondetail == 1 ||
-			$value->displayicondownload > 0 || 
-			$value->displayiconfolder == 1 || 
-			$value->displayiconvm || 
-			$value->startpiclens == 1 || 
-			$value->trash == 1 || 
-			$value->publishunpublish == 1 || 
-			$value->displayicongeo == 1 || 
-			$value->camerainfo == 1 || 
-			$value->displayiconextlink1	== 1 || 
-			$value->displayiconextlink2	== 1 || 
-			$value->camerainfo == 1 ) {
-				
-				echo '<div class="detail" style="margin-top:2px">';
-				
-				if ($value->startpiclens == 1) {							
-					echo '<a href="javascript:PicLensLite.start({feedUrl:\''.JURI::base(true) . '/images/phocagallery/'
-			. $value->catid .'.rss'.'\'});" title="Cooliris" >';
-					echo JHtml::_('image', 'components/com_phocagallery/assets/images/icon-cooliris.'.$this->tmpl['formaticon'], 'Cooliris');
-					echo '</a>';
-				}
-				
-				// ICON DETAIL	//图片详情button
-				if ($value->displayicondetail == 1) {				
-				
+        	</div>
 			
-					echo ' <a class="'.$value->button2->methodname.'" title="'. $value->oimgtitledetail.'"'
-						.' href="'.$value->link2.'"';
-						
-					echo PhocaGalleryRenderFront::renderAAttributeTitle($this->tmpl['detailwindow'], $value->button2->options, '', $this->tmpl['highslideonclick'], $this->tmpl['highslideonclick2'], $value->linknr, $value->catalias);
-						
-					echo ' >';
-						
-					echo JHtml::_('image', 'components/com_phocagallery/assets/images/icon-view.'.$this->tmpl['formaticon'], $value->oimgaltdetail);
-					echo '</a>';
-				}
-				
-				// ICON FOLDER
-				if ($value->displayiconfolder == 1) {
-					echo ' <a title="'.JText::_('COM_PHOCAGALLERY_SUBCATEGORY').'"'.' href="'.$value->link.'">';
-					echo JHtml::_('image', 'components/com_phocagallery/assets/images/icon-folder-small.'.$this->tmpl['formaticon'], $value->title);	
-					echo '</a>';
-				}
-				
-				// ICON DOWNLOAD //图片下载button
-				if ($value->displayicondownload > 0) {
-					// Direct Download but not if there is a youtube
-					if ($value->displayicondownload == 2 && $value->videocode == '') {
-						echo ' <a title="'. JText::_('COM_PHOCAGALLERY_IMAGE_DOWNLOAD').'"'
-							.' href="'.JRoute::_('index.php?option=com_phocagallery&view=detail&catid='.$value->catslug.'&id='.$value->slug. $this->tmpl['tmplcom'].'&phocadownload='.$value->displayicondownload.'&Itemid='. JRequest::getVar('Itemid', 0, '', 'int') ).'"';
-					} else { 
-						echo ' <a class="'.$value->buttonother->methodname.'" title="'.JText::_('COM_PHOCAGALLERY_IMAGE_DOWNLOAD').'"'
-							.' href="'.JRoute::_('index.php?option=com_phocagallery&view=detail&catid='.$value->catslug.'&id='.$value->slug. $this->tmpl['tmplcom'].'&phocadownload='.(int)$value->displayicondownload.'&Itemid='. JRequest::getVar('Itemid', 0, '', 'int') ).'"';
-							
-						echo PhocaGalleryRenderFront::renderAAttributeOther($this->tmpl['detailwindow'], $value->buttonother->options, $this->tmpl['highslideonclick'], $this->tmpl['highslideonclick2']);
-					}
-					echo ' >';
-					echo JHtml::_('image', 'components/com_phocagallery/assets/images/icon-download.'.$this->tmpl['formaticon'], JText::_('COM_PHOCAGALLERY_IMAGE_DOWNLOAD'));
-					echo '</a>';
-				}
-				
-				// ICON GEO 
-				if ($value->displayicongeo == 1) {
-					echo ' <a class="'.$value->buttonother->methodname.'" title="'.JText::_('COM_PHOCAGALLERY_GEOTAGGING').'"'
-						.' href="'. JRoute::_('index.php?option=com_phocagallery&view=map&catid='.$value->catslug.'&id='.$value->slug.$this->tmpl['tmplcom'].'&Itemid='. JRequest::getVar('Itemid', 0, '', 'int') ).'"';
-						
-					echo PhocaGalleryRenderFront::renderAAttributeOther($this->tmpl['detailwindow'], $value->buttonother->options, $this->tmpl['highslideonclick'], $this->tmpl['highslideonclick2']);
-			
-					echo ' >';
-					echo JHtml::_('image', 'components/com_phocagallery/assets/images/icon-geo.'.$this->tmpl['formaticon'], JText::_('COM_PHOCAGALLERY_GEOTAGGING'));
-					echo '</a>';
-				}
-				
-				// ICON EXIF
-				if ($value->camerainfo == 1) {
-					echo ' <a class="'.$value->buttonother->methodname.'" title="'.JText::_('COM_PHOCAGALLERY_CAMERA_INFO').'"'
-						.' href="'.JRoute::_('index.php?option=com_phocagallery&view=info&catid='.$value->catslug.'&id='.$value->slug.$this->tmpl['tmplcom'].'&Itemid='. JRequest::getVar('Itemid', 0, '', 'int') ).'"';
-						
-					echo PhocaGalleryRenderFront::renderAAttributeOther($this->tmpl['detailwindow'], $value->buttonother->options, $this->tmpl['highslideonclick'], $this->tmpl['highslideonclick2']);
-						
-					echo ' >';
-					echo JHtml::_('image', 'components/com_phocagallery/assets/images/icon-info.'.$this->tmpl['formaticon'], JText::_('COM_PHOCAGALLERY_CAMERA_INFO'));
-					echo '</a>';
-				}
-				
-				// ICON COMMENT//图片评论button
-				if ($value->displayiconcommentimg == 1) {
-					if ($this->tmpl['detailwindow'] == 7 || $this->tmpl['display_comment_nopup'] == 1) {
-						$tmplClass	= '';
-					} else {
-						$tmplClass 	= 'class="'.$value->buttonother->methodname.'"';
-					}
-					echo ' <a '.$tmplClass.' title="'.JText::_('COM_PHOCAGALLERY_COMMENT_IMAGE').'"'
-						.' href="'. JRoute::_('index.php?option=com_phocagallery&view=comment&catid='.$value->catslug.'&id='.$value->slug.$this->tmpl['tmplcomcomments'].'&Itemid='. JRequest::getVar('Itemid', 0, '', 'int') ).'"';
-					
-					if ($this->tmpl['display_comment_nopup'] == 1) {
-						echo '';
-					} else {
-						echo PhocaGalleryRenderFront::renderAAttributeOther($this->tmpl['detailwindow'], $value->buttonother->options, $this->tmpl['highslideonclick'], $this->tmpl['highslideonclick2']);
-					}
-					echo ' >';
-					// If you go from RSS or administration (e.g. jcomments) to category view, you will see already commented image (animated icon)
-					$cimgid = JRequest::getVar( 'cimgid', 0, '', 'int');
-					if($cimgid > 0) {
-						echo JHtml::_('image', 'components/com_phocagallery/assets/images/icon-comment-a.gif', JText::_('COM_PHOCAGALLERY_COMMENT_IMAGE'));
-					} else {
-						$commentImg = ($this->tmpl['externalcommentsystem'] == 2) ? 'icon-comment-fb-small' : 'icon-comment';
-						echo JHtml::_('image', 'components/com_phocagallery/assets/images/'.$commentImg.'.'.$this->tmpl['formaticon'], JText::_('COM_PHOCAGALLERY_COMMENT_IMAGE'));
-					}
-					echo '</a>';	
-				}
-				
-				// ICON EXTERNAL LINK 1
-				if ($value->displayiconextlink1 == 1) {
-					echo ' <a title="'.$value->extlink1[1] .'"'
-						.' href="http://'.$value->extlink1[0] .'" target="'.$value->extlink1[2] .'" '.$value->extlink1[5].'>'
-						.$value->extlink1[4].'</a>';
-				}
-				
-				// ICON EXTERNAL LINK 2
-				if ($value->displayiconextlink2 == 1) {
-					echo ' <a title="'.$value->extlink2[1] .'"'
-						.' href="http://'.$value->extlink2[0] .'" target="'.$value->extlink2[2] .'" '.$value->extlink2[5].'>'
-						.$value->extlink2[4].'</a>';
-					
-				}
-				
-				// ICON VIRTUEMART PRODUCT
-				if ($value->displayiconvm == 1) {
-					echo ' <a title="'.JText::_('COM_PHOCAGALLERY_ESHOP').'" href="'. JRoute::_($value->vmlink).'">';
-					echo JHtml::_('image', 'components/com_phocagallery/assets/images/icon-cart.'.$this->tmpl['formaticon'], JText::_('COM_PHOCAGALLERY_ESHOP'));
-					echo '</a>';
-				}
-				
-				// ICON Trash for private categories
-				if ($value->trash == 1) {
-					echo ' <a onclick="return confirm(\''.JText::_('COM_PHOCAGALLERY_WARNING_DELETE_ITEMS').'\')" title="'.JText::_('COM_PHOCAGALLERY_DELETE').'" href="'. JRoute::_('index.php?option=com_phocagallery&view=category&catid='.$value->catslug.'&id='.$value->slug.'&controller=category&task=remove'.'&Itemid='. JRequest::getVar('Itemid', 0, '', 'int') ).$this->tmpl['limitstarturl'].'">';
-					echo JHtml::_('image', 'components/com_phocagallery/assets/images/icon-trash.'.$this->tmpl['formaticon'], JText::_('COM_PHOCAGALLERY_DELETE'));
-					echo '</a>';
-				}
-				
-				// ICON Publish Unpublish for private categories
-				if ($value->publishunpublish == 1) {
-					if ($value->published == 1) {
-						echo ' <a title="'.JText::_('COM_PHOCAGALLERY_UNPUBLISH').'" href="'. JRoute::_('index.php?option=com_phocagallery&view=category&catid='.$value->catslug.'&id='.$value->slug.'&&controller=category&task=unpublish'.'&Itemid='. JRequest::getVar('Itemid', 0, '', 'int') ).$this->tmpl['limitstarturl'].'">';
-						echo JHtml::_('image', 'components/com_phocagallery/assets/images/icon-publish.'.$this->tmpl['formaticon'], JText::_('COM_PHOCAGALLERY_UNPUBLISH'));
-						echo '</a>';
-					}
-					if ($value->published == 0) {
-						echo ' <a title="'.JText::_('COM_PHOCAGALLERY_PUBLISH').'" href="'. JRoute::_('index.php?option=com_phocagallery&view=category&catid='.$value->catslug.'&id='.$value->slug.'&controller=category&task=publish'.'&Itemid='. JRequest::getVar('Itemid', 0, '', 'int') ).$this->tmpl['limitstarturl'].'">';
-						echo JHtml::_('image', 'components/com_phocagallery/assets/images/icon-unpublish.'.$this->tmpl['formaticon'], JText::_('COM_PHOCAGALLERY_PUBLISH'));
-						echo '</a>';
-					
-					}
-				}
-			
-				// ICON APPROVE
-				if ($value->approvednotapproved == 1) {
-					// Display the information about Approving too:
-					if ($value->approved == 1) {
-						echo ' <a href="#" title="'.JText::_('COM_PHOCAGALLERY_IMAGE_APPROVED').'">'.JHtml::_('image', 'components/com_phocagallery/assets/images/icon-publish.'.$this->tmpl['formaticon'], JText::_('COM_PHOCAGALLERY_APPROVED')).'</a>';
-					}
-					if ($value->approved == 0) {
-						echo ' <a href="#" title="'.JText::_('COM_PHOCAGALLERY_IMAGE_NOT_APPROVED').'">'.JHtml::_('image', 'components/com_phocagallery/assets/images/icon-unpublish.'.$this->tmpl['formaticon'], JText::_('COM_PHOCAGALLERY_NOT_APPROVED')).'</a>';
-					
-					}
-				}
-			
-				echo '</div>'. "\n";
-				echo '<div style="clear:both"></div>'. "\n";
-			}
-			
-			// Tags
-			if ($value->type == 2 && isset($value->otags) && $value->otags != '') {
-				echo '<div class="pg-cat-tags">'.$value->otags.'</div>';
-			}
-			
-			// DESCRIPTION BELOW THUMBNAILS
-			if ($this->tmpl['displayimgdescbox'] == 1  && $value->description != '') {
-				echo '<div class="phocaimgdesc" style="font-size:'.$this->tmpl['fontsizeimgdesc'].'px">'. strip_tags(PhocaGalleryText::wordDelete($value->description, $this->tmpl['charlengthimgdesc'], '...')).'</div>';
-			} else if ($this->tmpl['displayimgdescbox'] == 2  && $value->description != '') {	
-				echo '<div class="phocaimgdeschtml">' .(JHtml::_('content.prepare', $value->description, 'com_phocagallery.item')).'</div>';
-			}
-			
-			echo '</div>';
-
+<?php			
 		}
 	}
-
-} else {
-	// Will be not displayed
-	//echo JText::_('COM_PHOCAGALLERY_THERE_IS_NO_IMAGE');
 }
+?>
+      
+      <!-- 
+      
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_0.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_1.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_2.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_3.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_4.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_5.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_6.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_7.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_8.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_9.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_10.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_11.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_12.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_13.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_14.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_15.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_16.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        <div class="items">
+          <div class="pic"><a href="#" title=""><img src="images/info/news_item_16.jpg" alt="" title=""></a></div>
+          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
+          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
+        </div>
+        -->
+      </div>
+       
+      <div id="page-nav"> <a href="../pages/2.html"></a> </div>
+    </div>
+  </div>
+  <div class="asideWrap"> 
+    <div class="introInfor">
+<h2>关联商品</h2>
+  <dl>
+    <dt><a href="#" title=""><img src="images/info/other_0.jpg" alt="" title=""></a></dt>
+    <dd>
+      <h3><a href="#" title="">【吉屋】布艺沙发巾</a></h3>
+      <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p>
+    </dd>
+  </dl>
+  <dl>
+    <dt><a href="#" title=""><img src="images/info/other_1.jpg" alt="" title=""></a></dt>
+    <dd>
+      <h3><a href="#" title="">【吉屋】布艺沙发巾</a></h3>
+      <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p>
+    </dd>
+  </dl>
+  <dl>
+    <dt><a href="#" title=""><img src="images/info/other_2.jpg" alt="" title=""></a></dt>
+    <dd>
+      <h3><a href="#" title="">【吉屋】布艺沙发巾</a></h3>
+      <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p>
+    </dd>
+  </dl>
+  <dl>
+    <dt><a href="#" title=""><img src="images/info/other_3.jpg" alt="" title=""></a></dt>
+    <dd>
+      <h3><a href="#" title="">【吉屋】布艺沙发巾</a></h3>
+      <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p>
+    </dd>
+  </dl>
+</div>
+
+    <div class="knowledgeWrap">
+      <h2>装修小百科</h2>
+      <div class="knowledgeCon">
+        <h3>淋浴柱安装要点</h3>
+        <p class="desc">淋浴柱安装一定要注意3个高度，我们在装修阶段要确认的是淋浴柱出水口离地的高度，即图上的H3，这个高度要根据淋浴柱的高度来确认。要使淋浴柱安装后，淋浴蓬头不至于顶上铝扣板吊顶，也就是要考虑图上H1的尺寸，另外还要使淋浴蓬头离地的高度可以使家中最高的成员很舒服的站在下面，也就是图上H2和家中最高的身高的关系。所以在改水之前就要把淋浴柱的型号确定了才能准确确定H3的高度。</p>
+        <div class="pic"><img src="images/info/img01.jpg" alt="" title=""></div>
+        <div class="other"><a href="#" title="">更多&gt;&gt;</a></div>
+      </div>
+    </div>
+    <div class="appWrap">
+      <h2>热门应用</h2>
+      <div class="appList">
+        <dl>
+          <dt><a href="#" title=""><img src="images/info/appimg_0.jpg" alt="" title=""></a></dt>
+          <dd>
+            <h3><a href="#" title="">涂料计算器</a></h3>
+            <p class="desc">按照房屋信息和涂料覆盖率，算出所需涂料</p>
+          </dd>
+        </dl>
+        <dl>
+          <dt><a href="#" title=""><img src="images/info/appimg_1.jpg" alt="" title=""></a></dt>
+          <dd>
+            <h3><a href="#" title="">地板计算器</a></h3>
+            <p class="desc">根据照房屋信息及地板规格，算出所需地板数量</p>
+          </dd>
+        </dl>
+        <dl>
+          <dt><a href="#" title=""><img src="images/info/appimg_2.jpg" alt="" title=""></a></dt>
+          <dd>
+            <h3><a href="#" title="">壁纸计算器</a></h3>
+            <p class="desc">按照房屋信息及壁纸规格，算出所需壁纸卷数</p>
+          </dd>
+        </dl>
+        <dl>
+          <dt><a href="#" title=""><img src="images/info/appimg_3.jpg" alt="" title=""></a></dt>
+          <dd>
+            <h3><a href="#" title="">地砖计算器</a></h3>
+            <p class="desc">根据照房屋信息及地砖规格，算出所需地砖数量</p>
+          </dd>
+        </dl>
+        <dl>
+          <dt><a href="#" title=""><img src="images/info/appimg_4.jpg" alt="" title=""></a></dt>
+          <dd>
+            <h3><a href="#" title="">窗帘计算器</a></h3>
+            <p class="desc">根据窗户和布料的信息，计算出所需布料</p>
+          </dd>
+        </dl>
+        <dl>
+          <dt><a href="#" title=""><img src="images/info/appimg_5.jpg" alt="" title=""></a></dt>
+          <dd>
+            <h3><a href="#" title="">墙砖计算器</a></h3>
+            <p class="desc">根据照房屋信息及墙砖规格，算出所需墙砖数</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function(){
+    var $container = $('#js_container');
+    
+    $container.imagesLoaded(function(){
+      $container.masonry({
+        itemSelector: '.items',
+        columnWidth: 270
+      });
+    });
+    
+    $container.infinitescroll({
+      navSelector  : '#page-nav',    // selector for the paged navigation 
+      nextSelector : '#page-nav a',  // selector for the NEXT link (to page 2)
+      itemSelector : '.items',     // selector for all items you'll retrieve
+      loading: {
+          finishedMsg: 'No more pages to load.',
+          img: '/imgs/jquery.plugins/jqwater/loader.gif'
+        }
+      },
+      // trigger Masonry as a callback
+      function( newElements ) {
+        // hide new items while they are loading
+        var $newElems = $( newElements ).css({ opacity: 0 });
+        // ensure that images load before adding to masonry layout
+        $newElems.imagesLoaded(function(){
+          // show elems now they're ready
+          $newElems.animate({ opacity: 1 });
+          $container.masonry( 'appended', $newElems, true ); 
+        });
+      }
+    );
+    
+  });
+</script>
