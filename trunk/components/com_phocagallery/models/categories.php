@@ -297,7 +297,7 @@ class PhocagalleryModelCategories extends JModel
 	}
 	
 	function _buildTagQuery($tag_cat){
-		$query ='SELECT * FROM #__phocagallery_tags t where t.tag_cat = '.$tag_cat;
+		$query ='SELECT * FROM #__phocagallery_tags t where t.published=1 and t.tag_cat = '.$tag_cat;
 		return $query;
 	}
 	

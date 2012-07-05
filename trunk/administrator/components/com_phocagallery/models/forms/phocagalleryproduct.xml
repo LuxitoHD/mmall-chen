@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+
+	<fieldset addfieldpath="/administrator/components/com_phocagallery/models/fields">
+
+		<field name="id" type="text" default="0" label="JGLOBAL_FIELD_ID_LABEL"
+			required="true" readonly="true" class="readonly" />
+
+		<field name="title" type="text" class="inputbox" size="40"
+			label="COM_PHOCAGALLERY_FIELD_TITLE_LABEL" description="COM_PHOCAGALLERY_FIELD_TITLE_DESC"
+			required="true" />
+
+		<field name="alias" type="text" class="inputbox" size="40"
+			label="COM_PHOCAGALLERY_FIELD_ALIAS_LABEL" description="COM_PHOCAGALLERY_FIELD_ALIAS_DESC" />
+
+		<field name="source" type="text" size="40"
+			label="COM_PHOCAGALLERY_FIELD_PRODUCT_GET_URL_LABEL" description="COM_PHOCAGALLERY_FIELD_PRODUCT_GET_URL_LABEL"
+			required="true" class="inputbox" />
+
+		<field name="ordering" type="PhocaGalleryOrdering" table="image"
+			class="inputbox" label="COM_PHOCAGALLERY_FIELD_ORDERING_LABEL"
+			description="COM_PHOCAGALLERY_FIELD_ORDERING_DESC" />
+
+		<field name="filename" type="text"
+			label="COM_PHOCAGALLERY_FIELD_FILENAME_LABEL" 
+			description="COM_PHOCAGALLERY_FIELD_FILENAME_DESC" class="inputbox"
+			size="40" />
+		<field name="catid" type="list"
+			label="COM_PHOCAGALLERY_FIELD_PRODUCT_CAT_LABEL" description="COM_PHOCAGALLERY_FIELD_PRODUCT_CAT_LABEL"
+			class="inputbox" size="1" default="团购">
+			<option value="团购">团购</option>
+			<option value="闪购">闪购</option>
+			<option value="商城">商城</option>
+		</field>
+		
+		<field name="productname" type="Text" class="inputbox" size="40"
+			label="COM_PHOCAGALLERY_FIELD_PICASA_ALBUM_LABEL" description="COM_PHOCAGALLERY_FIELD_PICASA_ALBUM_LABEL" />
+		<field name="price" type="Text" class="inputbox" size="40"
+			label="COM_PHOCAGALLERY_FIELD_PICASA_AUTHKEY_LABEL" description="COM_PHOCAGALLERY_FIELD_PICASA_AUTHKEY_LABEL" />
+
+		<field name="url" type="Text" label="COM_PHOCAGALLERY_FIELD_PICASA_AUTHKEY_LABEL1"
+			description="COM_PHOCAGALLERY_FIELD_PICASA_AUTHKEY_LABEL1" class="inputbox" 
+			size="40" />
+
+		<field name="pic_width" type="Text" label="COM_PHOCAGALLERY_FIELD_PICASA_AUTHKEY_LABEL2"
+			description="COM_PHOCAGALLERY_FIELD_PICASA_AUTHKEY_LABEL2" class="inputbox" 
+			size="40" />
+		
+		<field name="pic_height" type="Text" label="COM_PHOCAGALLERY_FIELD_PICASA_AUTHKEY_LABEL3"
+			description="COM_PHOCAGALLERY_FIELD_PICASA_AUTHKEY_LABEL3" class="inputbox" 
+			size="40" />
+
+	</fieldset>
+
+	<fieldset name="publish"
+		label="COM_PHOCAGALLERY_GROUP_LABEL_PUBLISHING_DETAILS">
+
+		<field name="published" type="list"
+			label="COM_PHOCAGALLERY_FIELD_PUBLISHED_LABEL" description="COM_PHOCAGALLERY_FIELD_PUBLISHED_DESC"
+			class="inputbox" size="1" default="1">
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+
+		<field name="approved" type="list"
+			label="COM_PHOCAGALLERY_FIELD_APPROVED_LABEL" description="COM_PHOCAGALLERY_FIELD_APPROVED_DESC"
+			class="inputbox" size="1" default="1">
+			<option value="1">COM_PHOCAGALLERY_APPROVED</option>
+			<option value="0">COM_PHOCAGALLERY_NOT_APPROVED</option>
+		</field>
+
+		<field name="date" type="Calendar" class="inputbox"
+			label="COM_PHOCAGALLERY_FIELD_DATE_LABEL" description="COM_PHOCAGALLERY_FIELD_DATE_DESC"
+			filter="safehtml" />
+
+		<field name="tags" type="phocatags1" multiple="1"
+			label="COM_PHOCAGALLERY_FIELD_TAGS_LABEL" description="COM_PHOCAGALLERY_FIELD_TAGS_LABEL"
+			class="inputbox" size="1" />
+
+	</fieldset>
+
+	<fields name="metadata">
+		<fieldset name="metadata" label="JGLOBAL_FIELDSET_METADATA_OPTIONS">
+
+			<!-- <field name="robots" type="list" label="JField_Metadata_Robots_Label" 
+				description="JField_Metadata_Robots_Desc" > <option value="">JGLOBAL_USE_GLOBAL</option> 
+				<option value="0">JGLOBAL_INDEX_FOLLOW</option> <option value="1">JGLOBAL_NOINDEX_FOLLOW</option> 
+				<option value="2">JGLOBAL_INDEX_NOFOLLOW</option> <option value="3">JGLOBAL_NOINDEX_NOFOLLOW</option> 
+				<option value="4">JGLOBAL_NO_ROBOTS_TAG</option> </field> <field name="author" 
+				type="text" label="JAUTHOR" description="JField_Metadata_Author_Desc" size="20" 
+				/> <field name="rights" type="text" label="JFIELD_META_RIGHTS_LABEL" description="JFIELD_META_RIGHTS_DESC" 
+				required="" filter="string" cols="30" rows="2" /> -->
+		</fieldset>
+	</fields>
+
+</form>

@@ -45,9 +45,15 @@ if (isset($this->tmpl['notapproved']->count) && (int)$this->tmpl['notapproved']-
 				<?php echo JHtml::_('select.options', PhocaGalleryCategory::options('com_phocagallery'), 'value', 'text', $this->state->get('filter.category_id'));?>
 			</select>
 			
-			<select name="filter_language" class="inputbox" onchange="this.form.submit()">
-				<option value=""><?php echo JText::_('JOPTION_SELECT_LANGUAGE');?></option>
-				<?php echo JHtml::_('select.options', JHtml::_('contentlanguage.existing', true, true), 'value', 'text', $this->state->get('filter.language'));?>
+			<select name="filter_source" class="inputbox" onchange="this.form.submit()">
+				<option value=""><?php echo JText::_('选择来源');?></option>
+				<option value="装客后台" <?php if ($this->state->get('filter.source')=='装客后台') echo 'selected="selected" '?>>装客后台</option>
+				<option value="其它" <?php if ($this->state->get('filter.source')=='其它') echo 'selected="selected" '?>>其它</option>
+			</select>
+			
+			<select name="filter_tag_id" class="inputbox" onchange="this.form.submit()">
+				<option value=""><?php echo JText::_('选择标签');?></option>
+				<?php echo JHtml::_('select.options', PhocaGalleryCategory::tagOptions('com_phocagallery'), 'value', 'text', $this->state->get('filter.tag_id'));?>
 			</select>
 
 		</div>
@@ -89,18 +95,9 @@ if (isset($this->tmpl['notapproved']->count) && (int)$this->tmpl['notapproved']-
 					</th>
 					
 					
-					<th width="5%"><?php echo JHTML::_('grid.sort',  'COM_PHOCAGALLERY_OWNER', 'category_owner_id',$listDirn, $listOrder ); ?></th>
+					<th width="5%"><?php echo JHTML::_('grid.sort',  '创建时间', 'date',$listDirn, $listOrder ); ?></th>
 					
-					<th width="5%"><?php echo JHTML::_('grid.sort',  'COM_PHOCAGALLERY_UPLOADED_BY', 'uploadusername',$listDirn, $listOrder ); ?></th>
 					
-					<th width="5%"><?php echo JHTML::_('grid.sort',  'COM_PHOCAGALLERY_RATING', 'v.average',$listDirn, $listOrder ); ?>
-					</th>
-					
-					<th width="5%">
-			<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_LANGUAGE', 'a.language', $listDirn, $listOrder); ?>
-		</th> 
-					<th width="5%"><?php echo JHTML::_('grid.sort',  'COM_PHOCAGALLERY_HITS', 'a.hits',$listDirn, $listOrder ); ?>
-					</th>
 					<th width="1%" nowrap="nowrap"><?php echo JHTML::_('grid.sort',  'COM_PHOCAGALLERY_ID', 'a.id',$listDirn, $listOrder ); ?>
 					</th>
 				</tr>
@@ -247,42 +244,34 @@ if ($canChange) {
 }
 echo '</td>';
 
-echo '<td>';
-echo $item->usernameno;
-echo $item->username ? ' ('.$item->username.')' : '';
+echo '<td class="center nowrap">';
+//echo $item->usernameno;
+//echo $item->username ? ' ('.$item->username.')' : '';
+echo JHtml::_('date', $item->date, 'Y-m-d H:i:s');
 echo '</td>';
 
 
-echo '<td>';
-echo $item->uploadname;
-echo $item->uploadusername ? ' ('.$item->uploadusername.')' : '';
-echo '</td>';
 
-echo '<td align="center">';
-$voteAvg 		= round(((float)$item->ratingavg / 0.5)) * 0.5;
-$voteAvgWidth	= 16 * $voteAvg;
-echo '<ul class="star-rating-small">'
-.'<li class="current-rating" style="width:'.$voteAvgWidth.'px"></li>'
-.'<li><span class="star1"></span></li>';
+//echo '<td>';
+//echo $item->uploadname;
+//echo $item->uploadusername ? ' ('.$item->uploadusername.')' : '';
+//echo '</td>';
 
-for ($ir = 2;$ir < 6;$ir++) {
-	echo '<li><span class="stars'.$ir.'"></span></li>';
-}
-echo '</ul>';
-echo '</td>';
+//echo '<td align="center">';
+//$voteAvg 		= round(((float)$item->ratingavg / 0.5)) * 0.5;
+//$voteAvgWidth	= 16 * $voteAvg;
+//echo '<ul class="star-rating-small">'
+//.'<li class="current-rating" style="width:'.$voteAvgWidth.'px"></li>'
+//.'<li><span class="star1"></span></li>';
+//
+//for ($ir = 2;$ir < 6;$ir++) {
+//	echo '<li><span class="stars'.$ir.'"></span></li>';
+//}
+//echo '</ul>';
+//echo '</td>';
 
 ?>
-<td class="center">
-	<?php
-	if ($item->language=='*') {
-		echo JText::_('JALL');
-	} else {
-		echo $item->language_title ? $this->escape($item->language_title) : JText::_('JUNDEFINED');
-	}
-	?>
-</td>
 <?php
-echo '<td align="center">'. $item->hits.'</td>';
 echo '<td align="center">'. $item->id .'</td>';
 
 echo '</tr>';

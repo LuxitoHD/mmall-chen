@@ -29,10 +29,7 @@ $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/j
             	<li><a href="#">首 页</a></li>
                 <li><a href="#">团 购</a></li>
                 <li><a href="#">抢 购</a></li>
-                <li><a href="#">商 城</a></li>
-                <li><a href="#">百MALL</a></li>
                 <li class="this"><a href="#">效果图</a></li>
-                <li><a href="#">客户端</a></li>
             </ul>
             <ul class="user_inf clearfix">
             	<li class="welcome">

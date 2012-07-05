@@ -891,6 +891,14 @@ ul.adminformlist li {
 	list-style: none;
 }
 
+#jform_tags li{
+	float: left;	
+}
+
+#jform_tags li label{
+	min-width: 80px;	
+}
+
 fieldset label,
 fieldset span.faux-label {
 	float: left;

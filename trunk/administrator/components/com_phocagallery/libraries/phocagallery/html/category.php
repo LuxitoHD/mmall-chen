@@ -34,4 +34,28 @@ class PhocaGalleryCategory
 		return $tree;
 
 	}
+	
+	public static function tagOptions()
+	{
+		$db = &JFactory::getDBO();
+
+       //build the list of categories
+		$query = 'SELECT a.title AS text, a.id AS value'
+		. ' FROM #__phocagallery_tags AS a'
+		. ' WHERE a.published = 1'
+		. ' ORDER BY a.ordering';
+		$db->setQuery( $query );
+		$phocagallerys = $db->loadObjectList();
+	
+//		$catId	= -1;
+//		
+//		$javascript 	= 'class="inputbox" size="1" onchange="submitform( );"';
+//		
+//		$tree = array();
+//		$text = '';
+//		$tree = PhocaGalleryRenderAdmin::CategoryTreeOption($phocagallerys, $tree, 0, $text, $catId);
+		
+		return $phocagallerys;
+
+	}
 }

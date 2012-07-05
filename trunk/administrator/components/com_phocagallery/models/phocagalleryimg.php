@@ -763,6 +763,31 @@ class PhocaGalleryCpModelPhocaGalleryImg extends JModelAdmin
 		return true;
 	}
 	
+	protected function batchTag($value, $pks, $contexts)
+	{
+		foreach ($value as $categoryId){
+			foreach ($pks as $pk)
+			{
+				$query = 'DELETE FROM #__phocagallery_tags_ref'
+					. ' WHERE imgid ='.$pk .' and tagid = '.$categoryId;
+				$this->_db->setQuery( $query );
+				if(!$this->_db->query()) {
+					$this->setError($this->_db->getErrorMsg());
+					return false;
+				}
+				
+				$query = 'insert into #__phocagallery_tags_ref(imgid,tagid) values('
+					. $pk .', '.$categoryId.')';
+				$this->_db->setQuery( $query );
+				if(!$this->_db->query()) {
+					$this->setError($this->_db->getErrorMsg());
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
 	
 	public function increaseOrdering($categoryId) {
 		

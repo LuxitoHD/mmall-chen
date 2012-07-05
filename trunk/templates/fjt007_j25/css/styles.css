@@ -21,6 +21,10 @@ html {
 	height: 100%;
 }
 
+ul, ol, li {
+    list-style: none outside none;
+}
+
 body {
 	font: normal 12px/1.8em Arial, Helvetica, sans-serif;
 	color: #333;
@@ -1416,6 +1420,7 @@ ul.pagenav li {
 }
 
 #header #logo_search {
+	background: url("../images/header_bg.jpg??20120705113928") no-repeat scroll right top #FFFFFF;
     margin: 0 auto;
     width: 1000px;
 }
@@ -1439,6 +1444,7 @@ ul.pagenav li {
 }
 
 #header #logo_search .search {
+	display:none;
     float: right;
     margin-top: 20px;
     width: 564px;
@@ -1604,9 +1610,15 @@ ul.pagenav li {
 
 #header #nav #nav_body #n_list li.logo {
     float: right;
+    display: none;
 }
 
 #header #nav #nav_body #n_list li a:hover {
     color: #D3EDFC;
     text-decoration: none;
+}
+
+#header #user #user_body .column li.this {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
 }

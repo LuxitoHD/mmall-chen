@@ -18,7 +18,7 @@ $listDirn	= $this->state->get('list.direction');
 $canOrder	= $user->authorise('core.edit.state', 'com_phocagallery');
 $saveOrder	= 'a.ordering';
 
-echo '<div style="float:right">' . $this->tmpl['enablethumbcreationstatus'] .'</div><div class="clr"></div>';
+//echo '<div style="float:right">' . $this->tmpl['enablethumbcreationstatus'] .'</div><div class="clr"></div>';
 
 if (isset($this->tmpl['notapproved']->count) && (int)$this->tmpl['notapproved']->count > 0 ) {
 	echo '<div class="notapproved">'.JText::_('COM_PHOCAGALLERY_NOT_APPROVED_IMAGE_IN_GALLERY').': '.(int)$this->tmpl['notapproved']->count.'</div>';
@@ -80,26 +80,7 @@ if (isset($this->tmpl['notapproved']->count) && (int)$this->tmpl['notapproved']-
 						echo JHtml::_('grid.order',  $this->items, 'filesave.png', 'phocagallerycs.saveorder');
 					} ?>
 					</th>
-					<th width="10%">
-					<?php //echo JHTML::_('grid.sort',   'Access', 'groupname', @$lists['order_Dir'], @$lists['order'] );
-					echo JTEXT::_('COM_PHOCAGALLERY_ACCESS');
 
-					?>
-					</th>
-				
-					
-				
-					<th width="5%"><?php echo JHTML::_('grid.sort',  'COM_PHOCAGALLERY_OWNER', 'a.owner_id', $listDirn, $listOrder ); ?></th>
-					
-					<th width="5%"><?php echo JHTML::_('grid.sort',  'COM_PHOCAGALLERY_RATING', 'v.average', $listDirn, $listOrder ); ?>
-					</th>
-					
-					<th width="5%"><?php echo JHTML::_('grid.sort',  'COM_PHOCAGALLERY_HITS', 'a.hits', $listDirn, $listOrder ); ?>
-					</th>
-
-					<th width="5%">
-					<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_LANGUAGE', 'a.language', $listDirn, $listOrder); ?>
-					</th> 
 						
 					<th width="1%" nowrap="nowrap"><?php echo JHTML::_('grid.sort',  'COM_PHOCAGALLERY_ID', 'a.id', $listDirn, $listOrder ); ?>
 					</th>
@@ -174,33 +155,6 @@ if ($canChange) {
 }
 echo '</td>';
 
-echo '<td align="center">' . $this->escape($item->access_level) .'</td>';
-					
-echo '<td>';
-echo $item->usernameno;
-echo $item->username ? ' ('.$item->username.')' : '';
-echo '</td>';			
-					
-echo '<td align="center">';
-$voteAvg 		= round(((float)$item->ratingavg / 0.5)) * 0.5;
-$voteAvgWidth	= 16 * $voteAvg;
-echo '<ul class="star-rating-small">'
-.'<li class="current-rating" style="width:'.$voteAvgWidth.'px"></li>'
-.'<li><span class="star1"></span></li>';
-
-for ($ir = 2;$ir < 6;$ir++) {
-	echo '<li><span class="stars'.$ir.'"></span></li>';
-}
-echo '</ul>';			
-echo '</td>';
-echo '<td align="center">'. $item->hits.'</td>';
-echo '<td class="center">';
-if ($item->language=='*') {
-	echo JText::_('JALL');
-} else {
-	echo $item->language_title ? $this->escape($item->language_title) : JText::_('JUNDEFINED');;
-}
-echo '</td>';
 echo '<td align="center">'. $item->id .'</td>';
 
 echo '</tr>';						

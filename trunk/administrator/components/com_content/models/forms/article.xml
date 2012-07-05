@@ -13,7 +13,12 @@
 
 		<field name="alias" type="text" label="JFIELD_ALIAS_LABEL"
 			description="JFIELD_ALIAS_DESC" class="inputbox" size="45" />
+		
+		<field name="tags" type="phocatags2" multiple="1"
+			label="COM_PHOCAGALLERY_FIELD_TAGS_LABEL" description="COM_PHOCAGALLERY_FIELD_TAGS_DESC"
+			class="inputbox" size="1" />
 
+			
 		<field name="articletext" type="editor" class="inputbox"
 			label="COM_CONTENT_FIELD_ARTICLETEXT_LABEL" description="COM_CONTENT_FIELD_ARTICLETEXT_DESC"
 			filter="JComponentHelper::filterText" buttons="true" />
@@ -93,18 +98,9 @@
 			label="JFIELD_META_DESCRIPTION_LABEL" description="JFIELD_META_DESCRIPTION_DESC"
 			class="inputbox" rows="3" cols="30" />
 
-		<field name="access" type="accesslevel" label="JFIELD_ACCESS_LABEL"
-			description="JFIELD_ACCESS_DESC" class="inputbox" size="1" />
-
 		<field name="hits" type="text" label="JGLOBAL_HITS"
 			description="COM_CONTENT_FIELD_HITS_DESC" class="readonly" size="6"
 			readonly="true" filter="unset" />
-
-		<field name="language" type="contentlanguage" label="JFIELD_LANGUAGE_LABEL"
-			description="COM_CONTENT_FIELD_LANGUAGE_DESC" class="inputbox"
-		>
-			<option value="*">JALL</option>
-		</field>
 
 		<field name="featured" type="list"
 			label="JFEATURED"
@@ -114,11 +110,6 @@
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
 		</field>
-
-		<field name="rules" type="rules" label="JFIELD_RULES_LABEL"
-			translate_label="false" class="inputbox" filter="rules"
-			component="com_content" section="article" validate="rules"
-		/>
 
 	</fieldset>
 
@@ -559,38 +550,6 @@
 				class="inputbox"
 				size="20" />
 			<field name="image_intro_caption"
-				type="text"
-				label="COM_CONTENT_FIELD_IMAGE_CAPTION_LABEL"
-				description="COM_CONTENT_FIELD_IMAGE_CAPTION_DESC"
-				class="inputbox"
-				size="20" />
-			<field
-				name="spacer1"
-				type="spacer"
-				hr="true"
-				/>
-			<field
-				name="image_fulltext"
-				type="media"
-				label="COM_CONTENT_FIELD_FULL_LABEL"
-				description="COM_CONTENT_FIELD_FULL_DESC" />
-			<field
-				name="float_fulltext"
-				type="list"
-				label="COM_CONTENT_FLOAT_LABEL"
-				description="COM_CONTENT_FLOAT_DESC">
-					<option value="">JGLOBAL_USE_GLOBAL</option>
-					<option value="right">COM_CONTENT_RIGHT</option>
-					<option value="left">COM_CONTENT_LEFT</option>
-					<option value="none">COM_CONTENT_NONE</option>
-			</field>
-			<field name="image_fulltext_alt"
-				type="text"
-				label="COM_CONTENT_FIELD_IMAGE_ALT_LABEL"
-				description="COM_CONTENT_FIELD_IMAGE_ALT_DESC"
-				class="inputbox"
-				size="20" />
-			<field name="image_fulltext_caption"
 				type="text"
 				label="COM_CONTENT_FIELD_IMAGE_CAPTION_LABEL"
 				description="COM_CONTENT_FIELD_IMAGE_CAPTION_DESC"
