@@ -78,7 +78,7 @@ echo '</div>';
 			<?php
 			// Extid is hidden - only for info if this is an external image (the filename field will be not required)
 			$formArray = array ('title', 'alias', 'catid','source', 'ordering',
-			'filename','latitude', 'longitude', 'zoom', 'geotitle', 'videocode', 'vmproductid');
+			'filename', 'videocode', 'vmproductid');
 			foreach ($formArray as $value) {
 				echo '<li>'.$this->form->getLabel($value) . $this->form->getInput($value).'</li>' . "\n";
 			} ?>

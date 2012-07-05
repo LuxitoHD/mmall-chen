@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 
 $published = $this->state->get('filter.state');
 ?>
+<!-- 
 <fieldset class="batch">
 	<legend><?php echo JText::_('COM_PHOCAGALLERY_BATCH_OPTIONS_CATEGORIES');?></legend>
 	<?php echo JHtml::_('batch.access');?>
@@ -26,3 +27,4 @@ $published = $this->state->get('filter.state');
 		<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>
 	</button>
 </fieldset>
+ -->

@@ -162,6 +162,31 @@ class ContentModelArticle extends JModelAdmin
 
 		return $newIds;
 	}
+	
+	protected function batchTag($value, $pks, $contexts)
+	{
+		foreach ($value as $categoryId){
+			foreach ($pks as $pk)
+			{
+				$query = 'DELETE FROM #__phocagallery_tags_articles_ref'
+					. ' WHERE imgid ='.$pk .' and tagid = '.$categoryId;
+				$this->_db->setQuery( $query );
+				if(!$this->_db->query()) {
+					$this->setError($this->_db->getErrorMsg());
+					return false;
+				}
+				
+				$query = 'insert into #__phocagallery_tags_articles_ref(imgid,tagid) values('
+					. $pk .', '.$categoryId.')';
+				$this->_db->setQuery( $query );
+				if(!$this->_db->query()) {
+					$this->setError($this->_db->getErrorMsg());
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 
 	/**
 	 * Method to test whether a record can be deleted.
@@ -409,6 +434,13 @@ class ContentModelArticle extends JModelAdmin
 			$data['title']	= $title;
 			$data['alias']	= $alias;
 		}
+		
+		if (!isset($data['tags'])) {
+			$data['tags'] = array();
+		}
+		if ((int)$data['id'] > 0) {
+			$this->storeProductTags($data['tags'], (int)$data['id']);
+		}
 
 		if (parent::save($data)) {
 
@@ -422,6 +454,47 @@ class ContentModelArticle extends JModelAdmin
 
 
 		return false;
+	}
+	
+	public function storeProductTags($tagsArray, $imgId) {
+	
+	
+		if ((int)$imgId > 0) {
+			$db =& JFactory::getDBO();
+			$query = ' DELETE '
+					.' FROM #__phocagallery_tags_articles_ref'
+					. ' WHERE imgid = '. (int)$imgId;
+			$db->setQuery($query);
+			if (!$db->query()) {
+				$this->setError('Database Error - Deleting Image Id Tags');
+				return false;
+			}
+			
+			if (!empty($tagsArray)) {
+				
+				$values 		= array();
+				$valuesString 	= '';
+				
+				foreach($tagsArray as $k => $v) {
+					$values[] = ' ('.(int)$imgId.', '.(int)$v.')';
+				}
+				
+				if (!empty($values)) {
+					$valuesString = implode($values, ',');
+				
+					$query = ' INSERT INTO #__phocagallery_tags_articles_ref (imgid, tagid)'
+								.' VALUES '.(string)$valuesString;
+
+					$db->setQuery($query);
+					if (!$db->query()) {
+						$this->setError('Database Error - Insert Image Id Tags');
+						return false;
+					}
+					
+				}
+			}
+		}
+	
 	}
 
 	/**

@@ -14,11 +14,9 @@ $published = $this->state->get('filter.state');
 ?>
 <fieldset class="batch">
 	<legend><?php echo JText::_('COM_PHOCAGALLERY_BATCH_OPTIONS_IMAGES');?></legend>
-	<?php echo JHtml::_('batch.access');?>
-	<?php echo JHtml::_('batch.language');?>
 
 	<?php echo PhocaGalleryBatch::item($published); ?>
-
+	<?php echo PhocaGalleryBatch::itemTag($published); ?>
 	<button type="submit" onclick="Joomla.submitbutton('phocagalleryimg.batch');">
 		<?php echo JText::_('JGLOBAL_BATCH_PROCESS'); ?>
 	</button>

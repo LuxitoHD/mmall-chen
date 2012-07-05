@@ -64,6 +64,12 @@ class PhocaGalleryCpModelPhocaGalleryImgs extends JModelList
 
 		$categoryId = $app->getUserStateFromRequest($this->context.'.filter.category_id', 'filter_category_id', null);
 		$this->setState('filter.category_id', $categoryId);
+		
+		$tagId = $app->getUserStateFromRequest($this->context.'.filter.tag_id', 'filter_tag_id', null);
+		$this->setState('filter.tag_id', $tagId);
+		
+		$source = $app->getUserStateFromRequest($this->context.'.filter.source', 'filter_source', null);
+		$this->setState('filter.source', $source);
 
 		$language = $app->getUserStateFromRequest($this->context.'.filter.language', 'filter_language', '');
 		$this->setState('filter.language', $language);
@@ -141,6 +147,8 @@ class PhocaGalleryCpModelPhocaGalleryImgs extends JModelList
 		
 		$query->select('v.average AS ratingavg');
 		$query->join('LEFT', '#__phocagallery_img_votes_statistics AS v ON v.imgid = a.id');
+		
+		$query->join('LEFT', '#__phocagallery_tags_ref AS tg ON tg.imgid = a.id');
 
 		// Filter by access level.
 		if ($access = $this->getState('filter.access')) {
@@ -160,6 +168,16 @@ class PhocaGalleryCpModelPhocaGalleryImgs extends JModelList
 		$categoryId = $this->getState('filter.category_id');
 		if (is_numeric($categoryId)) {
 			$query->where('a.catid = ' . (int) $categoryId);
+		}
+		
+		$source = $this->getState('filter.source');
+		if ($source!='') {
+			$query->where('a.source = \'' . $source .'\'');
+		}
+		
+		$tag_id = $this->getState('filter.tag_id');
+		if (is_numeric($tag_id)) {
+			$query->where('tg.tagid = ' . (int)$tag_id);
 		}
 
 		// Filter by search in title

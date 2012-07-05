@@ -103,12 +103,5 @@ if ($this->params->get('highContrast')) {
 			<?php echo  JText::_('JGLOBAL_WARNJAVASCRIPT') ?>
 		</noscript>
 	</div>
-	<jdoc:include type="modules" name="footer" style="none"  />
-	<div id="footer">
-		<p class="copyright">
-			<?php $joomla= '<a href="http://www.joomla.org">Joomla!&#174;</a>';
-				echo JText::sprintf('JGLOBAL_ISFREESOFTWARE', $joomla) ?>
-		</p>
-	</div>
 </body>
 </html>

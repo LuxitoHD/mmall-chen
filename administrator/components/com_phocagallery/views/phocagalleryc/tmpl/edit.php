@@ -83,46 +83,8 @@ JHtml::_('behavior.formvalidation');
 
 	<div class="clr"></div>
 	
-	<?php if ($this->tmpl['enablepicasaloading'] == 1) { ?>
-	<div class="width-60 fltlft">
-		<fieldset class="adminform">
-		<legend><?php echo JText::_('COM_PHOCAGALLERY_PICASA_SETTINGS') ?></legend>
-			<ul class="adminformlist">
-				<?php 
-				$formArray = array ('extu', 'exta', 'extauth');
-				foreach ($formArray as $value) {
-					echo '<li>'.$this->form->getLabel($value) . $this->form->getInput($value).'</li>' . "\n";
-				} ?>
-			</ul>
-			<?php /*
-			<div style="float:right;margin:5px" id="toolbar-loadext"><a href="#" onclick="javascript:Joomla.submitbutton('phocagalleryc.loadextimg')" >
-<?php echo JText::_('COM_PHOCAGALLERY_LOAD_EXT_IMAGES'); ?></div>
-			<div class="clr"></div> */ ?>
-		</fieldset>
-	</div>
-	<?php } ?>
 	
 	<div class="clr"></div>
-	
-	<div class="width-60 fltlft">
-		<fieldset class="adminform">
-			<legend><?php echo JText::_('COM_PHOCAGALLERY_FB_SETTINGS') ?></legend>
-			<ul class="adminformlist">
-			<?php
-			// Extid is hidden - only for info if this is an external image (the filename field will be not required)
-			$formArray = array ('extfbuid', 'extfbcatid');
-			foreach ($formArray as $value) {
-				echo '<li>'.$this->form->getLabel($value) . $this->form->getInput($value).'</li>' . "\n";
-			} ?>
-			
-		</ul>
-		
-		
-			<div class="clr"></div>
-			</fieldset>
-
-	</div>
-	
 	
 <input type="hidden" name="task" value="" />
 <?php echo JHtml::_('form.token'); ?>

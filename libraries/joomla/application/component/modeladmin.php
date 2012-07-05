@@ -187,6 +187,10 @@ abstract class JModelAdmin extends JModelForm
 			{
 				return false;
 			}
+			elseif ($cmd == 't' && !$this->batchTag($commands['category_id'], $pks, $contexts))
+			{
+				return false;
+			}
 			$done = true;
 		}
 

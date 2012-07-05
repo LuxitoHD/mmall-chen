@@ -103,13 +103,13 @@ class PhocaGalleryCpViewPhocaGalleryC extends JView
 			JToolBarHelper::addNew('phocagalleryc.save2new', 'JTOOLBAR_SAVE_AND_NEW');
 			$this->tmpl['enablepicasaloading'] = $paramsC->get( 'enable_picasa_loading', 1 );
 			$this->tmpl['enablefacebookloading'] = $paramsC->get( 'enable_facebook_loading', 1 );			
-			if($this->tmpl['enablepicasaloading'] == 1){
-				JToolBarHelper::custom('phocagalleryc.loadextimgp', 'loadextp.png', '', 'COM_PHOCAGALLERY_P_IMPORT' , false);
-			}
-			if($this->tmpl['enablefacebookloading'] == 1){
-				JToolBarHelper::custom('phocagalleryc.loadextimgf', 'loadextf.png', '', 'COM_PHOCAGALLERY_FB_IMPORT' , false);
-				JToolBarHelper::custom('phocagalleryc.uploadextimgf', 'uploadextf.png', '', 'COM_PHOCAGALLERY_FB_EXPORT' , false);
-			}
+//			if($this->tmpl['enablepicasaloading'] == 1){
+//				JToolBarHelper::custom('phocagalleryc.loadextimgp', 'loadextp.png', '', 'COM_PHOCAGALLERY_P_IMPORT' , false);
+//			}
+//			if($this->tmpl['enablefacebookloading'] == 1){
+//				JToolBarHelper::custom('phocagalleryc.loadextimgf', 'loadextf.png', '', 'COM_PHOCAGALLERY_FB_IMPORT' , false);
+//				JToolBarHelper::custom('phocagalleryc.uploadextimgf', 'uploadextf.png', '', 'COM_PHOCAGALLERY_FB_EXPORT' , false);
+//			}
 		}
 		// If an existing item, can save to a copy.
 		if (!$isNew && $canDo->get('core.create')) {
@@ -122,8 +122,8 @@ class PhocaGalleryCpViewPhocaGalleryC extends JView
 			JToolBarHelper::cancel('phocagalleryc.cancel', 'JTOOLBAR_CLOSE');
 		}
 
-		JToolBarHelper::divider();
-		JToolBarHelper::help( 'screen.phocagallery', true );
+//		JToolBarHelper::divider();
+//		JToolBarHelper::help( 'screen.phocagallery', true );
 	}
 }
 ?>

@@ -27,7 +27,7 @@ $editoroptions = isset($params['show_publishing_options']);
 
 if (!$editoroptions):
 	$params['show_publishing_options'] = '1';
-	$params['show_article_options'] = '1';
+	$params['show_article_options'] = '0';
 	$params['show_urls_images_backend'] = '0';
 	$params['show_urls_images_frontend'] = '0';
 endif;
@@ -73,18 +73,8 @@ endif;
 				<li><?php echo $this->form->getLabel('state'); ?>
 				<?php echo $this->form->getInput('state'); ?></li>
 
-				<li><?php echo $this->form->getLabel('access'); ?>
-				<?php echo $this->form->getInput('access'); ?></li>
-
-				<?php if ($this->canDo->get('core.admin')): ?>
-					<li><span class="faux-label"><?php echo JText::_('JGLOBAL_ACTION_PERMISSIONS_LABEL'); ?></span>
-						<div class="button2-left"><div class="blank">
-							<button type="button" onclick="document.location.href='#access-rules';">
-								<?php echo JText::_('JGLOBAL_PERMISSIONS_ANCHOR'); ?>
-							</button>
-						</div></div>
-					</li>
-				<?php endif; ?>
+				<li><?php echo $this->form->getLabel('tags'); ?>
+				<?php echo $this->form->getInput('tags'); ?></li>
 
 				<li><?php echo $this->form->getLabel('featured'); ?>
 				<?php echo $this->form->getInput('featured'); ?></li>
@@ -146,49 +136,8 @@ endif;
 			</fieldset>
 		<?php  endif; ?>
 		<?php  $fieldSets = $this->form->getFieldsets('attribs'); ?>
-			<?php foreach ($fieldSets as $name => $fieldSet) : ?>
-				<?php // If the parameter says to show the article options or if the parameters have never been set, we will
-					  // show the article options. ?>
-
-				<?php if ($params['show_article_options'] || (( $params['show_article_options'] == '' && !empty($editoroptions) ))): ?>
-					<?php // Go through all the fieldsets except the configuration and basic-limited, which are
-						  // handled separately below. ?>
-
-					<?php if ($name != 'editorConfig' && $name != 'basic-limited') : ?>
-						<?php echo JHtml::_('sliders.panel', JText::_($fieldSet->label), $name.'-options'); ?>
-						<?php if (isset($fieldSet->description) && trim($fieldSet->description)) : ?>
-							<p class="tip"><?php echo $this->escape(JText::_($fieldSet->description));?></p>
-						<?php endif; ?>
-						<fieldset class="panelform">
-							<ul class="adminformlist">
-							<?php foreach ($this->form->getFieldset($name) as $field) : ?>
-								<li><?php echo $field->label; ?>
-								<?php echo $field->input; ?></li>
-							<?php endforeach; ?>
-							</ul>
-						</fieldset>
-					<?php endif ?>
-					<?php // If we are not showing the options we need to use the hidden fields so the values are not lost.  ?>
-				<?php  elseif ($name == 'basic-limited'): ?>
-						<?php foreach ($this->form->getFieldset('basic-limited') as $field) : ?>
-							<?php  echo $field->input; ?>
-						<?php endforeach; ?>
-
-				<?php endif; ?>
-			<?php endforeach; ?>
 				<?php // We need to make a separate space for the configuration
 				      // so that those fields always show to those wih permissions ?>
-				<?php if ( $this->canDo->get('core.admin')   ):  ?>
-					<?php  echo JHtml::_('sliders.panel', JText::_('COM_CONTENT_SLIDER_EDITOR_CONFIG'), 'configure-sliders'); ?>
-						<fieldset  class="panelform" >
-							<ul class="adminformlist">
-							<?php foreach ($this->form->getFieldset('editorConfig') as $field) : ?>
-								<li><?php echo $field->label; ?>
-								<?php echo $field->input; ?></li>
-							<?php endforeach; ?>
-							</ul>
-						</fieldset>
-				<?php endif ?>
 
 		<?php // The url and images fields only show if the configuration is set to allow them.  ?>
 		<?php // This is for legacy reasons. ?>
@@ -208,14 +157,6 @@ endif;
 							<?php echo $field->input; ?>
 						</li>
 					<?php endforeach; ?>
-						<?php foreach($this->form->getGroup('urls') as $field): ?>
-						<li>
-							<?php if (!$field->hidden): ?>
-								<?php echo $field->label; ?>
-							<?php endif; ?>
-							<?php echo $field->input; ?>
-						</li>
-					<?php endforeach; ?>
 				</ul>
 				</fieldset>
 		<?php endif; ?>
@@ -227,19 +168,6 @@ endif;
 	</div>
 
 	<div class="clr"></div>
-	<?php if ($this->canDo->get('core.admin')): ?>
-		<div class="width-100 fltlft">
-			<?php echo JHtml::_('sliders.start', 'permissions-sliders-'.$this->item->id, array('useCookie'=>1)); ?>
-
-				<?php echo JHtml::_('sliders.panel', JText::_('COM_CONTENT_FIELDSET_RULES'), 'access-rules'); ?>
-				<fieldset class="panelform">
-					<?php echo $this->form->getLabel('rules'); ?>
-					<?php echo $this->form->getInput('rules'); ?>
-				</fieldset>
-
-			<?php echo JHtml::_('sliders.end'); ?>
-		</div>
-	<?php endif; ?>
 	<div>
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="return" value="<?php echo JRequest::getCmd('return');?>" />
