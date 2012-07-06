@@ -11,108 +11,213 @@
 defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
+$document			= &JFactory::getDocument();
 
+//css
+$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/base.css');
+$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/global.css');
+$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/info.css');
+$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/layout.css');
+$document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/reset.css');
 ?>
-<div class="blog<?php echo $this->pageclass_sfx;?>">
-<?php if ($this->params->get('show_page_heading', 1)) : ?>
-	<h1 class="componentheading"><?php echo $this->escape($this->params->get('page_heading')); ?></h1>
-	<?php endif; ?>
-
-	<?php if ($this->params->get('show_category_title', 1) OR $this->params->get('page_subheading')) : ?>
-	<h2 class="item-page-title<?php echo $this->pageclass_sfx?>">
-		<?php echo $this->escape($this->params->get('page_subheading')); ?>
-		<?php if ($this->params->get('show_category_title')) : ?>
-			<span class="subheading-category"><?php echo $this->category->title;?></span>
-		<?php endif; ?>
-	</h2>
-	<?php endif; ?>
-
-<?php if ($this->params->get('show_description', 1) || $this->params->def('show_description_image', 1)) : ?>
-	<div class="category-desc">
-	<?php if ($this->params->get('show_description_image') && $this->category->getParams()->get('image')) : ?>
-		<img src="<?php echo $this->category->getParams()->get('image'); ?>"/>
-	<?php endif; ?>
-	<?php if ($this->params->get('show_description') && $this->category->description) : ?>
-		<?php echo JHtml::_('content.prepare', $this->category->description); ?>
-	<?php endif; ?>
-	<div class="clr"></div>
-	</div>
-<?php endif; ?>
-
-<?php $leadingcount=0 ; ?>
-<?php if (!empty($this->lead_items)) : ?>
-<div class="items-leading">
-	<?php foreach ($this->lead_items as &$item) : ?>
-		<div class="leading">
-			<?php
-				$this->item = &$item;
-				echo $this->loadTemplate('item');
-			?>
-		</div>
-		<?php
-			$leadingcount++;
-		?>
-	<?php endforeach; ?>
-</div>
-<?php endif; ?>
-<?php
-	$introcount=(count($this->intro_items));
-	$counter=0;
-?>
-<?php if (!empty($this->intro_items)) : ?>
-
-	<?php foreach ($this->intro_items as $key => &$item) : ?>
-	<?php
-		$key= ($key-$leadingcount)+1;
-		$rowcount=( ((int)$key-1) %	(int) $this->columns) +1;
-		$row = $counter / $this->columns ;
-
-		if ($rowcount==1) : ?>
-	<div class="items-row cols-<?php echo (int) $this->columns;?> <?php echo 'row-'.$row ; ?>">
-	<?php endif; ?>
-	<div class="item column-<?php echo $rowcount;?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>">
-		<?php
-			$this->item = &$item;
-			echo $this->loadTemplate('item');
-		?>
-	</div>
-	<?php $counter++; ?>
-	<?php if (($rowcount == $this->columns) or ($counter ==$introcount)): ?>
-				<span class="row-separator"></span>
+<div id="content"> 
+  <div class="articleWrap"> 
+    <div class="listingWrap">
+	    <div class="crumbs clearfix"> 
+		  <ul> 
+		    <li class="base"> 
+		      <div class="logo"></div> 
+		      <span>您现在的位置：<a href="#" title="">首页</a></span> </li> 
+		    <li class="arrow">&gt;</li> 
+		    <li><a href="#" title="">用户中心</a></li> 
+		    <li class="arrow">&gt;</li> 
+		    <li class="terminal">我的报名</li> 
+		  </ul> 
+		</div> 
+ 
+      <div class="listingCon"> 
+        <h2 class="hdTitle">文章列表</h2> 
+        <?php if (count($this->children[$this->category->id]) > 0 && $this->maxLevel != 0) : ?>
+        <ul class="cate-nav-list"> 
+        <?php foreach($this->children[$this->category->id] as $id => $child) : ?>
+          <li>
+          	  <a href="<?php echo JRoute::_("index.php?option=com_content&view=category&layout=blog&id=".$child->id."&Itemid=". JRequest::getVar('Itemid', 0, '', 'int'));?>" title="">
+          		<?php echo $this->escape($child->title); ?>
+          	  </a>
+          </li> 
+          <!-- <li><a href="#" title="">旺事业</a></li> 
+          <li><a href="#" title="">旺感情</a></li> 
+          <li><a href="#" title="">旺桃花</a></li> -->
+        <?php endforeach; ?>
+        </ul> 
+        <?php endif;?>
+        <div class="chapterTotal">共有<span class="txt-data webtxt"><?php echo $child->getNumItems(true); ?></span>篇文章</div> 
+        <div class="listing">
+          <?php foreach ($this->intro_items as &$item) : 
+          			$this->item = &$item;
+          			$images = json_decode($this->item->images);
+          			$keyword = $this->item->metakey;
+          			
+          ?>
+          <dl> 
+            <dt><a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid)); ?>" title=""><img width="179" height="121" src="<?php echo htmlspecialchars($images->image_intro); ?>" alt="" title=""></a></dt> 
+            <dd> 
+              <h3><a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid)); ?>" title=""><?php echo $this->escape($this->item->title); ?></a></h3> 
+              <p class="info">点击数：<span class="webtxt"><?php echo $this->item->hits; ?>次</span><span class="time"><?php echo substr(JHtml::_('date', $this->item->created), 0,10);?></span></p> 
+              <p class="tags" style="margin: 0;margin-top:-32px;"><strong>关键词：</strong><span class="txt-data"><?php echo $keyword;?></span></p> 
+              <?php echo $this->item->introtext; ?>
+              <div class="other"><a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid)); ?>" title="">阅读全文</a></div> 
+            </dd> 
+          </dl> 
+          <?php endforeach; ?>
+         <!--  <dl> 
+            <dt><a href="#" title=""><img src="images/info/items_1.jpg" alt="" title=""></a></dt> 
+            <dd> 
+              <h3><a href="#" title="">厨房色主张 50图诠释橱柜色彩定义</a></h3> 
+              <p class="info">点击数：<span class="webtxt">9988次</span><span class="time">2012-6-14</span></p> 
+              <p class="tags"><strong>关键词：</strong><span class="txt-data">橱柜设计</span><span class="txt-data">橱柜颜色</span><span class="txt-data">整体橱柜</span><span class="txt-data">橱柜尺寸</span></p> 
+              <p class="desc">从浅到深的蓝，各种色调的红，百搭的白......充满梦幻色彩的整体橱柜，让人始终保持清澈，浪漫的感觉，橱柜在这样的空间里，显得纯洁可爱，惹人遐思。50图为您呈现多彩整体橱柜，诠释橱柜色彩定义。</p> 
+              <div class="other"><a href="#" title="">阅读全文</a></div> 
+            </dd> 
+          </dl> 
+          <dl> 
+            <dt><a href="#" title=""><img src="images/info/items_2.jpg" alt="" title=""></a></dt> 
+            <dd> 
+              <h3><a href="#" title="">厨房色主张 50图诠释橱柜色彩定义</a></h3> 
+              <p class="info">点击数：<span class="webtxt">9988次</span><span class="time">2012-6-14</span></p> 
+              <p class="tags"><strong>关键词：</strong><span class="txt-data">橱柜设计</span><span class="txt-data">橱柜颜色</span><span class="txt-data">整体橱柜</span><span class="txt-data">橱柜尺寸</span></p> 
+              <p class="desc">从浅到深的蓝，各种色调的红，百搭的白......充满梦幻色彩的整体橱柜，让人始终保持清澈，浪漫的感觉，橱柜在这样的空间里，显得纯洁可爱，惹人遐思。50图为您呈现多彩整体橱柜，诠释橱柜色彩定义。</p> 
+              <div class="other"><a href="#" title="">阅读全文</a></div> 
+            </dd> 
+          </dl> 
+          <dl> 
+            <dt><a href="#" title=""><img src="images/info/items_3.jpg" alt="" title=""></a></dt> 
+            <dd> 
+              <h3><a href="#" title="">厨房色主张 50图诠释橱柜色彩定义</a></h3> 
+              <p class="info">点击数：<span class="webtxt">9988次</span><span class="time">2012-6-14</span></p> 
+              <p class="tags"><strong>关键词：</strong><span class="txt-data">橱柜设计</span><span class="txt-data">橱柜颜色</span><span class="txt-data">整体橱柜</span><span class="txt-data">橱柜尺寸</span></p> 
+              <p class="desc">从浅到深的蓝，各种色调的红，百搭的白......充满梦幻色彩的整体橱柜，让人始终保持清澈，浪漫的感觉，橱柜在这样的空间里，显得纯洁可爱，惹人遐思。50图为您呈现多彩整体橱柜，诠释橱柜色彩定义。</p> 
+              <div class="other"><a href="#" title="">阅读全文</a></div> 
+            </dd> 
+          </dl> 
+          <dl> 
+            <dt><a href="#" title=""><img src="images/info/items_4.jpg" alt="" title=""></a></dt> 
+            <dd> 
+              <h3><a href="#" title="">厨房色主张 50图诠释橱柜色彩定义</a></h3> 
+              <p class="info">点击数：<span class="webtxt">9988次</span><span class="time">2012-6-14</span></p> 
+              <p class="tags"><strong>关键词：</strong><span class="txt-data">橱柜设计</span><span class="txt-data">橱柜颜色</span><span class="txt-data">整体橱柜</span><span class="txt-data">橱柜尺寸</span></p> 
+              <p class="desc">从浅到深的蓝，各种色调的红，百搭的白......充满梦幻色彩的整体橱柜，让人始终保持清澈，浪漫的感觉，橱柜在这样的空间里，显得纯洁可爱，惹人遐思。50图为您呈现多彩整体橱柜，诠释橱柜色彩定义。</p> 
+              <div class="other"><a href="#" title="">阅读全文</a></div> 
+            </dd> 
+          </dl>  -->
+        </div> 
+        
+        <?php /*if (($this->params->def('show_pagination', 1) == 1  || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get('pages.total') > 1)) : ?>
+			<div id="pagination">
+							<?php  if ($this->params->def('show_pagination_results', 1)) : ?>
+							<p class="counter">
+									<?php echo $this->pagination->getPagesCounter(); ?>
+							</p>
+	
+					<?php endif; ?>
+					<?php echo $this->pagination->getPagesLinks(); ?>
+			</div>
+		<?php  endif;*/ ?>
+        <div class="paginationWrap">
+		        <div class="pageList clearfix"> 
+		       		 <?php echo $this->pagination->getPagesLinks(); ?>
+		        
+					  <!-- <ul class="pageList_body clearfix"> 
+					    <li class="first"><a href="#">首页</a></li> 
+					    <li class="prev"><a href="#">上一页</a></li> 
+					    <li><a href="#">1</a></li> 
+					    <li><a href="#">2</a></li> 
+					    <li><a class="this" href="#">3</a></li> 
+					    <li><a href="#">4</a></li> 
+					    <li><a href="#">5</a></li> 
+					    <li><a class="dot" href="###">...</a></li> 
+					    <li class="next"><a href="javascript:;">下一页</a></li> 
+					    <li class="last"><a href="javascript:;">尾页</a></li> 
+					    <li class="page-nub">共<span>40</span>页，到第
+					      <input type="text" name="" id="" /> 
+					      页
+					      <button type="submit">确定</button> 
+					    </li> 
+					  </ul>  -->
+					  
+					  
 				</div>
 
-			<?php endif; ?>
-	<?php endforeach; ?>
-
-
-<?php endif; ?>
-
-<?php if (!empty($this->link_items)) : ?>
-
-	<?php echo $this->loadTemplate('links'); ?>
-
-<?php endif; ?>
-
-
-	<?php if (!empty($this->children[$this->category->id])&& $this->maxLevel != 0) : ?>
-		<div class="cat-children">
-		<h3>
-<?php echo JTEXT::_('JGLOBAL_SUBCATEGORIES'); ?>
-</h3>
-			<?php echo $this->loadTemplate('children'); ?>
-		</div>
-	<?php endif; ?>
-
-<?php if (($this->params->def('show_pagination', 1) == 1  || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get('pages.total') > 1)) : ?>
-		<div id="pagination">
-						<?php  if ($this->params->def('show_pagination_results', 1)) : ?>
-						<p class="counter">
-								<?php echo $this->pagination->getPagesCounter(); ?>
-						</p>
-
-				<?php endif; ?>
-				<?php echo $this->pagination->getPagesLinks(); ?>
-		</div>
-<?php  endif; ?>
-
-</div>
+		</div> 
+      </div> 
+    </div> 
+      <div class="chapterIntro"> 
+        <h2>相关文章推荐h2> 
+        <div class="list"> 
+          <ul class="items-list"> 
+            <li class="except"><a href="#" title=""><img src="images/info/about_0.jpg" alt="" title=""></a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+          </ul> 
+          <ul class="items-list"> 
+            <li class="except"><a href="#" title=""><img src="images/info/about_1.jpg" alt="" title=""></a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+          </ul> 
+          <ul class="items-list"> 
+            <li class="except"><a href="#" title=""><img src="images/info/about_2.jpg" alt="" title=""></a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+            <li><a href="#" title="">美国30万人感染致命疾病</a></li> 
+          </ul> 
+        </div> 
+      </div> 
+  </div> 
+  <div class="asideWrap"> 
+    <div class="bord"> 
+      <div class="introInfor"> 
+<h2>关联商品</h2> 
+  <dl> 
+    <dt><a href="#" title=""><img src="images/info/other_0.jpg" alt="" title=""></a></dt> 
+    <dd> 
+      <h3><a href="#" title="">【吉屋】布艺沙发巾</a></h3> 
+      <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p> 
+    </dd> 
+  </dl> 
+  <dl> 
+    <dt><a href="#" title=""><img src="images/info/other_1.jpg" alt="" title=""></a></dt> 
+    <dd> 
+      <h3><a href="#" title="">【吉屋】布艺沙发巾</a></h3> 
+      <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p> 
+    </dd> 
+  </dl> 
+  <dl> 
+    <dt><a href="#" title=""><img src="images/info/other_2.jpg" alt="" title=""></a></dt> 
+    <dd> 
+      <h3><a href="#" title="">【吉屋】布艺沙发巾</a></h3> 
+      <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p> 
+    </dd> 
+  </dl> 
+  <dl> 
+    <dt><a href="#" title=""><img src="images/info/other_3.jpg" alt="" title=""></a></dt> 
+    <dd> 
+      <h3><a href="#" title="">【吉屋】布艺沙发巾</a></h3> 
+      <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p> 
+    </dd> 
+  </dl> 
+</div> 
+ 
+    </div> 
+  </div> 
+</div> 
