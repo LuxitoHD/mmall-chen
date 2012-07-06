@@ -57,6 +57,14 @@ $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/c
     	        type: 'POST',
     	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
     	        data: {id:id,para:"good"},
+    	        beforeSend:function(){
+        	        $("#gid"+id).hide();
+        	        $("#loading_g"+id).show();
+        	    },
+    			complete:function(){
+        			$("#loading_g"+id).hide()
+        			 $("#gid"+id).show();
+        		},
     	        success: function(data) {
         	        if(data == "succ"){
         	        	$("#gid"+id).text(parseInt($("#gid"+id).text())+1);
@@ -71,6 +79,14 @@ $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/c
     	        type: 'POST',
     	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
     	        data: {id:id,para:"bad"},
+    	        beforeSend:function(){
+        	        $("#bid"+id).hide();
+        	        $("#loading_b"+id).show();
+        	    },
+    			complete:function(){
+        			$("#loading_b"+id).hide()
+        			 $("#bid"+id).show();
+        		},
     	        success: function(data) {
         	        if(data == "succ"){
         	        	$("#bid"+id).text(parseInt($("#bid"+id).text())+1);
@@ -86,6 +102,14 @@ $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/c
     	        type: 'POST',
     	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
     	        data: {id:id,para:"love"},
+    	        beforeSend:function(){
+        	        $("#lid"+id).hide();
+        	        $("#loading_l"+id).show();
+        	    },
+    			complete:function(){
+        			$("#loading_l"+id).hide()
+        			 $("#lid"+id).show();
+        		},
     	        success: function(data) {
         	        if(data == "succ"){
         	        	$("#lid"+id).text(parseInt($("#lid"+id).text())+1);
@@ -137,8 +161,11 @@ if (!empty($this->items)) {
 				
 				<div class="share">
 					<a  href="javascript:void(0)" onclick="test_love(<?php echo $value->id; ?>)" title="" class="ico_love"  id="lid<?php echo $value->id;?>"><?php echo $value->loves;?></a>
+					<span id="loading_l<?php echo $value->id;?>" style="display:none;"><img src="images/info/loader.gif"></span>
 					<a href="javascript:void(0)" onclick="test_good(<?php echo $value->id; ?>)" title="" class="ico_like"   id="gid<?php echo $value->id;?>"><?php echo $value->goods;?></a>
+					<span id="loading_g<?php echo $value->id;?>" style="display:none;"><img src="images/info/loader.gif"></span>
 					<a href="javascript:void(0)" onclick="test_bad(<?php echo $value->id; ?>)" title="" class="ico_hate"   id="bid<?php echo $value->id;?>"><?php echo $value->bads;?></a>
+					<span id="loading_b<?php echo $value->id;?>" style="display:none;"><img src="images/info/loader.gif"></span>
 					<!--<a href="#" title="" class="ico_share" >分享</a>-->
 				</div>
 

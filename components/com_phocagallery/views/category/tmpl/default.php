@@ -186,5 +186,5 @@ if ($this->tmpl['detailwindow'] == 6) {
 }
 
 echo '<div>&nbsp;</div>';
-echo $this->tmpl['mac'];
+//echo $this->tmpl['mac'];
 ?>
