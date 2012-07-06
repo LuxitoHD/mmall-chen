@@ -218,7 +218,7 @@ a.ico_share{ color:#999!important;}
 .listing .webtxt{ color:#F00;}
 .listing .weblink{ color:#F00;}
 
-.chapterIntro{margin-top:20px;padding:15px 40px 25px;border:1px solid #e3e3e3;background-color:#FFF; overflow:hidden;}
+.chapterIntro{margin-top:20px;height:300px;padding:15px 40px 25px;border:1px solid #e3e3e3;background-color:#FFF; overflow:hidden;}
 .chapterIntro h2{ height:25px; line-height:24px; font-size:14px;font-weight:bold;}
 .chapterIntro .list{ position:relative;width:700px;margin:0 auto; overflow:hidden;}
 .chapterIntro .items-list{ display:inline; float:left;width:203px; height:275px;margin:10px 15px 0 -1px;padding-left:16px; background:url(imgs/v_line.gif) 0 center no-repeat;overflow:hidden;}
