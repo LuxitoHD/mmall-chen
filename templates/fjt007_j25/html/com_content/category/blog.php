@@ -27,16 +27,16 @@ $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/c
 		  <ul> 
 		    <li class="base"> 
 		      <div class="logo"></div> 
-		      <span>ÄúÏÖÔÚµÄÎ»ÖÃ£º<a href="#" title="">Ê×Ò³</a></span> </li> 
+		      <span>æ‚¨çŽ°åœ¨çš„ä½ç½®ï¼š<a href="#" title="">é¦–é¡µ</a></span> </li> 
 		    <li class="arrow">&gt;</li> 
-		    <li><a href="#" title="">ÓÃ»§ÖÐÐÄ</a></li> 
+		    <li><a href="#" title="">ç”¨æˆ·ä¸­å¿ƒ</a></li> 
 		    <li class="arrow">&gt;</li> 
-		    <li class="terminal">ÎÒµÄ±¨Ãû</li> 
+		    <li class="terminal">æˆ‘çš„æŠ¥å</li> 
 		  </ul> 
 		</div> 
  
       <div class="listingCon"> 
-        <h2 class="hdTitle">ÎÄÕÂÁÐ±í</h2> 
+        <h2 class="hdTitle">æ–‡ç« åˆ—è¡¨</h2> 
         <?php if (count($this->children[$this->category->id]) > 0 && $this->maxLevel != 0) : ?>
         <ul class="cate-nav-list"> 
         <?php foreach($this->children[$this->category->id] as $id => $child) : ?>
@@ -45,13 +45,13 @@ $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/c
           		<?php echo $this->escape($child->title); ?>
           	  </a>
           </li> 
-          <!-- <li><a href="#" title="">ÍúÊÂÒµ</a></li> 
-          <li><a href="#" title="">Íú¸ÐÇé</a></li> 
-          <li><a href="#" title="">ÍúÌÒ»¨</a></li> -->
+          <!-- <li><a href="#" title="">æ—ºäº‹ä¸š</a></li> 
+          <li><a href="#" title="">æ—ºæ„Ÿæƒ…</a></li> 
+          <li><a href="#" title="">æ—ºæ¡ƒèŠ±</a></li> -->
         <?php endforeach; ?>
         </ul> 
         <?php endif;?>
-        <div class="chapterTotal">¹²ÓÐ<span class="txt-data webtxt"><?php echo $child->getNumItems(true); ?></span>ÆªÎÄÕÂ</div> 
+        <div class="chapterTotal">å…±æœ‰<span class="txt-data webtxt"><?php echo $child->getNumItems(true); ?></span>ç¯‡æ–‡ç« </div> 
         <div class="listing">
           <?php foreach ($this->intro_items as &$item) : 
           			$this->item = &$item;
@@ -63,51 +63,51 @@ $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/c
             <dt><a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid)); ?>" title=""><img width="179" height="121" src="<?php echo htmlspecialchars($images->image_intro); ?>" alt="" title=""></a></dt> 
             <dd> 
               <h3><a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid)); ?>" title=""><?php echo $this->escape($this->item->title); ?></a></h3> 
-              <p class="info">µã»÷Êý£º<span class="webtxt"><?php echo $this->item->hits; ?>´Î</span><span class="time"><?php echo substr(JHtml::_('date', $this->item->created), 0,10);?></span></p> 
-              <p class="tags" style="margin: 0;margin-top:-32px;"><strong>¹Ø¼ü´Ê£º</strong><span class="txt-data"><?php echo $keyword;?></span></p> 
+              <p class="info">ç‚¹å‡»æ•°ï¼š<span class="webtxt"><?php echo $this->item->hits; ?>æ¬¡</span><span class="time"><?php echo substr(JHtml::_('date', $this->item->created), 0,10);?></span></p> 
+              <p class="tags" style="margin: 0;margin-top:-32px;"><strong>å…³é”®è¯ï¼š</strong><span class="txt-data"><?php echo $keyword;?></span></p> 
               <?php echo $this->item->introtext; ?>
-              <div class="other"><a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid)); ?>" title="">ÔÄ¶ÁÈ«ÎÄ</a></div> 
+              <div class="other"><a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid)); ?>" title="">é˜…è¯»å…¨æ–‡</a></div> 
             </dd> 
           </dl> 
           <?php endforeach; ?>
          <!--  <dl> 
             <dt><a href="#" title=""><img src="images/info/items_1.jpg" alt="" title=""></a></dt> 
             <dd> 
-              <h3><a href="#" title="">³ø·¿É«Ö÷ÕÅ 50Í¼Ú¹ÊÍ³÷¹ñÉ«²Ê¶¨Òå</a></h3> 
-              <p class="info">µã»÷Êý£º<span class="webtxt">9988´Î</span><span class="time">2012-6-14</span></p> 
-              <p class="tags"><strong>¹Ø¼ü´Ê£º</strong><span class="txt-data">³÷¹ñÉè¼Æ</span><span class="txt-data">³÷¹ñÑÕÉ«</span><span class="txt-data">ÕûÌå³÷¹ñ</span><span class="txt-data">³÷¹ñ³ß´ç</span></p> 
-              <p class="desc">´ÓÇ³µ½ÉîµÄÀ¶£¬¸÷ÖÖÉ«µ÷µÄºì£¬°Ù´îµÄ°×......³äÂúÃÎ»ÃÉ«²ÊµÄÕûÌå³÷¹ñ£¬ÈÃÈËÊ¼ÖÕ±£³ÖÇå³º£¬ÀËÂþµÄ¸Ð¾õ£¬³÷¹ñÔÚÕâÑùµÄ¿Õ¼äÀï£¬ÏÔµÃ´¿½à¿É°®£¬ÈÇÈËåÚË¼¡£50Í¼ÎªÄú³ÊÏÖ¶à²ÊÕûÌå³÷¹ñ£¬Ú¹ÊÍ³÷¹ñÉ«²Ê¶¨Òå¡£</p> 
-              <div class="other"><a href="#" title="">ÔÄ¶ÁÈ«ÎÄ</a></div> 
+              <h3><a href="#" title="">åŽ¨æˆ¿è‰²ä¸»å¼  50å›¾è¯ é‡Šæ©±æŸœè‰²å½©å®šä¹‰</a></h3> 
+              <p class="info">ç‚¹å‡»æ•°ï¼š<span class="webtxt">9988æ¬¡</span><span class="time">2012-6-14</span></p> 
+              <p class="tags"><strong>å…³é”®è¯ï¼š</strong><span class="txt-data">æ©±æŸœè®¾è®¡</span><span class="txt-data">æ©±æŸœé¢œè‰²</span><span class="txt-data">æ•´ä½“æ©±æŸœ</span><span class="txt-data">æ©±æŸœå°ºå¯¸</span></p> 
+              <p class="desc">ä»Žæµ…åˆ°æ·±çš„è“ï¼Œå„ç§è‰²è°ƒçš„çº¢ï¼Œç™¾æ­çš„ç™½......å……æ»¡æ¢¦å¹»è‰²å½©çš„æ•´ä½“æ©±æŸœï¼Œè®©äººå§‹ç»ˆä¿æŒæ¸…æ¾ˆï¼Œæµªæ¼«çš„æ„Ÿè§‰ï¼Œæ©±æŸœåœ¨è¿™æ ·çš„ç©ºé—´é‡Œï¼Œæ˜¾å¾—çº¯æ´å¯çˆ±ï¼Œæƒ¹äººéæ€ã€‚50å›¾ä¸ºæ‚¨å‘ˆçŽ°å¤šå½©æ•´ä½“æ©±æŸœï¼Œè¯ é‡Šæ©±æŸœè‰²å½©å®šä¹‰ã€‚</p> 
+              <div class="other"><a href="#" title="">é˜…è¯»å…¨æ–‡</a></div> 
             </dd> 
           </dl> 
           <dl> 
             <dt><a href="#" title=""><img src="images/info/items_2.jpg" alt="" title=""></a></dt> 
             <dd> 
-              <h3><a href="#" title="">³ø·¿É«Ö÷ÕÅ 50Í¼Ú¹ÊÍ³÷¹ñÉ«²Ê¶¨Òå</a></h3> 
-              <p class="info">µã»÷Êý£º<span class="webtxt">9988´Î</span><span class="time">2012-6-14</span></p> 
-              <p class="tags"><strong>¹Ø¼ü´Ê£º</strong><span class="txt-data">³÷¹ñÉè¼Æ</span><span class="txt-data">³÷¹ñÑÕÉ«</span><span class="txt-data">ÕûÌå³÷¹ñ</span><span class="txt-data">³÷¹ñ³ß´ç</span></p> 
-              <p class="desc">´ÓÇ³µ½ÉîµÄÀ¶£¬¸÷ÖÖÉ«µ÷µÄºì£¬°Ù´îµÄ°×......³äÂúÃÎ»ÃÉ«²ÊµÄÕûÌå³÷¹ñ£¬ÈÃÈËÊ¼ÖÕ±£³ÖÇå³º£¬ÀËÂþµÄ¸Ð¾õ£¬³÷¹ñÔÚÕâÑùµÄ¿Õ¼äÀï£¬ÏÔµÃ´¿½à¿É°®£¬ÈÇÈËåÚË¼¡£50Í¼ÎªÄú³ÊÏÖ¶à²ÊÕûÌå³÷¹ñ£¬Ú¹ÊÍ³÷¹ñÉ«²Ê¶¨Òå¡£</p> 
-              <div class="other"><a href="#" title="">ÔÄ¶ÁÈ«ÎÄ</a></div> 
+              <h3><a href="#" title="">åŽ¨æˆ¿è‰²ä¸»å¼  50å›¾è¯ é‡Šæ©±æŸœè‰²å½©å®šä¹‰</a></h3> 
+              <p class="info">ç‚¹å‡»æ•°ï¼š<span class="webtxt">9988æ¬¡</span><span class="time">2012-6-14</span></p> 
+              <p class="tags"><strong>å…³é”®è¯ï¼š</strong><span class="txt-data">æ©±æŸœè®¾è®¡</span><span class="txt-data">æ©±æŸœé¢œè‰²</span><span class="txt-data">æ•´ä½“æ©±æŸœ</span><span class="txt-data">æ©±æŸœå°ºå¯¸</span></p> 
+              <p class="desc">ä»Žæµ…åˆ°æ·±çš„è“ï¼Œå„ç§è‰²è°ƒçš„çº¢ï¼Œç™¾æ­çš„ç™½......å……æ»¡æ¢¦å¹»è‰²å½©çš„æ•´ä½“æ©±æŸœï¼Œè®©äººå§‹ç»ˆä¿æŒæ¸…æ¾ˆï¼Œæµªæ¼«çš„æ„Ÿè§‰ï¼Œæ©±æŸœåœ¨è¿™æ ·çš„ç©ºé—´é‡Œï¼Œæ˜¾å¾—çº¯æ´å¯çˆ±ï¼Œæƒ¹äººéæ€ã€‚50å›¾ä¸ºæ‚¨å‘ˆçŽ°å¤šå½©æ•´ä½“æ©±æŸœï¼Œè¯ é‡Šæ©±æŸœè‰²å½©å®šä¹‰ã€‚</p> 
+              <div class="other"><a href="#" title="">é˜…è¯»å…¨æ–‡</a></div> 
             </dd> 
           </dl> 
           <dl> 
             <dt><a href="#" title=""><img src="images/info/items_3.jpg" alt="" title=""></a></dt> 
             <dd> 
-              <h3><a href="#" title="">³ø·¿É«Ö÷ÕÅ 50Í¼Ú¹ÊÍ³÷¹ñÉ«²Ê¶¨Òå</a></h3> 
-              <p class="info">µã»÷Êý£º<span class="webtxt">9988´Î</span><span class="time">2012-6-14</span></p> 
-              <p class="tags"><strong>¹Ø¼ü´Ê£º</strong><span class="txt-data">³÷¹ñÉè¼Æ</span><span class="txt-data">³÷¹ñÑÕÉ«</span><span class="txt-data">ÕûÌå³÷¹ñ</span><span class="txt-data">³÷¹ñ³ß´ç</span></p> 
-              <p class="desc">´ÓÇ³µ½ÉîµÄÀ¶£¬¸÷ÖÖÉ«µ÷µÄºì£¬°Ù´îµÄ°×......³äÂúÃÎ»ÃÉ«²ÊµÄÕûÌå³÷¹ñ£¬ÈÃÈËÊ¼ÖÕ±£³ÖÇå³º£¬ÀËÂþµÄ¸Ð¾õ£¬³÷¹ñÔÚÕâÑùµÄ¿Õ¼äÀï£¬ÏÔµÃ´¿½à¿É°®£¬ÈÇÈËåÚË¼¡£50Í¼ÎªÄú³ÊÏÖ¶à²ÊÕûÌå³÷¹ñ£¬Ú¹ÊÍ³÷¹ñÉ«²Ê¶¨Òå¡£</p> 
-              <div class="other"><a href="#" title="">ÔÄ¶ÁÈ«ÎÄ</a></div> 
+              <h3><a href="#" title="">åŽ¨æˆ¿è‰²ä¸»å¼  50å›¾è¯ é‡Šæ©±æŸœè‰²å½©å®šä¹‰</a></h3> 
+              <p class="info">ç‚¹å‡»æ•°ï¼š<span class="webtxt">9988æ¬¡</span><span class="time">2012-6-14</span></p> 
+              <p class="tags"><strong>å…³é”®è¯ï¼š</strong><span class="txt-data">æ©±æŸœè®¾è®¡</span><span class="txt-data">æ©±æŸœé¢œè‰²</span><span class="txt-data">æ•´ä½“æ©±æŸœ</span><span class="txt-data">æ©±æŸœå°ºå¯¸</span></p> 
+              <p class="desc">ä»Žæµ…åˆ°æ·±çš„è“ï¼Œå„ç§è‰²è°ƒçš„çº¢ï¼Œç™¾æ­çš„ç™½......å……æ»¡æ¢¦å¹»è‰²å½©çš„æ•´ä½“æ©±æŸœï¼Œè®©äººå§‹ç»ˆä¿æŒæ¸…æ¾ˆï¼Œæµªæ¼«çš„æ„Ÿè§‰ï¼Œæ©±æŸœåœ¨è¿™æ ·çš„ç©ºé—´é‡Œï¼Œæ˜¾å¾—çº¯æ´å¯çˆ±ï¼Œæƒ¹äººéæ€ã€‚50å›¾ä¸ºæ‚¨å‘ˆçŽ°å¤šå½©æ•´ä½“æ©±æŸœï¼Œè¯ é‡Šæ©±æŸœè‰²å½©å®šä¹‰ã€‚</p> 
+              <div class="other"><a href="#" title="">é˜…è¯»å…¨æ–‡</a></div> 
             </dd> 
           </dl> 
           <dl> 
             <dt><a href="#" title=""><img src="images/info/items_4.jpg" alt="" title=""></a></dt> 
             <dd> 
-              <h3><a href="#" title="">³ø·¿É«Ö÷ÕÅ 50Í¼Ú¹ÊÍ³÷¹ñÉ«²Ê¶¨Òå</a></h3> 
-              <p class="info">µã»÷Êý£º<span class="webtxt">9988´Î</span><span class="time">2012-6-14</span></p> 
-              <p class="tags"><strong>¹Ø¼ü´Ê£º</strong><span class="txt-data">³÷¹ñÉè¼Æ</span><span class="txt-data">³÷¹ñÑÕÉ«</span><span class="txt-data">ÕûÌå³÷¹ñ</span><span class="txt-data">³÷¹ñ³ß´ç</span></p> 
-              <p class="desc">´ÓÇ³µ½ÉîµÄÀ¶£¬¸÷ÖÖÉ«µ÷µÄºì£¬°Ù´îµÄ°×......³äÂúÃÎ»ÃÉ«²ÊµÄÕûÌå³÷¹ñ£¬ÈÃÈËÊ¼ÖÕ±£³ÖÇå³º£¬ÀËÂþµÄ¸Ð¾õ£¬³÷¹ñÔÚÕâÑùµÄ¿Õ¼äÀï£¬ÏÔµÃ´¿½à¿É°®£¬ÈÇÈËåÚË¼¡£50Í¼ÎªÄú³ÊÏÖ¶à²ÊÕûÌå³÷¹ñ£¬Ú¹ÊÍ³÷¹ñÉ«²Ê¶¨Òå¡£</p> 
-              <div class="other"><a href="#" title="">ÔÄ¶ÁÈ«ÎÄ</a></div> 
+              <h3><a href="#" title="">åŽ¨æˆ¿è‰²ä¸»å¼  50å›¾è¯ é‡Šæ©±æŸœè‰²å½©å®šä¹‰</a></h3> 
+              <p class="info">ç‚¹å‡»æ•°ï¼š<span class="webtxt">9988æ¬¡</span><span class="time">2012-6-14</span></p> 
+              <p class="tags"><strong>å…³é”®è¯ï¼š</strong><span class="txt-data">æ©±æŸœè®¾è®¡</span><span class="txt-data">æ©±æŸœé¢œè‰²</span><span class="txt-data">æ•´ä½“æ©±æŸœ</span><span class="txt-data">æ©±æŸœå°ºå¯¸</span></p> 
+              <p class="desc">ä»Žæµ…åˆ°æ·±çš„è“ï¼Œå„ç§è‰²è°ƒçš„çº¢ï¼Œç™¾æ­çš„ç™½......å……æ»¡æ¢¦å¹»è‰²å½©çš„æ•´ä½“æ©±æŸœï¼Œè®©äººå§‹ç»ˆä¿æŒæ¸…æ¾ˆï¼Œæµªæ¼«çš„æ„Ÿè§‰ï¼Œæ©±æŸœåœ¨è¿™æ ·çš„ç©ºé—´é‡Œï¼Œæ˜¾å¾—çº¯æ´å¯çˆ±ï¼Œæƒ¹äººéæ€ã€‚50å›¾ä¸ºæ‚¨å‘ˆçŽ°å¤šå½©æ•´ä½“æ©±æŸœï¼Œè¯ é‡Šæ©±æŸœè‰²å½©å®šä¹‰ã€‚</p> 
+              <div class="other"><a href="#" title="">é˜…è¯»å…¨æ–‡</a></div> 
             </dd> 
           </dl>  -->
         </div> 
@@ -128,20 +128,20 @@ $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/c
 		       		 <?php echo $this->pagination->getPagesLinks(); ?>
 		        
 					  <!-- <ul class="pageList_body clearfix"> 
-					    <li class="first"><a href="#">Ê×Ò³</a></li> 
-					    <li class="prev"><a href="#">ÉÏÒ»Ò³</a></li> 
+					    <li class="first"><a href="#">é¦–é¡µ</a></li> 
+					    <li class="prev"><a href="#">ä¸Šä¸€é¡µ</a></li> 
 					    <li><a href="#">1</a></li> 
 					    <li><a href="#">2</a></li> 
 					    <li><a class="this" href="#">3</a></li> 
 					    <li><a href="#">4</a></li> 
 					    <li><a href="#">5</a></li> 
 					    <li><a class="dot" href="###">...</a></li> 
-					    <li class="next"><a href="javascript:;">ÏÂÒ»Ò³</a></li> 
-					    <li class="last"><a href="javascript:;">Î²Ò³</a></li> 
-					    <li class="page-nub">¹²<span>40</span>Ò³£¬µ½µÚ
+					    <li class="next"><a href="javascript:;">ä¸‹ä¸€é¡µ</a></li> 
+					    <li class="last"><a href="javascript:;">å°¾é¡µ</a></li> 
+					    <li class="page-nub">å…±<span>40</span>é¡µï¼Œåˆ°ç¬¬
 					      <input type="text" name="" id="" /> 
-					      Ò³
-					      <button type="submit">È·¶¨</button> 
+					      é¡µ
+					      <button type="submit">ç¡®å®š</button> 
 					    </li> 
 					  </ul>  -->
 					  
@@ -152,34 +152,34 @@ $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/c
       </div> 
     </div> 
       <div class="chapterIntro"> 
-        <h2>Ïà¹ØÎÄÕÂÍÆ¼öh2> 
+        <h2>ç›¸å…³æ–‡ç« æŽ¨èh2> 
         <div class="list"> 
           <ul class="items-list"> 
             <li class="except"><a href="#" title=""><img src="images/info/about_0.jpg" alt="" title=""></a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
           </ul> 
           <ul class="items-list"> 
             <li class="except"><a href="#" title=""><img src="images/info/about_1.jpg" alt="" title=""></a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
           </ul> 
           <ul class="items-list"> 
             <li class="except"><a href="#" title=""><img src="images/info/about_2.jpg" alt="" title=""></a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
-            <li><a href="#" title="">ÃÀ¹ú30ÍòÈË¸ÐÈ¾ÖÂÃü¼²²¡</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
+            <li><a href="#" title="">ç¾Žå›½30ä¸‡äººæ„ŸæŸ“è‡´å‘½ç–¾ç—…</a></li> 
           </ul> 
         </div> 
       </div> 
@@ -187,32 +187,32 @@ $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/c
   <div class="asideWrap"> 
     <div class="bord"> 
       <div class="introInfor"> 
-<h2>¹ØÁªÉÌÆ·</h2> 
+<h2>å…³è”å•†å“</h2> 
   <dl> 
     <dt><a href="#" title=""><img src="images/info/other_0.jpg" alt="" title=""></a></dt> 
     <dd> 
-      <h3><a href="#" title="">¡¾¼ªÎÝ¡¿²¼ÒÕÉ³·¢½í</a></h3> 
+      <h3><a href="#" title="">ã€å‰å±‹ã€‘å¸ƒè‰ºæ²™å‘å·¾</a></h3> 
       <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p> 
     </dd> 
   </dl> 
   <dl> 
     <dt><a href="#" title=""><img src="images/info/other_1.jpg" alt="" title=""></a></dt> 
     <dd> 
-      <h3><a href="#" title="">¡¾¼ªÎÝ¡¿²¼ÒÕÉ³·¢½í</a></h3> 
+      <h3><a href="#" title="">ã€å‰å±‹ã€‘å¸ƒè‰ºæ²™å‘å·¾</a></h3> 
       <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p> 
     </dd> 
   </dl> 
   <dl> 
     <dt><a href="#" title=""><img src="images/info/other_2.jpg" alt="" title=""></a></dt> 
     <dd> 
-      <h3><a href="#" title="">¡¾¼ªÎÝ¡¿²¼ÒÕÉ³·¢½í</a></h3> 
+      <h3><a href="#" title="">ã€å‰å±‹ã€‘å¸ƒè‰ºæ²™å‘å·¾</a></h3> 
       <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p> 
     </dd> 
   </dl> 
   <dl> 
     <dt><a href="#" title=""><img src="images/info/other_3.jpg" alt="" title=""></a></dt> 
     <dd> 
-      <h3><a href="#" title="">¡¾¼ªÎÝ¡¿²¼ÒÕÉ³·¢½í</a></h3> 
+      <h3><a href="#" title="">ã€å‰å±‹ã€‘å¸ƒè‰ºæ²™å‘å·¾</a></h3> 
       <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p> 
     </dd> 
   </dl> 
