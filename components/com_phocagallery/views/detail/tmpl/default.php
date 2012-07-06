@@ -90,8 +90,11 @@ $img_small = $this->item->fileThumbnail_small;
 			</div>
 			<div class="share" style="width:20%">
 				<a  href="javascript:void(0)" onclick="test_love(<?php echo $this->item->id; ?>)" title="" class="ico_love"  id="loves_id"></a>
+				<span id="loading_l" style="display:none;"><img src="images/info/loader.gif"></span>
 				<a href="javascript:void(0)" onclick="test_good(<?php echo $this->item->id; ?>)" title="" class="ico_like"  id="goods_id"></a>
+				<span id="loading_g" style="display:none;"><img src="images/info/loader.gif"></span>
 				<a href="javascript:void(0)" onclick="test_bad(<?php echo $this->item->id; ?>)" title="" class="ico_hate"  id="bads_id"></a>
+				<span id="loading_b" style="display:none;"><img src="images/info/loader.gif"></span>
 				<div style="display:none" id="cur_num_id"></div>
 				<!--<a href="#" title="" class="ico_share" >分享</a>-->
 			</div>
@@ -191,6 +194,14 @@ $img_small = $this->item->fileThumbnail_small;
     	        type: 'POST',
     	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
     	        data: {id:id,para:"good"},
+    	        beforeSend:function(){
+        	        $("#goods_id").hide();
+        	        $("#loading_g").show();
+        	    },
+    			complete:function(){
+        			$("#loading_g").hide()
+        			 $("#goods_id").show();
+        		},
     	        success: function(data) {
         	        if(data == "fail"){
 						alert("失败");
@@ -211,6 +222,14 @@ $img_small = $this->item->fileThumbnail_small;
     	        type: 'POST',
     	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
     	        data: {id:id,para:"bad"},
+    	        beforeSend:function(){
+        	        $("#bads_id").hide();
+        	        $("#loading_b").show();
+        	    },
+    			complete:function(){
+        			$("#loading_b").hide()
+        			 $("#bads_id").show();
+        		},
     	        success: function(data) {
         	        if(data == "fail"){
 						alert("失败");
@@ -230,6 +249,14 @@ $img_small = $this->item->fileThumbnail_small;
     	        type: 'POST',
     	        url:  '<? echo JURI::base(true); ?>/ajax2.php',
     	        data: {id:id,para:"love"},
+    	        beforeSend:function(){
+        	        $("#loves_id").hide();
+        	        $("#loading_l").show();
+        	    },
+    			complete:function(){
+        			$("#loading_l").hide()
+        			 $("#loves_id").show();
+        		},
     	        success: function(data) {
         	        if(data == "fail"){
 						alert("失败");
