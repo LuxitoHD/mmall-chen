@@ -17,7 +17,7 @@ class PhocaGalleryPaginationCategory extends JPagination
 		$app	= JFactory::getApplication();
 		
 		$paramsC 			= JComponentHelper::getParams('com_phocagallery') ;
-		$pagination 		= $paramsC->get( 'pagination_category', '5,10,15,20,50' );
+		$pagination 		= $paramsC->get( 'pagination_category', '5,10,15,30,50' );
 		$paginationArray	= explode( ',', $pagination );
 		
 		// Initialize variables
