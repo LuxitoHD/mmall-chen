@@ -35,7 +35,7 @@ $para = $_POST['para'];
 	 * 喜欢人数自动加一操作
 	 */
 	function goodsAction($id = 0){
-		
+		sleep(4);
 		$db = JFactory::getDbo();
 	    $query_c = "update #__phocagallery set goods = goods +1 where id = ".$id;
 			
@@ -55,7 +55,7 @@ $para = $_POST['para'];
 	 * 不喜欢人数自动加一操作
 	 */
 	function badsAction($id = 0){
-		
+		sleep(4);
 		$db = JFactory::getDbo();
 	    $query_c = "update #__phocagallery set bads = bads +1 where id = ".$id;
 			
@@ -75,7 +75,7 @@ $para = $_POST['para'];
 	 * 爱人数自动加一操作
 	 */
 	function lovesAction($id = 0){
-		
+		sleep(4);
 		$db = JFactory::getDbo();
 	    $query_c = "update #__phocagallery set loves = loves +1 where id = ".$id;
 			
