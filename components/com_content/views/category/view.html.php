@@ -44,6 +44,9 @@ class ContentViewCategory extends JView
 		$children	= $this->get('Children');
 		$parent		= $this->get('Parent');
 		$pagination = $this->get('Pagination');
+		
+		$featuredArticle= $this->get('FeaturedArticle');
+		
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors'))) {
@@ -169,6 +172,7 @@ class ContentViewCategory extends JView
 		$this->assignRef('params', $params);
 		$this->assignRef('parent', $parent);
 		$this->assignRef('pagination', $pagination);
+		$this->assignRef('featuredArticle', $featuredArticle);
 		$this->assignRef('user', $user);
 
 		$this->_prepareDocument();
