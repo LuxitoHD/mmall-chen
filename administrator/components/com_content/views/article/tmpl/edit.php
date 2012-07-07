@@ -132,6 +132,14 @@ endif;
 						<li><?php echo $this->form->getLabel('hits'); ?>
 						<?php echo $this->form->getInput('hits'); ?></li>
 					<?php endif; ?>
+					
+						<li><?php echo $this->form->getLabel('loves'); ?>
+						<?php echo $this->form->getInput('loves'); ?></li>
+						<li><?php echo $this->form->getLabel('goods'); ?>
+						<?php echo $this->form->getInput('goods'); ?></li>
+						<li><?php echo $this->form->getLabel('bads'); ?>
+						<?php echo $this->form->getInput('bads'); ?></li>
+					
 				</ul>
 			</fieldset>
 		<?php  endif; ?>
