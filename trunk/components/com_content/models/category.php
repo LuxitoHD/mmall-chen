@@ -35,6 +35,8 @@ class ContentModelCategory extends JModelList
 	protected $_children = null;
 
 	protected $_parent = null;
+	
+	protected $_featuredArticle = null;
 
 	/**
 	 * Model context string.
@@ -414,5 +416,17 @@ class ContentModelCategory extends JModelList
 		}
 
 		return $this->_children;
+	}
+	
+	function &getFeaturedArticle(){
+		if($this->_featuredArticle){
+			return $this->_featuredArticle;
+		}
+		
+		$db = JFactory::getDbo();
+		$query = "select id, title,images from #__content where state = 1 and featured=1 limit 0,21";
+		$db->setQuery($query);
+		$this->_featuredArticle= $db->loadObjectList('id');
+		return $this->_featuredArticle;
 	}
 }
