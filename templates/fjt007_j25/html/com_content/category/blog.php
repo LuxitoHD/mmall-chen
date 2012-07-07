@@ -169,19 +169,28 @@ $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/c
         	 	}
         	 	$images_mi = json_decode($item_t->images);
         	 	$imgSour = htmlspecialchars($images_mi->image_intro);
-        	 	if(isset($imgSour)){
+        	 	if(strlen($imgSour)>3){
         	 		$img_tou[$coutou]["imgs"] = $imgSour;
         	 		$img_tou[$coutou]["id"] = $item_t->id;
         	 		$img_tou[$coutou]["title"] = $item_t->title;
         	 		$coutou++;
         	 	}
         	}
-        	
-        	
-			$len= floor($length/3);//取得每段的数量
-			$featuredArticle_1 = array_slice($featuredArticle, 0,$len);
-			$featuredArticle_2 = array_slice($featuredArticle, $len-1,$len);
-			$featuredArticle_2 = array_slice($featuredArticle, 2*$len-1,$len);
+
+        	$featuredArticle_1 = array();
+			$featuredArticle_2 = array();
+			$featuredArticle_3 = array();
+        	if($length<7){
+				$featuredArticle_1 = $featuredArticle;
+			}else if($length>6 && $length< 13){
+				$featuredArticle_1 = array_slice($featuredArticle, 0,6);
+				$featuredArticle_2 = array_slice($featuredArticle, 6,6);
+			}else{
+				$featuredArticle_1 = array_slice($featuredArticle, 0,6);
+				$featuredArticle_2 = array_slice($featuredArticle, 6,6);
+				$featuredArticle_3 = array_slice($featuredArticle, 12,6);
+			}
+			
         	?>
         
           <ul class="items-list"> 
@@ -198,7 +207,7 @@ $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/c
           </ul> 
           <ul class="items-list"> 
             <li class="except"><a href="<?php echo JRoute::_("index.php?option=com_content&view=article&&layout=blog&id=".$img_tou[2]["id"]."&Itemid=". JRequest::getVar('Itemid', 0, '', 'int'));?>" title="<?php echo $img_tou[2]["title"];?>"><img width="200" height="135" src="<?php echo $img_tou[2]["imgs"];?>" alt="" title=""></a></li> 
-         <?php foreach ($featuredArticle_2 as $mei) : ?>
+         <?php foreach ($featuredArticle_3 as $mei) : ?>
             <li><a href="<?php echo JRoute::_("index.php?option=com_content&view=article&&layout=blog&id=".$mei->id."&Itemid=". JRequest::getVar('Itemid', 0, '', 'int'));?>" title=""><?php echo $mei->title;?></a></li>
          <?php endforeach; ?>
           </ul> 
