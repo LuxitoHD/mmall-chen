@@ -194,37 +194,66 @@ $title = $this->escape($this->item->category_title);
       </div>
     </div>
       <div class="chapterIntro">
-        <h2>相关文章推荐 <?php echo $this->item->featuredArticle; ?> </h2>
-        <div class="list">
-          <ul class="items-list">
-            <li class="except"><a href="#" title=""><img src="images/info/about_0.jpg" alt="" title=""></a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-          </ul>
-          <ul class="items-list">
-            <li class="except"><a href="#" title=""><img src="images/info/about_1.jpg" alt="" title=""></a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-          </ul>
-          <ul class="items-list">
-            <li class="except"><a href="#" title=""><img src="images/info/about_2.jpg" alt="" title=""></a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-            <li><a href="#" title="">美国30万人感染致命疾病</a></li>
-          </ul>
-        </div>
-      </div>
+         <h2>相关文章推荐</h2> 
+        <div class="list"> 
+        
+        	<?php 
+        	$featuredArticle = $this->featuredArticle;
+        	$length = count($featuredArticle);
+        	
+        	//取得三个图片
+        	$img_tou = array();
+        	$coutou = 0;
+        	foreach ($featuredArticle as $item_t){
+        		if($coutou == 3){
+        	 		break;
+        	 	}
+        	 	$images_mi = json_decode($item_t->images);
+        	 	$imgSour = htmlspecialchars($images_mi->image_intro);
+        	 	if(strlen($imgSour)>3){
+        	 		$img_tou[$coutou]["imgs"] = $imgSour;
+        	 		$img_tou[$coutou]["id"] = $item_t->id;
+        	 		$img_tou[$coutou]["title"] = $item_t->title;
+        	 		$coutou++;
+        	 	}
+        	}
+
+        	$featuredArticle_1 = array();
+			$featuredArticle_2 = array();
+			$featuredArticle_3 = array();
+        	if($length<7){
+				$featuredArticle_1 = $featuredArticle;
+			}else if($length>6 && $length< 13){
+				$featuredArticle_1 = array_slice($featuredArticle, 0,6);
+				$featuredArticle_2 = array_slice($featuredArticle, 6,6);
+			}else{
+				$featuredArticle_1 = array_slice($featuredArticle, 0,6);
+				$featuredArticle_2 = array_slice($featuredArticle, 6,6);
+				$featuredArticle_3 = array_slice($featuredArticle, 12,6);
+			}
+			
+        	?>
+        
+          <ul class="items-list"> 
+            <li class="except"><a href="<?php echo JRoute::_("index.php?option=com_content&view=article&&layout=blog&id=".$img_tou[0]["id"]."&Itemid=". JRequest::getVar('Itemid', 0, '', 'int'));?>" title="<?php echo $img_tou[0]["title"];?>"><img width="200" height="135"  src="<?php echo $img_tou[0]["imgs"];?>" alt="" title=""></a></li> 
+         <?php foreach ($featuredArticle_1 as $mei) : ?>
+            <li><a href="<?php echo JRoute::_("index.php?option=com_content&view=article&&layout=blog&id=".$mei->id."&Itemid=". JRequest::getVar('Itemid', 0, '', 'int'));?>" title=""><?php echo $mei->title;?></a></li>
+         <?php endforeach; ?>
+          </ul> 
+          <ul class="items-list"> 
+            <li class="except"><a href="<?php echo JRoute::_("index.php?option=com_content&view=article&&layout=blog&id=".$img_tou[1]["id"]."&Itemid=". JRequest::getVar('Itemid', 0, '', 'int'));?>" title="<?php echo $img_tou[1]["title"];?>"><img width="200" height="135"  src="<?php echo $img_tou[1]["imgs"];?>" alt="" title=""></a></li> 
+         <?php foreach ($featuredArticle_2 as $mei) : ?>
+            <li><a href="<?php echo JRoute::_("index.php?option=com_content&view=article&&layout=blog&id=".$mei->id."&Itemid=". JRequest::getVar('Itemid', 0, '', 'int'));?>" title=""><?php echo $mei->title;?></a></li>
+         <?php endforeach; ?>
+          </ul> 
+          <ul class="items-list"> 
+            <li class="except"><a href="<?php echo JRoute::_("index.php?option=com_content&view=article&&layout=blog&id=".$img_tou[2]["id"]."&Itemid=". JRequest::getVar('Itemid', 0, '', 'int'));?>" title="<?php echo $img_tou[2]["title"];?>"><img width="200" height="135" src="<?php echo $img_tou[2]["imgs"];?>" alt="" title=""></a></li> 
+         <?php foreach ($featuredArticle_3 as $mei) : ?>
+            <li><a href="<?php echo JRoute::_("index.php?option=com_content&view=article&&layout=blog&id=".$mei->id."&Itemid=". JRequest::getVar('Itemid', 0, '', 'int'));?>" title=""><?php echo $mei->title;?></a></li>
+         <?php endforeach; ?>
+          </ul> 
+        </div> 
+      </div> 
   </div>
   <div class="asideWrap">
       <div class="introInfor">
