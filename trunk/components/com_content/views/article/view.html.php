@@ -36,6 +36,8 @@ class ContentViewArticle extends JView
 		$this->print	= JRequest::getBool('print');
 		$this->state	= $this->get('State');
 		$this->user		= $user;
+		
+		$this->featuredArticle	= $this->get('FeaturedArticle');
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors'))) {
