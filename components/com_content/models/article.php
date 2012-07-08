@@ -318,7 +318,7 @@ class ContentModelArticle extends JModelItem
 		}
 		
 		$db = JFactory::getDbo();
-		$query = "select id, title,images from #__content where state = 1 and featured=1 limit 0,21";
+		$query = "select id, title,images from #__content where state = 1 and featured=1  order by id desc limit 0,21";
 		$db->setQuery($query);
 		//$this->_featuredArticle= $db->loadObjectList();
 		return $db->loadObjectList();
