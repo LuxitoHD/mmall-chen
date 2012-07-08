@@ -35,7 +35,7 @@ $user		= JFactory::getUser();
 		function test_good(id) {
     	    jQuery.ajax({
     	        type: 'POST',
-    	        url:  '<? echo JURI::base(true); ?>/ajax3.php',
+    	        url:  '<? echo JURI::base(true); ?>/ajax4.php',
     	        data: {id:id,para:"good"},
     	        beforeSend:function(){
         	        $("#gid"+id).hide();
@@ -57,7 +57,7 @@ $user		= JFactory::getUser();
 		function test_bad(id) {
     	    jQuery.ajax({
     	        type: 'POST',
-    	        url:  '<? echo JURI::base(true); ?>/ajax3.php',
+    	        url:  '<? echo JURI::base(true); ?>/ajax4.php',
     	        data: {id:id,para:"bad"},
     	        beforeSend:function(){
         	        $("#bid"+id).hide();
@@ -80,7 +80,7 @@ $user		= JFactory::getUser();
 		function test_love(id) {
     	    jQuery.ajax({
     	        type: 'POST',
-    	        url:  '<? echo JURI::base(true); ?>/ajax3.php',
+    	        url:  '<? echo JURI::base(true); ?>/ajax4.php',
     	        data: {id:id,para:"love"},
     	        beforeSend:function(){
         	        $("#lid"+id).hide();
