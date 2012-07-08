@@ -100,7 +100,10 @@ $user		= JFactory::getUser();
     	    })
     	} 
 </script>     
+<?php
+$title = $this->escape($this->item->category_title);
 
+?>
 
 <div id="content">
   <div class="articleWrap">
@@ -108,11 +111,11 @@ $user		= JFactory::getUser();
   <ul>
     <li class="base">
       <div class="logo"></div>
-      <span>您现在的位置：<a href="#" title="">首页</a></span> </li>
+      <span>您现在的位置：<a href="index.php" title="">首页</a></span> </li>
+     <li class="arrow">&gt;</li>
+    <li><a href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($this->item->catslug)); ?>" title=""><?php echo $title; ?></a></li>
     <li class="arrow">&gt;</li>
-    <li><a href="#" title="">用户中心</a></li>
-    <li class="arrow">&gt;</li>
-    <li class="terminal">我的报名</li>
+    <li><?php echo $this->escape($this->item->title); ?></li>
   </ul>
 </div>
 
