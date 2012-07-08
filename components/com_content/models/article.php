@@ -80,7 +80,7 @@ class ContentModelArticle extends JModelItem
 				$query = $db->getQuery(true);
 
 				$query->select($this->getState(
-					'item.select', 'a.id, a.asset_id, a.title, a.alias, a.title_alias, a.introtext, a.fulltext, ' .
+					'item.select', 'a.id, a.asset_id, a.title, a.alias, a.title_alias, a.introtext, a.fulltext,  a.loves, a.goods, a.bads, ' .
 					// If badcats is not null, this means that the article is inside an unpublished category
 					// In this case, the state is set to 0 to indicate Unpublished (even if the article state is Published)
 					'CASE WHEN badcats.id is null THEN a.state ELSE 0 END AS state, ' .
@@ -311,4 +311,17 @@ class ContentModelArticle extends JModelItem
         JError::raiseWarning( 'SOME_ERROR_CODE', JText::sprintf('COM_CONTENT_INVALID_RATING', $rate), "JModelArticle::storeVote($rate)");
         return false;
     }
+
+	public function getFeaturedArticle(){
+		if($this->_featuredArticle){
+			return $this->_featuredArticle;
+		}
+		
+		$db = JFactory::getDbo();
+		$query = "select id, title,images from #__content where state = 1 and featured=1 limit 0,21";
+		$db->setQuery($query);
+		//$this->_featuredArticle= $db->loadObjectList();
+		return $db->loadObjectList();
+	}
+
 }
