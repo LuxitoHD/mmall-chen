@@ -926,10 +926,6 @@ fieldset button {
 	margin: 5px 5px 5px 0;
 }
 
-fieldset.adminform textarea {
-	width: 355px;
-}
-
 fieldset ul.checklist input {
 	clear: left;
 	margin-right: 10px;

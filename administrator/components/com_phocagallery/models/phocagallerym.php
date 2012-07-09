@@ -184,6 +184,7 @@ class PhocaGalleryCpModelPhocaGalleryM extends JModelAdmin
 						$datam['catid']			= $data['catid'];
 						$datam['approved']		= $data['approved'];
 						$datam['language']		= $data['language'];
+						$datam['source']		= $data['source'];
 						$datam['filename']		= $filename;
 						
 						if ($data['title']	!= '') {
@@ -499,8 +500,8 @@ class PhocaGalleryCpModelPhocaGalleryM extends JModelAdmin
 	}
 
 	function getImages() {
-		$refreshUrl = 'index.php?option=com_phocagallery&view=phocagalleryi&tmpl=component';
-		$list = PhocaGalleryFileFolderList::getList(0,0,0,$refreshUrl);
+		$refreshUrl = 'index.php?option=com_phocagallery&view=phocagallerym&layout=edit';
+		$list = PhocaGalleryFileFolderList::getList(1,1,1,$refreshUrl);
 		return $list['Images'];
 	}
 

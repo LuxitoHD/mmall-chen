@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 $published = $this->state->get('filter.state');
 ?>
 <fieldset class="batch">
-	<legend><?php echo JText::_('COM_PHOCAGALLERY_BATCH_OPTIONS_IMAGES');?></legend>
+	<legend>批量处理的商品</legend>
 
 	<?php echo PhocaGalleryBatch::itemTag($published); ?>
 	<button type="submit" onclick="Joomla.submitbutton('phocagalleryproduct.batch');">

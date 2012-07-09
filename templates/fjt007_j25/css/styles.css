@@ -1175,7 +1175,8 @@ ul.pagenav li {
 }
 
 .items-list{
-	margin-bottom: 7px;	
+	margin-bottom: 7px;
+	display: block;
 }
 
 .pg-imgbg h3{

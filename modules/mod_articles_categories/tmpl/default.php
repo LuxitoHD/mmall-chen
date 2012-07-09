@@ -10,9 +10,10 @@
 defined('_JEXEC') or die;
 ?>
 <div class="waterSupposed_head">
-<h2 class="hdTitle">最主流的风水</h2>
-<ul class="cate-nav-list<?php echo $moduleclass_sfx; ?>">
-<?php
-require JModuleHelper::getLayoutPath('mod_articles_categories', $params->get('layout', 'default').'_items');
-?></ul>
+	<h2 class="hdTitle">最主流的风水</h2>
+	<ul class="cate-nav-list<?php echo $moduleclass_sfx; ?>">
+	<?php
+		require JModuleHelper::getLayoutPath('mod_articles_categories', $params->get('layout', 'default').'_items');
+	?>
+	</ul>
 </div>

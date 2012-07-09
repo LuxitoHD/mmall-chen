@@ -25,7 +25,7 @@
 			label="COM_PHOCAGALLERY_FIELD_FILENAME_LABEL" 
 			description="COM_PHOCAGALLERY_FIELD_FILENAME_DESC" class="inputbox"
 			size="40" />
-		<field name="catid" type="list"
+		<field name="catname" type="list"
 			label="COM_PHOCAGALLERY_FIELD_PRODUCT_CAT_LABEL" description="COM_PHOCAGALLERY_FIELD_PRODUCT_CAT_LABEL"
 			class="inputbox" size="1" default="团购">
 			<option value="团购">团购</option>

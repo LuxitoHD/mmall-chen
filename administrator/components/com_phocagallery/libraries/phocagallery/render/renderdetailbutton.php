@@ -372,11 +372,11 @@ class PhocaGalleryRenderDetailButton
 					 
 				} else {
 					$fileThumbnail 	= PhocaGalleryFileThumbnail::getThumbnailName($value->filename, 'large');
-					$imgLink		= JURI::base(true) . '/' . $fileThumbnail->rel;
+					$imgLink		=  $fileThumbnail->rel;
 					
 					//tian  缩略图路径
 					$fileThumbnail_small 	= PhocaGalleryFileThumbnail::getThumbnailName($value->filename, 'small');
-					$imgLink_small		= JURI::base(true) . '/' . $fileThumbnail_small->rel;
+					$imgLink_small		= $fileThumbnail_small->rel;
 					
 					$thumbnail_link = JRoute::_('index.php?option=com_phocagallery&view=detail&catid='. (int) $catid .'&id='.$value->id.'&Itemid='. JRequest::getVar('Itemid', 0, '', 'int')  );
 					

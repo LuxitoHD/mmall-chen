@@ -35,10 +35,10 @@ class PhocaGalleryCpViewPhocaGallerycp extends JView
 		
 		if ($canDo->get('core.admin')) {
 			JToolBarHelper::preferences('com_phocagallery');
-			JToolBarHelper::divider();
+//			JToolBarHelper::divider();
 		}
 		
-		JToolBarHelper::help( 'screen.phocagallery', true );
+//		JToolBarHelper::help( 'screen.phocagallery', true );
 	}
 }
 ?>

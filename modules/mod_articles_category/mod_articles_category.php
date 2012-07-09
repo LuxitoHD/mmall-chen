@@ -80,5 +80,12 @@ if (!empty($list)) {
 				break;
 		}
 	}
-    require JModuleHelper::getLayoutPath('mod_articles_category', $params->get('layout', 'default'));
+	if($_GET['Itemid']==481){
+		if($_GET['view']!='category'&&$_GET['view']!='detail'){
+			require JModuleHelper::getLayoutPath('mod_articles_category', $params->get('layout', 'default'));
+		}
+	}else{
+		 require JModuleHelper::getLayoutPath('mod_articles_category', $params->get('layout', 'default'));
+	}
+   
 }

@@ -80,13 +80,13 @@ class PhocaGalleryImageFront
 			case 3:
 			case 7:
 			$fileThumbnail 		= PhocaGalleryFileThumbnail::getThumbnailName($filename, 'medium');
-			$fileThumbnail->rel	= $path->image_rel_front . 'icon-folder-medium'.$key.'.' . $formatIcon;
+//			$fileThumbnail->rel	= $path->image_rel_front . 'icon-folder-medium'.$key.'.' . $formatIcon;
 			break;
 			// user wants to display only icon folder (parameters) small
 			case 2:
 			case 6:
 			$fileThumbnail 		= PhocaGalleryFileThumbnail::getThumbnailName($filename, 'small');
-			$fileThumbnail->rel	= $path->image_rel_front . 'icon-folder-small-main'.$key.'.' . $formatIcon;
+//			$fileThumbnail->rel	= $path->image_rel_front . 'icon-folder-small-main'.$key.'.' . $formatIcon;
 			break;
 			
 			// standard medium image next to category in categories view - if the file doesn't exist, it will be displayed folder icon
@@ -94,7 +94,7 @@ class PhocaGalleryImageFront
 			case 5:
 			$fileThumbnail = PhocaGalleryFileThumbnail::getThumbnailName($filename, 'medium');
 			if (!JFile::exists($fileThumbnail->abs) || $rightDisplayKey == 0) {
-				$fileThumbnail->rel	= $path->image_rel_front . 'icon-folder-medium'.$key.'.' . $formatIcon;
+//				$fileThumbnail->rel	= $path->image_rel_front . 'icon-folder-medium'.$key.'.' . $formatIcon;
 			}
 			break;
 			
@@ -103,7 +103,7 @@ class PhocaGalleryImageFront
 			case 4:
 			$fileThumbnail = PhocaGalleryFileThumbnail::getThumbnailName($filename, 'small');
 			if (!JFile::exists($fileThumbnail->abs) || $rightDisplayKey == 0) {
-				$fileThumbnail->rel	= $path->image_rel_front . 'icon-folder-small-main'.$key.'.' . $formatIcon;
+//				$fileThumbnail->rel	= $path->image_rel_front . 'icon-folder-small-main'.$key.'.' . $formatIcon;
 			}
 			break;
 		}

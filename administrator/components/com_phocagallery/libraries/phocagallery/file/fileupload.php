@@ -45,6 +45,9 @@ class PhocaGalleryFileUpload
 		$chunks 		= JRequest::getVar( 'chunks', 0, '', 'int' );
 		$folder			= JRequest::getVar( 'folder', '', '', 'path' );
 		
+//		date_default_timezone_set('Asia/Shanghai');
+//		$fileName = date("YmdHis");
+//		$file['name']	=$fileName.'.'.JFile::getExt($file['name']);
 		// Make the filename safe
 		if (isset($file['name'])) {
 			$file['name']	= JFile::makeSafe($file['name']);
@@ -231,7 +234,11 @@ class PhocaGalleryFileUpload
 						'message' => JText::_('COM_PHOCAGALLERY_ERROR').': ',
 						'details' => JTEXT::_('COM_PHOCAGALLERY_WARNING_INVALIDIMG'))));
 					}
-					
+					date_default_timezone_set('Asia/Shanghai');
+					$fileName = date("YmdHis");
+					$file['name']	=$fileName.'.'.JFile::getExt($file['name']);
+//					$file['name']
+					$filepathImgFinal 		= JPath::clean($path->image_abs.$folder.strtolower($file['name']));
 					
 					if(!JFile::move($filepathImgTemp, $filepathImgFinal)) {
 						
@@ -258,7 +265,9 @@ class PhocaGalleryFileUpload
 						
 			} else {
 				// No Chunk Method
-				
+				date_default_timezone_set('Asia/Shanghai');
+				$fileName = date("YmdHis");
+				$file['name']	=$fileName.'.'.JFile::getExt($file['name']);
 				$filepathImgFinal 		= JPath::clean($path->image_abs.$folder.strtolower($file['name']));
 				$filepathFolderFinal 	= JPath::clean($path->image_abs.$folder);
 				
@@ -310,6 +319,7 @@ class PhocaGalleryFileUpload
 	//	$paramsC 		= JComponentHelper::getParams('com_phocagallery');
 	//	$chunkMethod 	= $paramsC->get( 'multiple_upload_chunk', 0 );
 	//	$uploadMethod 	= $paramsC->get( 'multiple_upload_method', 1 );
+//		strtotime("now");
 		
 		$app			= JFactory::getApplication();
 		JRequest::checkToken( 'request' ) or jexit( 'ERROR: '. JTEXT::_('COM_PHOCAGALLERY_INVALID_TOKEN'));
@@ -327,7 +337,9 @@ class PhocaGalleryFileUpload
 		$folderUrl 		= $folder;
 		$tabUrl			= '';
 		$component		= JRequest::getVar( 'option', '', '', 'string' );
-		
+		date_default_timezone_set('Asia/Shanghai');
+		$fileName = date("YmdHis");
+		$file['name']	=$fileName.'.'.JFile::getExt($file['name']);
 		// In case no return value will be sent (should not happen)
 		if ($component != '' && $frontEnd == 0) {
 			$componentUrl 	= 'index.php?option='.$component;
@@ -395,7 +407,12 @@ class PhocaGalleryFileUpload
 					exit;
 				}
 			} else {
-			
+				phocagalleryimport('phocagallery.image.imagemagic');
+				$watermarkParams['create']	= 0;// Watermark
+				$watermarkParams['x'] 		= 'center';
+				$watermarkParams['y']		= 'middle';
+				$errorMsg = '';
+				$imageMagic = PhocaGalleryImageMagic::imageMagic($filepath, $filepath, null , null, $crop, null, $watermarkParams, 0, $errorMsg);
 				if ((int)$frontEnd > 0) {
 					return $file['name'];
 				}

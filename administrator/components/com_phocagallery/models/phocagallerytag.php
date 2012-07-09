@@ -88,5 +88,12 @@ class PhocaGalleryCpModelPhocaGalleryTag extends JModelAdmin
 			//$table->modified_by	= $user->get('id');
 		}
 	}
+	
+	function save($data) {
+		parent::save($data);
+		$refresh_url='index.php?option=com_phocagallery&view=phocagallerytags';
+		$file_thumb = PhocaGalleryFileThumbnail::getOrCreateThumbnail($data['filename'], $refresh_url, 1, 1, 1);
+		return true;
+	}
 }
 ?>
