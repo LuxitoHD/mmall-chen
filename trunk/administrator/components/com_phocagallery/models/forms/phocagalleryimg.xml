@@ -35,8 +35,7 @@
 		<field name="extid" type="hidden" />
 
 
-		<field name="description" type="editor" buttons="true"
-			hide="pagebreak,readmore" class="inputbox"
+		<field name="description" type="textarea"  class="inputbox" rows="10" cols="70"
 			label="COM_PHOCAGALLERY_FIELD_DESCRIPTION_LABEL" filter="safehtml"
 			description="COM_PHOCAGALLERY_FIELD_DESCRIPTION_DESC" />
 

@@ -85,8 +85,8 @@ class PhocaGalleryCpViewPhocaGalleryImg extends JView
 			JToolBarHelper::cancel('phocagalleryimg.cancel', 'JTOOLBAR_CLOSE');
 		}
 
-		JToolBarHelper::divider();
-		JToolBarHelper::help( 'screen.phocagallery', true );
+//		JToolBarHelper::divider();
+//		JToolBarHelper::help( 'screen.phocagallery', true );
 	}
 }
 ?>

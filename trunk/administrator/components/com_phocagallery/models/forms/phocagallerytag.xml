@@ -29,7 +29,7 @@
 		</field>
 		
 		<field name="filename" type="phocaselectfilename"
-			label="COM_PHOCAGALLERY_FIELD_FILENAME_LABEL" required="true"
+			label="COM_PHOCAGALLERY_FIELD_FILENAME_LABEL" 
 			description="COM_PHOCAGALLERY_FIELD_FILENAME_DESC" class="inputbox"
 			size="40" />
 

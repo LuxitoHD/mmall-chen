@@ -109,8 +109,8 @@ class PhocaGalleryCpViewPhocaGalleryImgs extends JView
 		if ($canDo->get('core.delete')) {
 			JToolBarHelper::deleteList( JText::_( 'COM_PHOCAGALLERY_WARNING_DELETE_ITEMS' ), 'phocagalleryimgs.delete', 'COM_PHOCAGALLERY_DELETE');
 		}
-		JToolBarHelper::divider();
-		JToolBarHelper::help( 'screen.phocagallery', true );
+//		JToolBarHelper::divider();
+//		JToolBarHelper::help( 'screen.phocagallery', true );
 	}
 	
 	
@@ -171,9 +171,10 @@ class PhocaGalleryCpViewPhocaGalleryImgs extends JView
 					} else {
 						//Create thumbnails small, medium, large
 						$refresh_url 	= 'index.php?option=com_phocagallery&view=phocagalleryimgs';
-						$fileThumb 		= PhocaGalleryFileThumbnail::getOrCreateThumbnail($value->filename, $refresh_url, 1, 1, 1);
-						
-						$this->items[$key]->linkthumbnailpath 	= $fileThumb['thumb_name_s_no_rel'];
+//						$fileThumb 		= PhocaGalleryFileThumbnail::getOrCreateThumbnail($value->filename, $refresh_url, 1, 1, 1);
+						$fileThumb 		= PhocaGalleryFileThumbnail::getThumbnailName($value->filename, 'small');
+//						$this->items[$key]->linkthumbnailpath 	= $fileThumb['thumb_name_s_no_rel'];
+						$this->items[$key]->linkthumbnailpath 	= $fileThumb->rel;
 						$this->items[$key]->fileoriginalexist = 1;	
 					}
 				}

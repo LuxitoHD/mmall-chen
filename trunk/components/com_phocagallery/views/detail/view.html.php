@@ -191,11 +191,11 @@ class PhocaGalleryViewDetail extends JView
 		$item	= $model->getData();//当前图片信息
 		if($item->filename){
 			$small_img 	= PhocaGalleryFileThumbnail::getThumbnailName($item->filename, 'small');
-			$small_img_Link		= JURI::base(true) . '/' . $small_img->rel;
+			$small_img_Link		= $small_img->rel;
 			
-			if (JFile::exists($small_img->abs)) {
+//			if (JFile::exists($small_img->abs)) {
 				$item->fileThumbnail_small = $small_img_Link; //当前缩略小图片
-			}
+//			}
 			
 			
 			$large_img = PhocaGalleryFileThumbnail::getThumbnailName($item->filename, 'large');

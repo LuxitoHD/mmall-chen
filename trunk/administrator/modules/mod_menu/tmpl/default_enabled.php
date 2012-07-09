@@ -267,11 +267,11 @@ if ($user->authorise('core.manage', 'com_content'))
 	$menu->addChild(new JMenuNode(JText::_('COM_PHOCAGALLERY_TAGS'),'index.php?option=com_phocagallery&view=phocagallerytags','components/com_phocagallery/assets/images/icon-16-pg-menu-tags.png'));
 	
 	
-	$menu->addSeparator();
-	if ($user->authorise('core.manage', 'com_media'))
-	{
-		$menu->addChild(new JMenuNode(JText::_('MOD_MENU_MEDIA_MANAGER'), 'index.php?option=com_media', 'class:media'));
-	}
+//	$menu->addSeparator();
+//	if ($user->authorise('core.manage', 'com_media'))
+//	{
+//		$menu->addChild(new JMenuNode(JText::_('MOD_MENU_MEDIA_MANAGER'), 'index.php?option=com_media', 'class:media'));
+//	}
 
 	$menu->getParent();
 }

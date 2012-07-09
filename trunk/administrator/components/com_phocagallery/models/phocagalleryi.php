@@ -41,7 +41,7 @@ class PhocaGalleryCpModelPhocaGalleryI extends JModel
 		$muUploaded		= JRequest::getVar( 'muuploaded', '0', '', 'int' );
 
 		$refreshUrl = 'index.php?option=com_phocagallery&view=phocagalleryi&tab='.$tab.'&mufailed='.$muFailed.'&muuploaded='.$muUploaded.'&tmpl=component';
-		$list = PhocaGalleryFileFolderList::getList(0,1,0,$refreshUrl);
+		$list = PhocaGalleryFileFolderList::getList(1,1,1,$refreshUrl);
 		return $list['Images'];
 	}
 

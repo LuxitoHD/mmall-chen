@@ -191,8 +191,8 @@ class PhocaGalleryCpViewPhocaGalleryM extends JView
 		}
 		
 		JToolBarHelper::cancel('phocagallerym.cancel', 'JTOOLBAR_CLOSE');
-		JToolBarHelper::divider();
-		JToolBarHelper::help( 'screen.phocagallery', true );
+//		JToolBarHelper::divider();
+//		JToolBarHelper::help( 'screen.phocagallery', true );
 	}
 }
 ?>

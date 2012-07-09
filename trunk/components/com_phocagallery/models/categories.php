@@ -112,7 +112,7 @@ class PhocagalleryModelCategories extends JModel
 			$model = JModel::getInstance('Articles', 'ContentModel', array('ignore_request' => true));
 			$model->setState('params', JFactory::getApplication()->getParams());
 			$model->setState('filter.category_id', 78);
-			$model->setState('filter.published', $this->getState('filter.published'));
+			$model->setState('filter.published', 1);
 			$model->setState('filter.access', $this->getState('filter.access'));
 			$model->setState('filter.language', $this->getState('filter.language'));
 			$model->setState('list.ordering', 'a.id');

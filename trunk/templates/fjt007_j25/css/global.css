@@ -1,0 +1,83 @@
+@charset "utf-8";
+
+body{font-family:"microsoft yahei",simsun,Arial;color:#333;font-size:12px;}
+/*网站logo start*/
+
+#logo {}
+
+/*网站logo end*/
+
+
+/*链接样式 start*/
+
+a:link,a:visited{color:#333;}
+a:hover,a:active{}
+a.color_01:link,a.color_01:visited{color:#0078c1;}
+/*链接样式 end*/
+
+b,strong{font-weight:bold;}
+
+/*输入框样式 start*/
+input.text,input.password{}
+/*输入框样式 end*/
+
+/*----------------整体定义 start----------------*/
+.rmb{font-family:Arial, Helvetica, sans-serif;}
+.btn-link{display:inline-block; height:30px;line-height:30px;font-size:14px;font-weight:bold;color:#FFF!important;padding:0 15px; border-radius:3px;background-color:#25a3f2;}
+.btn-link:hover{background-color:#F36;}
+.articleWrap{ display:inline; float:left; width:790px;font-family:simsun,Arial,Helvetica,sans-serif;}
+.asideWrap{ display:inline; float:right; width:190px;font-family:simsun,Arial,Helvetica,sans-serif;}
+.mt20{margin-top:20px;}
+/*----------------end 整体定义----------------*/
+/*----------------分页 start----------------*/
+.pageList{font-family:simsun,Arial,Helvetica,sans-serif;padding-top:20px;padding-bottom:10px;}
+.pageList_body{ float:right;}
+.pageList_body li{ float:left; width:22px; height:24px; margin-right:6px; display:inline;}
+.pageList_body li a{ display:block;width:22px; height:22px; border:1px solid #ddd;color:#06c; text-align:center; line-height:22px; font-family:Arial; }
+.pageList_body li a:hover{ color:#f36; text-decoration:none; background:#fcc;border:1px solid #f36;}
+.pageList_body li a.this{ color:#fff; background:#f36;border:1px solid #f36;}
+.pageList_body li a.dot{ cursor:default;color:#666; text-decoration:none;}
+.pageList_body li a.dot:hover{text-decoration:none; color:#666;background:none;border:1px solid #ddd;}
+.pageList_body li a.dot:active{text-decoration:none;}
+.pageList_body li.first{width:60px;}
+.pageList_body li.prev{width:70px;}
+.pageList_body li.next{width:70px;}
+.pageList_body li.last{width:60px;}
+.pageList_body li.first a{width:60px;}
+.pageList_body li.prev a,.pageList_body li.prev a.dot,.pageList_body li.prev a.dot:hover{width:70px;background:url(imgs/dot17.gif?20120708132826) no-repeat left center;}
+.pageList_body li.next a,.pageList_body li.next a.dot,.pageList_body li.next a.dot:hover{width:70px;background:url(imgs/dot18.gif?20120708132826) no-repeat right center;}
+.pageList_body li.prev a:hover{width:70px;background:#fcc url(imgs/dot19.gif?20120708132826) no-repeat left center;}
+.pageList_body li.next a:hover{width:70px;background:#fcc url(imgs/dot20.gif?20120708132826) no-repeat right center;}
+
+.pageList_body li.last a{width:60px;}
+.pageList_body li.text{width:220px; text-align:right; line-height:22px;}
+.pageList_body .page-nub{width:auto; line-height:24px; color:#5c5c5c; white-space:nowrap;}
+.pageList_body .page-nub input{ width:40px; height:20px; line-height:20px;*margin:0 6px;padding:1px 0 1px 3px;border:1px solid #CCC; overflow:hidden;}
+.pageList_body .page-nub button{ width:51px; height:22px; line-height:18px;*line-height:21px;color:#333;*margin:0 0 0 6px;padding:0 0 2px; border:1px solid #CCC;border-raduis:2px; background:#f4f4f4;}
+/*----------------end 分页----------------*/
+
+/*----------------边栏推荐 start----------------*/
+.introInfor{padding:0 9px 10px;border:1px solid #e3e3e3;background-color:#FFF;}
+.introInfor h2{ height:28px; line-height:28px;font-family:"microsoft yahei",simsun,Arial; font-size:18px; font-weight:bold;padding:10px 0 0; overflow:hidden;}
+.introInfor dl{margin-top:18px;}
+.introInfor dt{ width:171px; height:171px; overflow:hidden;}
+.introInfor dt img{ vertical-align:top;}
+.introInfor dd{}
+.introInfor dd h3{font-size:12px;font-weight:normal;margin:3px 0;}
+.introInfor dd .desc{}
+.introInfor dd .price{ height:22px; overflow:hidden;}
+.introInfor dd .price .rmb{font-weight:bold;}
+.introInfor dd .price .txt-data{font-family:Arial, Helvetica, sans-serif;font-size:18px; line-height:1;font-weight:bold;}
+.introInfor .webtxt{ color:#F00;}
+.introInfor dd h3 a{ color:#333;}
+.introInfor dd h3 a:hover{ color:#06C;}
+/*----------------end 边栏推荐----------------*/
+
+/*带阴影的框框start*/
+.some_block_shade{border:4px solid #eee;}
+.some_block_main{border:1px solid #ccc;}
+/*带阴影的框框end*/
+
+
+.no_border{border:0 none!important;}
+.some_ad01{width:288px;height:158px;border:1px solid #ccc;overflow:hidden;font-size:0; line-height:0;}

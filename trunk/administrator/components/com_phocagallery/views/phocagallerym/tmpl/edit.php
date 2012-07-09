@@ -73,7 +73,8 @@ JHTML::_('behavior.tooltip');
 		<ul class="adminformlist">
 			<?php
 			// Extid is hidden - only for info if this is an external image (the filename field will be not required)
-			$formArray = array ('title', 'alias','published', 'approved', 'ordering', 'catid', 'language');
+//			$formArray = array ('title', 'alias','published', 'approved', 'ordering', 'catid','source');
+			$formArray = array ('title', 'alias','published', 'approved', 'catid','source', 'ordering');
 			foreach ($formArray as $value) {
 				echo '<li>'.$this->form->getLabel($value) . $this->form->getInput($value).'</li>' . "\n";
 			} ?>
@@ -123,8 +124,8 @@ if (count($this->images) > 0 || count($this->folders) > 0) {
 		//$checked	= '<input type="checkbox" name="cid[]" value="'.$i.'" />';
 		echo '<tr>'
 			.' <td>'. $checked .'</td>'
-			.' <td><a href="'. JRoute::_( $link ).'">'
-			. JHTML::_( 'image', 'administrator/components/com_phocagallery/assets/images/icon-image-small.gif', '').'</a></td>'
+			.' <td><a href="'. JRoute::_( '../'.$this->images[$i]->linkthumbnailpath ).'">'
+			. JHTML::_( 'image', $this->images[$i]->linkthumbnailpath, '',array('width' => 100, 'height' => 74)).'</a></td>'
 			.' <td>'.$this->images[$i]->nameno.'</td>'
 			.'</tr>';
 	}

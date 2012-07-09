@@ -16,5 +16,11 @@ $list = modArticlesCategoriesHelper::getList($params);
 if (!empty($list)) {
 	$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
 	$startLevel = reset($list)->getParent()->level;
-	require JModuleHelper::getLayoutPath('mod_articles_categories', $params->get('layout', 'default'));
+	if($_GET['Itemid']==481){
+		if($_GET['view']!='category'&&$_GET['view']!='detail'){
+			require JModuleHelper::getLayoutPath('mod_articles_categories', $params->get('layout', 'default'));
+		}
+	}else{
+		require JModuleHelper::getLayoutPath('mod_articles_categories', $params->get('layout', 'default'));
+	}
 }

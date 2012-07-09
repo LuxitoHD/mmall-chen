@@ -71,10 +71,6 @@ if (isset($this->tmpl['notapproved']->count) && (int)$this->tmpl['notapproved']-
 					</th>
 					<th width="12%" nowrap="nowrap"><?php echo JHTML::_('grid.sort',  'COM_PHOCAGALLERY_FILENAME', 'a.filename',$listDirn, $listOrder ); ?>
 					</th>
-					
-
-					<th width="1%" nowrap="nowrap"><?php echo JText::_('COM_PHOCAGALLERY_FUNCTIONS'); ?>
-					</th>
 					<th width="5%" nowrap="nowrap"><?php echo JHTML::_('grid.sort', 'COM_PHOCAGALLERY_PUBLISHED', 'a.published',$listDirn, $listOrder ); ?>
 					</th>
 					<th width="5%" nowrap="nowrap"><?php echo JHTML::_('grid.sort', 'COM_PHOCAGALLERY_APPROVED', 'a.approved',$listDirn, $listOrder ); ?>
@@ -160,9 +156,9 @@ if (isset($item->extid) && $item->extid !='') {
 	$imgLink			= PhocaGalleryFileThumbnail::getThumbnailName($item->filename, 'large');
 	
 
-	echo '<a class="'. $this->button->modalname.'" title="'. $this->button->text.'" href="'. JURI::root(). $imgLink->rel.'" rel="'. $this->button->options.'" >'
+	echo '<a class="'. $this->button->modalname.'" title="'. $this->button->text.'" href="'. $imgLink->rel.'" rel="'. $this->button->options.'" >'
 	//. JHTML::_( 'image', $item->linkthumbnailpath.'?imagesid='.md5(uniqid(time())), '', array('width' => $correctImageRes['width'], 'height' => $correctImageRes['height']))
-	. '<img src="'.JURI::root().$item->linkthumbnailpath.'?imagesid='.md5(uniqid(time())).'" width="'.$correctImageRes['width'].'" height="'.$correctImageRes['height'].'" alt="'.JText::_('COM_PHOCAGALLERY_ENLARGE_IMAGE').'" />'
+	. '<img src="'.$item->linkthumbnailpath.'?imagesid='.md5(uniqid(time())).'" width="'.$correctImageRes['width'].'" height="'.$correctImageRes['height'].'" alt="'.JText::_('COM_PHOCAGALLERY_ENLARGE_IMAGE').'" />'
 	.'</a>';
 } else {
 	echo JHTML::_( 'image', 'administrator/components/com_phocagallery/assets/images/phoca_thumb_s_no_image.gif', '');
@@ -199,15 +195,15 @@ if (isset($item->extid) && $item->extid !='') {
 			.'<td></td>';
 	}
 } else {
-	echo '<td>'. $item->filename .'</td>'
-		.'<td align="center">'
-		.'<a href="'. $linkRotate90 .'" title="'. JText::_( 'COM_PHOCAGALLERY_ROTATE_LEFT' ).'">'
-		. JHTML::_( 'image', 'administrator/components/com_phocagallery/assets/images/icon-22-rotate-left.png', JText::_( 'COM_PHOCAGALLERY_ROTATE_LEFT' )).'</a> '
-		.'<a href="'. $linkRotate270 .'" title="'. JText::_( 'COM_PHOCAGALLERY_ROTATE_RIGHT' ).'">'
-		. JHTML::_( 'image', 'administrator/components/com_phocagallery/assets/images/icon-22-rotate-right.png', JText::_( 'COM_PHOCAGALLERY_ROTATE_RIGHT' )).'</a> '
-		.'<a href="'. $linkDeleteThumbs.'" title="'. JText::_( 'COM_PHOCAGALLERY_RECREATE_THUMBS' ).'">'. JHTML::_( 'image', 'administrator/components/com_phocagallery/assets/images/icon-22-remove-create.png', JText::_( 'COM_PHOCAGALLERY_DELETE_RECREATE_THUMBS' )).'</a> '
-		.'<a href="#" onclick="window.location.reload(true);" title="'. JText::_( 'COM_PHOCAGALLERY_RELOAD_SITE' ).'">'. JHTML::_( 'image', 'administrator/components/com_phocagallery/assets/images/icon-22-reload.png', JText::_( 'COM_PHOCAGALLERY_RELOAD_SITE' )).'</a>' 
-		.'</td>';
+	echo '<td>'. $item->filename .'</td>';
+//	echo '<td align="center">'
+//		.'<a href="'. $linkRotate90 .'" title="'. JText::_( 'COM_PHOCAGALLERY_ROTATE_LEFT' ).'">'
+//		. JHTML::_( 'image', 'administrator/components/com_phocagallery/assets/images/icon-22-rotate-left.png', JText::_( 'COM_PHOCAGALLERY_ROTATE_LEFT' )).'</a> '
+//		.'<a href="'. $linkRotate270 .'" title="'. JText::_( 'COM_PHOCAGALLERY_ROTATE_RIGHT' ).'">'
+//		. JHTML::_( 'image', 'administrator/components/com_phocagallery/assets/images/icon-22-rotate-right.png', JText::_( 'COM_PHOCAGALLERY_ROTATE_RIGHT' )).'</a> '
+//		.'<a href="'. $linkDeleteThumbs.'" title="'. JText::_( 'COM_PHOCAGALLERY_RECREATE_THUMBS' ).'">'. JHTML::_( 'image', 'administrator/components/com_phocagallery/assets/images/icon-22-remove-create.png', JText::_( 'COM_PHOCAGALLERY_DELETE_RECREATE_THUMBS' )).'</a> '
+//		.'<a href="#" onclick="window.location.reload(true);" title="'. JText::_( 'COM_PHOCAGALLERY_RELOAD_SITE' ).'">'. JHTML::_( 'image', 'administrator/components/com_phocagallery/assets/images/icon-22-reload.png', JText::_( 'COM_PHOCAGALLERY_RELOAD_SITE' )).'</a>' 
+//		.'</td>';
 }
 
 echo '<td class="center">'. JHtml::_('jgrid.published', $item->published, $i, 'phocagalleryimgs.', $canChange) . '</td>';

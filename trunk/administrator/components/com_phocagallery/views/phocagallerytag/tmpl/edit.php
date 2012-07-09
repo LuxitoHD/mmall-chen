@@ -15,7 +15,14 @@ JHtml::_('behavior.formvalidation');
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)
 	{
-		if (task == 'phocagallerytag.cancel' || document.formvalidator.isValid(document.id('phocagallerytag-form'))) {
+		if(document.getElementById('jform_filename').value==''){
+			if(document.getElementById('jform_tag_cat').value!=3){
+				alert('图片必须选择');
+			}else{
+				Joomla.submitform(task, document.getElementById('phocagallerytag-form'));
+			}
+		}
+		else if (task == 'phocagallerytag.cancel' || document.formvalidator.isValid(document.id('phocagallerytag-form'))) {
 			Joomla.submitform(task, document.getElementById('phocagallerytag-form'));
 		}
 		else {
@@ -60,22 +67,13 @@ JHtml::_('behavior.formvalidation');
 			} ?>
 			</ul>
 		</fieldset>
-	
-	
 		
 	<?php echo JHtml::_('sliders.end'); ?>
 </div>
 
-
-
-
 <div class="clr"></div>
-
 
 <input type="hidden" name="task" value="" />
 <?php echo JHtml::_('form.token'); ?>
 </form>
-
 </div>
-
-	

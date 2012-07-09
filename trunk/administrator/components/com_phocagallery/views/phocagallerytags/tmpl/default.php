@@ -114,9 +114,9 @@ $canCreate	= $user->authorise('core.create',		'com_phocagallery');
 										$imgLink			= PhocaGalleryFileThumbnail::getThumbnailName($item->filename, 'large');
 										
 									
-										echo '<a class="'. $this->button->modalname.'" title="'. $this->button->text.'" href="'. JURI::root(). $imgLink->rel.'" rel="'. $this->button->options.'" >'
+										echo '<a class="'. $this->button->modalname.'" title="'. $this->button->text.'" href="'. $imgLink->rel.'" rel="'. $this->button->options.'" >'
 										//. JHTML::_( 'image', $item->linkthumbnailpath.'?imagesid='.md5(uniqid(time())), '', array('width' => $correctImageRes['width'], 'height' => $correctImageRes['height']))
-										. '<img src="'.JURI::root().$item->linkthumbnailpath.'?imagesid='.md5(uniqid(time())).'" width="'.$correctImageRes['width'].'" height="'.$correctImageRes['height'].'" alt="'.JText::_('COM_PHOCAGALLERY_ENLARGE_IMAGE').'" />'
+										. '<img src="'.$item->linkthumbnailpath.'?imagesid='.md5(uniqid(time())).'" width="'.$correctImageRes['width'].'" height="'.$correctImageRes['height'].'" alt="'.JText::_('COM_PHOCAGALLERY_ENLARGE_IMAGE').'" />'
 										.'</a>';
 									}
 								?>
