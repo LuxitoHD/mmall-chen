@@ -45,9 +45,14 @@ class PhocaGalleryFileUpload
 		$chunks 		= JRequest::getVar( 'chunks', 0, '', 'int' );
 		$folder			= JRequest::getVar( 'folder', '', '', 'path' );
 		
-//		date_default_timezone_set('Asia/Shanghai');
-//		$fileName = date("YmdHis");
-//		$file['name']	=$fileName.'.'.JFile::getExt($file['name']);
+		if (isset($folder) && $folder != '') {
+			$folderUrl	= $folder.'/'.date("Ymd");
+		}else{
+			$folderUrl	= date("Ymd");
+		}
+//		$folderUrl 		= $folder.'/'.date("Ymd");;
+		$folder			= $folder.DS.date("Ymd");
+		
 		// Make the filename safe
 		if (isset($file['name'])) {
 			$file['name']	= JFile::makeSafe($file['name']);
@@ -99,6 +104,10 @@ class PhocaGalleryFileUpload
 				$lastChunk				= $chunk + 1;
 				$realSize				= 0;
 			
+				if(!JFolder::exists($filepathFolderFinal)){
+					JFolder::create($filepathFolderFinal,0777);
+				}
+				
 				// Get the real size - if chunk is uploaded, it is only a part size, so we must compute all size
 				// If there is last chunk we can computhe the whole size
 				if ($lastChunk == $chunks) {
@@ -235,10 +244,10 @@ class PhocaGalleryFileUpload
 						'details' => JTEXT::_('COM_PHOCAGALLERY_WARNING_INVALIDIMG'))));
 					}
 					date_default_timezone_set('Asia/Shanghai');
-					$fileName = date("YmdHis");
-					$file['name']	=$fileName.'.'.JFile::getExt($file['name']);
+					$fileName = date("YmdHis").floor(microtime()*1000).rand(0, 100);
+//					$file['name']	=$fileName.'.'.JFile::getExt($file['name']);
 //					$file['name']
-					$filepathImgFinal 		= JPath::clean($path->image_abs.$folder.strtolower($file['name']));
+					$filepathImgFinal 		= JPath::clean($path->image_abs.$folder.strtolower($fileName.'.'.JFile::getExt($file['name'])));
 					
 					if(!JFile::move($filepathImgTemp, $filepathImgFinal)) {
 						
@@ -249,6 +258,13 @@ class PhocaGalleryFileUpload
 						'details' => JTEXT::_('COM_PHOCAGALLERY_ERROR_UNABLE_TO_MOVE_FILE') .'<br />'
 						. JText::_('COM_PHOCAGALLERY_CHECK_PERMISSIONS_OWNERSHIP'))));
 					}
+					
+					phocagalleryimport('phocagallery.image.imagemagic');
+					$watermarkParams['create']	= 1;// Watermark
+					$watermarkParams['x'] 		= 'right';
+					$watermarkParams['y']		= 'bottom';
+					$errorMsg = '';
+					$imageMagic = PhocaGalleryImageMagic::imageMagic1($filepathImgFinal, $filepathImgFinal, null , null, null, null, $watermarkParams, 0, $errorMsg);
 					
 					
 					JFolder::delete($filepathFolderTemp);
@@ -266,9 +282,9 @@ class PhocaGalleryFileUpload
 			} else {
 				// No Chunk Method
 				date_default_timezone_set('Asia/Shanghai');
-				$fileName = date("YmdHis");
-				$file['name']	=$fileName.'.'.JFile::getExt($file['name']);
-				$filepathImgFinal 		= JPath::clean($path->image_abs.$folder.strtolower($file['name']));
+				$fileName = date("YmdHis").floor(microtime()*1000).rand(0, 100);
+//				$file['name']	=$fileName.'.'.JFile::getExt($file['name']);
+				$filepathImgFinal 		= JPath::clean($path->image_abs.$folder.strtolower($fileName.'.'.JFile::getExt($file['name'])));
 				$filepathFolderFinal 	= JPath::clean($path->image_abs.$folder);
 				
 				
@@ -292,6 +308,13 @@ class PhocaGalleryFileUpload
 					'details' => JTEXT::_('COM_PHOCAGALLERY_ERROR_UNABLE_TO_UPLOAD_FILE') .'<br />'
 					. JText::_('COM_PHOCAGALLERY_CHECK_PERMISSIONS_OWNERSHIP'))));
 				}
+				phocagalleryimport('phocagallery.image.imagemagic');
+				$watermarkParams['create']	= 1;// Watermark
+				$watermarkParams['x'] 		= 'right';
+				$watermarkParams['y']		= 'bottom';
+				$errorMsg = '';
+				$imageMagic = PhocaGalleryImageMagic::imageMagic1($filepathImgFinal, $filepathImgFinal, null , null, null, null, $watermarkParams, 0, $errorMsg);
+				
 				
 				if ((int)$frontEnd > 0) {
 					return $file['name'];
@@ -334,11 +357,18 @@ class PhocaGalleryFileUpload
 		$tab			= JRequest::getVar( 'tab', '', '', 'int' );
 		$field			= JRequest::getVar( 'field' );
 		$errUploadMsg	= '';
-		$folderUrl 		= $folder;
+		$folderUrl		= '';
+		if (isset($folder) && $folder != '') {
+			$folderUrl	= $folder.'/'.date("Ymd");
+		}else{
+			$folderUrl	= date("Ymd");
+		}
+//		$folderUrl 		= $folder.'/'.date("Ymd");;
+		$folder			= $folder.DS.date("Ymd");
 		$tabUrl			= '';
 		$component		= JRequest::getVar( 'option', '', '', 'string' );
 		date_default_timezone_set('Asia/Shanghai');
-		$fileName = date("YmdHis");
+		$fileName = date("YmdHis").floor(microtime()*1000).rand(0, 100);
 		$file['name']	=$fileName.'.'.JFile::getExt($file['name']);
 		// In case no return value will be sent (should not happen)
 		if ($component != '' && $frontEnd == 0) {
@@ -365,7 +395,11 @@ class PhocaGalleryFileUpload
 		
 		// All HTTP header will be overwritten with js message
 		if (isset($file['name'])) {
-			$filepath = JPath::clean($path->image_abs.$folder.strtolower($file['name']));
+			$newFolder = $path->image_abs.$folder;
+			if(!JFolder::exists($newFolder)){
+				JFolder::create($newFolder,0777);
+			}
+			$filepath = JPath::clean($newFolder.strtolower($file['name']));
 
 			if (!PhocaGalleryFileUpload::canUpload( $file, $errUploadMsg, $frontEnd )) {
 				
@@ -408,11 +442,12 @@ class PhocaGalleryFileUpload
 				}
 			} else {
 				phocagalleryimport('phocagallery.image.imagemagic');
-				$watermarkParams['create']	= 0;// Watermark
-				$watermarkParams['x'] 		= 'center';
-				$watermarkParams['y']		= 'middle';
+				$watermarkParams['create']	= 1;// Watermark
+				$watermarkParams['x'] 		= 'right';
+				$watermarkParams['y']		= 'bottom';
 				$errorMsg = '';
-				$imageMagic = PhocaGalleryImageMagic::imageMagic($filepath, $filepath, null , null, $crop, null, $watermarkParams, 0, $errorMsg);
+				$filepath1 = JPath::clean($path->image_abs.$folder.'1'.strtolower($file['name']));
+				$imageMagic = PhocaGalleryImageMagic::imageMagic1($filepath, $filepath, null , null, null, null, $watermarkParams, 0, $errorMsg);
 				if ((int)$frontEnd > 0) {
 					return $file['name'];
 				}

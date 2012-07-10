@@ -20,6 +20,10 @@ class HMConfig {
 	public $css_provider2='http:////localhost:83/';
 	public $css_provider3='http:////localhost:84/';
 	
+	public $tg_url = 'http://27.115.86.10:3007/api/tg_getinfos.php?id1=';
+	public $sg_url = 'http://27.115.86.10:3008/api/sg_getinfo.php?id=';
+	public $shop_url = 'http://27.115.86.10:3008/api/shop_getinfo.php?id=';
+	
 	public function getJsProvider(){
 		$cur = rand(1, $this->js_provider_count);
 		$prop = 'js_provider'.$cur;
