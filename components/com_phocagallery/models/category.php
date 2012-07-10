@@ -21,6 +21,7 @@ class PhocagalleryModelCategory extends JModel
 	var $_total 			= null;
 	var $_context 			= 'com_phocagallery.category';
 	private $_ordering		= null;
+	protected  $_product = null;
 
 	function __construct() {
 		
@@ -614,6 +615,31 @@ class PhocagalleryModelCategory extends JModel
 			}
 		return $item;
 	}
+	
+	function getProduct()
+	{
+		if(!isset($this->_product)){
+    		
+    		$tagid = JRequest::getVar('tagid', 1, 'get', 'int');
+    		
+    		
+    		//$article_id = JRequest::getVar('id', 1, 'get', 'int');
+    		
+    		$db = $this->getDbo();
+			
+    		$sql = "select p.title,p.filename,p.pic_width,p.pic_height,p.url,p.price "
+				   ."from mall_phocagallery_products as p "
+				   ."left join mall_phocagallery_tags_products_ref as pt on pt.imgid = p.id where pt.tagid = ".$tagid." limit 0,4";
+    		
+            $db->setQuery($sql);
+
+            $product = $db->loadObjectList();
+            
+            $this->_product = $product;
+    	}
+    	return $this->_product;
+	}
+	
 	/*
 	function getFolderState($property = null) {
 		static $set;
