@@ -328,10 +328,11 @@ $img_small = $this->item->fileThumbnail_small;
         </ul>
       </div>
     </div>
-    <div class="uMayLike">
-      <h2>猜你喜欢</h2>
+    <div class="uMayLike" style="display: none">
+      <h2 >猜你喜欢</h2>
       <div class="uMayLikeList">
-        <ul>
+        <ul>     
+     <!--    
           <li>
             <div class="picWrap"><a href="#" title="" class="pic"><img src="images/info/img_5.jpg" alt="" title=""></a></div>
             <h3><a href="#" title="">【吉屋】布艺沙发巾</a></h3>
@@ -356,7 +357,7 @@ $img_small = $this->item->fileThumbnail_small;
             <div class="picWrap"><a href="#" title="" class="pic"><img src="images/info/img_9.jpg" alt="" title=""></a></div>
             <h3><a href="#" title="">【吉屋】布艺沙发巾</a></h3>
             <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
