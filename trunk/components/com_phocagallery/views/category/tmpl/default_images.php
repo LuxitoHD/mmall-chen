@@ -278,6 +278,24 @@ if (!empty($this->items)) {
   <div class="asideWrap"> 
     <div class="introInfor">
 <h2>关联商品</h2>
+<?php 
+			
+        	$product = $this->product;
+        	if(isset($product)){
+	        	foreach ($product as $item){      		
+	?>
+				  <dl>
+				    <dt><a href="<?php echo $item->url;?>" title=""><img src="<?php echo $item->filename; ?>" alt="" title="" width="<?php echo $item->pic_width; ?>" height="<?php echo $item->pic_height; ?>"></a></dt>
+				    <dd>
+				      <h3><a href="<?php echo $item->url;?>" title=""><?php echo $item->title;?></a></h3>
+				      <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data"><?php echo $item->price;?></i></span></p>
+				    </dd>
+				  </dl>
+	<?php		
+	        	}
+        	}
+?> 
+<!-- 
   <dl>
     <dt><a href="#" title=""><img src="images/info/other_0.jpg" alt="" title=""></a></dt>
     <dd>
@@ -306,6 +324,7 @@ if (!empty($this->items)) {
       <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p>
     </dd>
   </dl>
+   -->
 </div>
 
     <div class="knowledgeWrap">
