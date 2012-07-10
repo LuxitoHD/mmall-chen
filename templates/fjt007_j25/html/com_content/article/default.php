@@ -269,7 +269,7 @@ $title = $this->escape($this->item->category_title);
 				    <dt><a href="<?php echo $item->url;?>" title=""><img src="<?php echo $item->filename; ?>" alt="" title="" width="<?php echo $item->pic_width; ?>" height="<?php echo $item->pic_height; ?>"></a></dt>
 				    <dd>
 				      <h3><a href="<?php echo $item->url;?>" title=""><?php echo $item->title;?></a></h3>
-				      <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p>
+				      <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data"><?php echo $item->price;?></i></span></p>
 				    </dd>
 				  </dl>
 	<?php		
