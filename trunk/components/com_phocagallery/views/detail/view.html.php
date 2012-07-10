@@ -40,7 +40,6 @@ class PhocaGalleryViewDetail extends JView
 		$neededAccessLevels		= PhocaGalleryAccess::getNeededAccessLevels();
 		$access					= PhocaGalleryAccess::isAccess($user->authorisedLevels(), $neededAccessLevels);
 
-	
 		
 		// Information from the plugin - window is displayed after plugin action
 		$get				= array();
@@ -392,6 +391,8 @@ class PhocaGalleryViewDetail extends JView
 		
 		
 		
+	$product = $this->get("Product");
+	$this->assignRef( 'product' ,				$product);// 
 		// ASIGN
 		$this->assignRef( 'tmpl', $this->tmpl );
 		$this->assignRef( 'item', $item );

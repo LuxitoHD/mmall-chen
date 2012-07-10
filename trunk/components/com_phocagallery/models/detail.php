@@ -15,6 +15,7 @@ phocagalleryimport('phocagallery.ordering.ordering');
 
 class PhocaGalleryModelDetail extends JModel
 {
+	protected  $_product = null;
 
 	function __construct() {
 		parent::__construct();
@@ -124,6 +125,32 @@ class PhocaGalleryModelDetail extends JModel
 		}
 		
 		return true;
+	}
+	
+	
+	public function  getProduct(){
+		
+		if(!isset($this->_product)){
+    		
+    		$imgid = JRequest::getVar('id', 1, 'get', 'int');
+    		
+    		
+    		//$article_id = JRequest::getVar('id', 1, 'get', 'int');
+    		
+    		$db = $this->getDbo();
+			
+    		$sql = "select p.title,p.filename,p.pic_width,p.pic_height,p.url,p.price "
+				   ."from mall_phocagallery_products as p "
+				   ."left join mall_phocagallery_tags_products_ref as pt on pt.imgid = p.id "
+				   ."left join mall_phocagallery_tags_ref as it on it.tagid = pt.tagid where it.imgid  = ".$imgid." limit 0,5";
+    		
+            $db->setQuery($sql);
+
+            $product = $db->loadObjectList();
+            
+            $this->_product = $product;
+    	}
+    	return $this->_product;
 	}
 	
 	public function getThumbnails($id, $catid, $order) {

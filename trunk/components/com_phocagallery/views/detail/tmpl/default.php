@@ -279,6 +279,27 @@ $img_small = $this->item->fileThumbnail_small;
       <h2>关联商品</h2>
       <div class="aboutProList">
         <ul>
+        
+        
+        <?php 
+			
+        	$product = $this->product;
+        	if(isset($product)){
+	        	foreach ($product as $item){      		
+	?>
+				  <li>
+				  	<div class="picWrap"><a href="<?php echo $item->url;?>" title="" class="pic"><img src="<?php echo $item->filename; ?>" alt="" title="" width="<?php echo $item->pic_width; ?>" height="<?php echo $item->pic_height; ?>"></a></div>
+				  
+				    <h3><a href="<?php echo $item->url;?>" title="">><?php echo $item->title;?></a></h3>
+				    <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data"><?php echo $item->price;?></i></span></p>
+				    
+				  </li>
+	<?php		
+	        	}
+        	}
+?> 
+        
+        <!-- 
           <li>
             <div class="picWrap"><a href="#" title="" class="pic"><img src="images/info/img_0.jpg" alt="" title=""></a></div>
             <h3><a href="#" title="">【吉屋】布艺沙发巾</a></h3>
@@ -303,7 +324,7 @@ $img_small = $this->item->fileThumbnail_small;
             <div class="picWrap"><a href="#" title="" class="pic"><img src="images/info/img_4.jpg" alt="" title=""></a></div>
             <h3><a href="#" title="">【吉屋】布艺沙发巾</a></h3>
             <p class="price"><span class="webtxt"><i class="rmb">&yen;</i><i class="txt-data">95.00</i></span></p>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
