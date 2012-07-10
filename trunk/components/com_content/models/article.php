@@ -26,6 +26,8 @@ class ContentModelArticle extends JModelItem
 	 * @var		string
 	 */
 	protected $_context = 'com_content.article';
+	
+	protected $_product = null;
 
 	/**
 	 * Method to auto-populate the model state.
@@ -312,7 +314,7 @@ class ContentModelArticle extends JModelItem
         return false;
     }
 
-	public function getFeaturedArticle(){
+	public function &getFeaturedArticle(){
 		if($this->_featuredArticle){
 			return $this->_featuredArticle;
 		}
@@ -323,5 +325,26 @@ class ContentModelArticle extends JModelItem
 		//$this->_featuredArticle= $db->loadObjectList();
 		return $db->loadObjectList();
 	}
+	
+ 	public function  &getProduct(){
+    	if(!isset($this->_product)){
+    		
+    		$article_id = JRequest::getVar('id', 1, 'get', 'int');
+    		
+    		$db = $this->getDbo();
+			
+    		$sql = "select distinct (p.title),p.filename,p.pic_width,p.pic_height,p.url "
+				   ."from mall_phocagallery_products as p "
+				   ."left join mall_phocagallery_tags_products_ref as pt on pt.imgid = p.id "
+                   ."left join mall_phocagallery_tags_articles_ref as it on it.tagid = pt.tagid where it.imgid = ".$article_id." limit 0,4";
+    		
+            $db->setQuery($sql);
+
+            $product = $db->loadObjectList();
+            
+            $this->_product = $product;
+    	}
+    	return $this->_product;
+    }
 
 }
