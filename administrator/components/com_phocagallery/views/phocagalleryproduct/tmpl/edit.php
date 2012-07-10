@@ -68,6 +68,7 @@ JHtml::_('behavior.formvalidation');
 			// Extid is hidden - only for info if this is an external image (the filename field will be not required)
 			$formArray = array ('title', 'alias', 'catname','source', 'ordering','productid','productname','price','url',
 			'filename', 'pic_width', 'pic_height');
+			$config = new HMConfig();
 			foreach ($formArray as $value) {
 				echo '<li>'.$this->form->getLabel($value) . $this->form->getInput($value);
 				if($value=='source'){?>
@@ -78,11 +79,11 @@ JHtml::_('behavior.formvalidation');
 							if(!isNaN(b)){
 								var url = '';
 								if($('#jform_catname').val()=='团购'){
-									url = 'http://27.115.86.10:3007/api/tg_getinfo.php?id='+$('#jform_source').val();
+									url = '<?php echo $config->tg_url?>'+$('#jform_source').val();
 								}else if($('#jform_catname').val()=='闪购'){
-									url='http://27.115.86.10:3008/api/sg_getinfo.php?id='+$('#jform_source').val();
+									url='<?php echo $config->sg_url?>'+$('#jform_source').val();
 								}else{
-									url='http://27.115.86.10:3008/api/shop_getinfo.php?id='+$('#jform_source').val();
+									url='<?php echo $config->shop_url?>'+$('#jform_source').val();
 								}
 								var a ='../ajax3.php?url='+url;
 								$.ajax({
@@ -102,7 +103,8 @@ JHtml::_('behavior.formvalidation');
 											$('#jform_pic_width').val($(data).find('product').find('pic_width').text());
 											$('#jform_pic_height').val($(data).find('product').find('pic_height').text());
 										}
-											
+									},error:function(data){
+										alert('返回数据错误，请查检'+url);
 									}
 								});
 							}else{
