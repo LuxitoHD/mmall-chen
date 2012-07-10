@@ -2187,8 +2187,11 @@ window.addEvent(\'domready\', function(){
 			$this->tmpl['imageheight']['size']	= $this->tmpl['imageheight']['size'] + 18;
 			$this->tmpl['imagewidth']['size'] 	= $this->tmpl['imagewidth']['size'] + 18;
 		}
+
 		
+		$product = $this->get("Product");
 		
+		$this->assignRef( 'product' ,				$product);// Category View
 		
 		//$this->assignRef( 'params' ,			$this->params);
 		$this->assignRef( 'map',				$map);		
