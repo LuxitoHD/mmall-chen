@@ -455,7 +455,7 @@ class ContentModelCategory extends JModelList
     		
     		$db = $this->getDbo();
 			
-    		$sql = "select distinct (p.title),p.filename,p.pic_width,p.pic_height,p.url "
+    		$sql = "select distinct (p.title),p.filename,p.pic_width,p.pic_height,p.url,p.price "
 				   ."from mall_phocagallery_products as p "
 				   ."left join mall_phocagallery_tags_products_ref as pt on pt.imgid = p.id "
                    ."left join mall_phocagallery_tags_articles_ref as it on it.tagid = pt.tagid where it.imgid in ".$article_ids." limit 0,4";
