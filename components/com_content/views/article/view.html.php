@@ -38,6 +38,8 @@ class ContentViewArticle extends JView
 		$this->user		= $user;
 		
 		$this->featuredArticle	= $this->get('FeaturedArticle');
+		
+		$this->product	= $this->get('Product');
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors'))) {
