@@ -60,6 +60,8 @@ class ContentModelCategory extends JModelList
 	 * @var		array
 	 */
 	protected $_categories = null;
+	
+	protected $_product = null;
 
 	/**
 	 * Constructor.
@@ -429,4 +431,43 @@ class ContentModelCategory extends JModelList
 		$this->_featuredArticle= $db->loadObjectList('id');
 		return $this->_featuredArticle;
 	}
+	
+	public function  getProduct(){
+    	if(!isset($this->_product)){
+    		
+    		if($this->_item){
+    			$article_ids = "(";
+    			$length = count($this->_articles);
+    			$i = 0;
+	    		foreach ($this->_articles as $item) {
+	    			if($i == $length-1){
+	    				$article_ids.= $item->id;
+	    			}else{
+	    				$article_ids.= $item->id.',';
+	    			}
+	    			$i++;
+	    		}
+	    		$article_ids .= ")";
+    		}
+    		
+    		
+    		//$article_id = JRequest::getVar('id', 1, 'get', 'int');
+    		
+    		$db = $this->getDbo();
+			
+    		$sql = "select distinct (p.title),p.filename,p.pic_width,p.pic_height,p.url "
+				   ."from mall_phocagallery_products as p "
+				   ."left join mall_phocagallery_tags_products_ref as pt on pt.imgid = p.id "
+                   ."left join mall_phocagallery_tags_articles_ref as it on it.tagid = pt.tagid where it.imgid in ".$article_ids." limit 0,4";
+    		
+            $db->setQuery($sql);
+
+            $product = $db->loadObjectList();
+            
+            $this->_product = $product;
+    	}
+    	return $this->_product;
+    }
+	
+	
 }
