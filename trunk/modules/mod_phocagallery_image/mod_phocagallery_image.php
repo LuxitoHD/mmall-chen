@@ -652,9 +652,15 @@ if ($images) {
 	$i = 0;
 	foreach($imagesArray as $valueImages){
 		
-		$medium_img = PhocaGalleryFileThumbnail::getThumbnailName($valueImages->filename, 'media');
+		$medium_img = PhocaGalleryFileThumbnail::getThumbnailName($valueImages->filename, 'medium');
+			
+		$medium_img_Link		= JURI::base(true) . '/' . $medium_img->rel;
 		
-		$output[$i] = '<li><a href="'.JRoute::_("index.php?option=com_phocagallery&view=detail&catid=".$valueImages->catid."&id=".$valueImages->id."&Itemid=481").'" width="140" height="134" title="" class="pic"><img src="'.$medium_img.'" 
+		/*if (JFile::exists($medium_img->abs)) {
+			$medium_img_m = $medium_img_Link;//当前缩略大图片
+		}*/
+		
+		$output[$i] = '<li><a href="'.JRoute::_("index.php?option=com_phocagallery&view=detail&catid=".$valueImages->catid."&id=".$valueImages->id."&Itemid=481").'" width="140" height="134" title="" class="pic"><img src="'.$medium_img_Link.'"  
 
 alt="" title=""></a></li>';
 		$i++;
