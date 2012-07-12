@@ -4,7 +4,7 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 
 <div class="fashion" style="margin-top:15px">
-      <h2 class="hdTitle">潮品</h2>
+      <h2 class="hdTitle" style="font-weight:bold;font-size:18px;" >潮品</h2>
       <div class="fashionList">
         <ul>
         
