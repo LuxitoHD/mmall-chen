@@ -165,6 +165,9 @@ class ContentModelArticles extends JModelList
 		// Join over the users for the author.
 		$query->select('ua.name AS author_name');
 		$query->join('LEFT', '#__users AS ua ON ua.id = a.created_by');
+		
+		$query->select('tg.tag AS tag');
+		$query->join('LEFT', '#__phocagallery_tags_articles_view AS tg ON tg.imgid = a.id');
 
 		// Filter by access level.
 		if ($access = $this->getState('filter.access')) {

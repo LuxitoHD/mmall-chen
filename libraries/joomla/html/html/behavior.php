@@ -139,7 +139,7 @@ abstract class JHtmlBehavior
 		// Include MooTools framework
 		self::framework();
 
-		JHtml::_('script', 'system/validate.js', true, true);
+		JHtml::_('script', 'system/validate-uncompressed.js', true, true);
 		self::$loaded[__METHOD__] = true;
 	}
 

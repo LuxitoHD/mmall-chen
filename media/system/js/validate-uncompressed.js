@@ -116,8 +116,12 @@ var JFormValidator = new Class({
 			else if (!(el.get('value'))) {
 				this.handleResponse(false, el);
 				return false;
+			}else if(el.get('value').length>100){
+				this.handleResponse(false, el);
+				return false;
 			}
 		}
+		
 
 		// Only validate the field if the validate class is set
 		var handler = (el.className && el.className.search(/validate-([a-zA-Z0-9\_\-]+)/) != -1) ? el.className.match(/validate-([a-zA-Z0-9\_\-]+)/)[1] : "";

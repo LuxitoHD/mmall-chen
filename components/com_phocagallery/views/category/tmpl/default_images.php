@@ -160,7 +160,7 @@ if (!empty($this->items)) {
 
 				
 				<div class="share">
-					<a  href="javascript:void(0)" onclick="test_love(<?php echo $value->id; ?>)" title="" class="ico_love"  id="lid<?php echo $value->id;?>"><?php echo $value->loves;?></a>
+					<a  href="javascript:void(0)"  title="" class="ico_love"  id="lid<?php echo $value->id;?>"><?php echo $value->hits;?></a>
 					<span id="loading_l<?php echo $value->id;?>" style="display:none;"><img src="images/info/loader.gif"></span>
 					<a href="javascript:void(0)" onclick="test_good(<?php echo $value->id; ?>)" title="" class="ico_like"   id="gid<?php echo $value->id;?>"><?php echo $value->goods;?></a>
 					<span id="loading_g<?php echo $value->id;?>" style="display:none;"><img src="images/info/loader.gif"></span>
@@ -177,99 +177,6 @@ if (!empty($this->items)) {
 }
 ?>
       
-      <!-- 
-      
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_0.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_1.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_2.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_3.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_4.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_5.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_6.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_7.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_8.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_9.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_10.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_11.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_12.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_13.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_14.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_15.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_16.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，淡淡的简约，蛮有现代气息。</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        <div class="items">
-          <div class="pic"><a href="#" title=""><img src="images/info/news_item_16.jpg" alt="" title=""></a></div>
-          <p class="desc"><a href="#" title="">很喜欢这个装修风格，清新的色调，赞～</a></p>
-          <div class="share"><a href="#" title="" class="ico_love">1023</a><a href="#" title="" class="ico_like">502</a><a href="#" title="" class="ico_hate">21</a><a a="" href="#" title="" class="ico_share">分享</a></div>
-        </div>
-        -->
       </div>
        
       <div id="page-nav"> <a href="../pages/2.html"></a> </div>
@@ -330,10 +237,23 @@ if (!empty($this->items)) {
     <div class="knowledgeWrap">
       <h2>装修小百科</h2>
       <div class="knowledgeCon">
-        <h3>淋浴柱安装要点</h3>
-        <p class="desc">淋浴柱安装一定要注意3个高度，我们在装修阶段要确认的是淋浴柱出水口离地的高度，即图上的H3，这个高度要根据淋浴柱的高度来确认。要使淋浴柱安装后，淋浴蓬头不至于顶上铝扣板吊顶，也就是要考虑图上H1的尺寸，另外还要使淋浴蓬头离地的高度可以使家中最高的成员很舒服的站在下面，也就是图上H2和家中最高的身高的关系。所以在改水之前就要把淋浴柱的型号确定了才能准确确定H3的高度。</p>
-        <div class="pic"><img src="images/info/img01.jpg" alt="" title=""></div>
-        <div class="other"><a href="#" title="">更多&gt;&gt;</a></div>
+        <h3>
+        <?php 
+        	require_once JPATH_SITE . '/components/com_content/helpers/route.php';
+        	$link = JRoute::_(ContentHelperRoute::getArticleRoute($this->xbk->id, $item->catid));
+        	echo '<a title="" href="'.$link.'">'.$this->xbk->title.'</a>';
+        ?></h3>
+        <p class="desc"><?php echo $this->xbk->introtext;?></p>
+        <div class="pic">
+        	<?php 
+        		$images = json_decode($this->xbk->images);
+        		if($images->image_intro!=null){
+        			echo '<img style="width:168px;" src="'.$images->image_intro.'" alt="'.$this->xbk->title.'" title="'.$this->xbk->title.'">';
+        		}
+        	?>
+        	
+        </div>
+        <div class="other"><a href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($this->xbk->catid)); ?>" title="">更多&gt;&gt;</a></div>
       </div>
     </div>
     <div class="appWrap">

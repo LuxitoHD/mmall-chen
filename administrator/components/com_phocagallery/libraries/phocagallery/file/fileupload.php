@@ -16,7 +16,7 @@ phocagalleryimport( 'phocagallery.file.fileuploadfront' );
 class PhocaGalleryFileUpload
 {
 	public function realMultipleUpload( $frontEnd = 0) {
-		
+		date_default_timezone_set('Asia/Shanghai');
 		$paramsC 		= JComponentHelper::getParams('com_phocagallery');
 		$chunkMethod 	= $paramsC->get( 'multiple_upload_chunk', 0 );
 		$uploadMethod 	= $paramsC->get( 'multiple_upload_method', 1 );
@@ -343,7 +343,7 @@ class PhocaGalleryFileUpload
 	//	$chunkMethod 	= $paramsC->get( 'multiple_upload_chunk', 0 );
 	//	$uploadMethod 	= $paramsC->get( 'multiple_upload_method', 1 );
 //		strtotime("now");
-		
+		date_default_timezone_set('Asia/Shanghai');
 		$app			= JFactory::getApplication();
 		JRequest::checkToken( 'request' ) or jexit( 'ERROR: '. JTEXT::_('COM_PHOCAGALLERY_INVALID_TOKEN'));
 		JResponse::allowCache(false);

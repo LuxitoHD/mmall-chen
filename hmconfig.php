@@ -24,6 +24,8 @@ class HMConfig {
 	public $sg_url = 'http://27.115.86.10:3008/api/sg_getinfo.php?id=';
 	public $shop_url = 'http://27.115.86.10:3008/api/shop_getinfo.php?id=';
 	
+	public $sleep = 5;
+	
 	public function getJsProvider(){
 		$cur = rand(1, $this->js_provider_count);
 		$prop = 'js_provider'.$cur;

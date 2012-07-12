@@ -2191,8 +2191,10 @@ window.addEvent(\'domready\', function(){
 		
 		$product = $this->get("Product");
 		
-		$this->assignRef( 'product' ,				$product);// Category View
+		$xbk			= $this->get('Items');
 		
+		$this->assignRef( 'product' ,				$product);// Category View
+		$this->assignRef('xbk', $xbk[0]);
 		//$this->assignRef( 'params' ,			$this->params);
 		$this->assignRef( 'map',				$map);		
 		$this->assignRef( 'items' ,				$items);// Category View

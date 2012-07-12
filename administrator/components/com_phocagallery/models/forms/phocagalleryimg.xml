@@ -6,7 +6,7 @@
 		<field name="id" type="text" default="0" label="JGLOBAL_FIELD_ID_LABEL"
 			required="true" readonly="true" class="readonly" />
 
-		<field name="title" type="text" class="inputbox" size="40"
+		<field name="title" type="text" class="inputbox" size="40" 
 			label="COM_PHOCAGALLERY_FIELD_TITLE_LABEL" description="COM_PHOCAGALLERY_FIELD_TITLE_DESC"
 			required="true" />
 
@@ -79,7 +79,6 @@
 
 		<field name="hits" type="Text" class="inputbox" size="6"
 			label="COM_PHOCAGALLERY_FIELD_HITS" description="COM_PHOCAGALLERY_FIELD_HITS_DESC" />
-		<field name="loves" type="Text" class="inputbox" size="6" label="热爱人数" description="热爱人数-" />
 
 		<field name="goods" type="Text" class="inputbox" size="6" label="喜欢人数" description="喜欢人数-" />
 

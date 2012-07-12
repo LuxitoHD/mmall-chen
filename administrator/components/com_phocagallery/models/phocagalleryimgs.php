@@ -148,7 +148,8 @@ class PhocaGalleryCpModelPhocaGalleryImgs extends JModelList
 		$query->select('v.average AS ratingavg');
 		$query->join('LEFT', '#__phocagallery_img_votes_statistics AS v ON v.imgid = a.id');
 		
-		$query->join('LEFT', '#__phocagallery_tags_ref AS tg ON tg.imgid = a.id');
+		$query->select('tg.tag AS tag');
+		$query->join('LEFT', '#__phocagallery_tags_img_view AS tg ON tg.imgid = a.id');
 
 		// Filter by access level.
 		if ($access = $this->getState('filter.access')) {

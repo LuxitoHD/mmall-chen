@@ -12,7 +12,7 @@ defined('_JEXEC') or die();
 jimport('joomla.application.component.model');
 phocagalleryimport('phocagallery.ordering.ordering');
 phocagalleryimport('phocagallery.file.filethumbnail');
-
+require_once JPATH_SITE . '/components/com_content/models/articles.php';
 class PhocagalleryModelCategory extends JModel
 {
 	var $_id 				= null;
@@ -68,6 +68,46 @@ class PhocagalleryModelCategory extends JModel
 		}
 		return $this->_data;
 	 }
+	 
+	function getItems()
+	{
+		//$params = $this->getState()->get('params');
+		//$limit = $this->getState('list.limit');
+		$limit = 5;
+
+		if ($this->_articles === null ) {
+			$model = JModel::getInstance('Articles', 'ContentModel', array('ignore_request' => true));
+			$model->setState('params', JFactory::getApplication()->getParams());
+			$model->setState('filter.category_id', 83);
+			$model->setState('filter.published', 1);
+			$model->setState('filter.access', $this->getState('filter.access'));
+			$model->setState('filter.language', $this->getState('filter.language'));
+			$model->setState('list.ordering', 'a.id');
+			$model->setState('list.start', 0);
+			$model->setState('list.limit', 1);
+			$model->setState('list.direction', 'DESC');
+			$model->setState('list.filter', $this->getState('list.filter'));
+			// filter.subcategories indicates whether to include articles from subcategories in the list or blog
+			$model->setState('filter.subcategories', true);
+			$model->setState('filter.max_category_levels', $this->getState('filter.max_category_levels'));
+			$model->setState('list.links', $this->getState('list.links'));
+
+			if ($limit >= 0) {
+				$this->_articles = $model->getItems();
+
+				if ($this->_articles === false) {
+					$this->setError($model->getError());
+				}
+			}
+			else {
+				$this->_articles=array();
+			}
+
+			//$this->_pagination = $model->getPagination();
+		}
+
+		return $this->_articles;
+	}
 
 	function getTotal($rightDisplayDelete = 0, $tagId) {
 		if (empty($this->_total)) {

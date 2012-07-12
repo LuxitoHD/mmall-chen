@@ -12,7 +12,8 @@
 	}
 	
 	require_once JPATH_BASE.'/includes/framework.php';
-	
+	require_once JPATH_BASE.'/hmconfig.php';
+	$config = new HMConfig();
 	
 	/*$para = JRequest::getVar('para');
 	$id = JRequest::getVar('id');
@@ -22,20 +23,20 @@ $para = $_POST['para'];
 
 	$id = (int)$id;
 	if($para == "good"){
-		//Ï²»¶²Ù×÷
-		echo goodsAction($id);
+		//Ï²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		echo goodsAction($id,$config);
 	}elseif($para == "bad"){
-		//²»Ï²»¶²Ù×÷
-		echo badsAction($id);
+		//ï¿½ï¿½Ï²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		echo badsAction($id,$config);
 	}elseif($para == "love"){
-		echo lovesAction($id);
+		echo lovesAction($id,$config);
 	}
 //----------------------------	
 	/*
-	 * Ï²»¶ÈËÊý×Ô¶¯¼ÓÒ»²Ù×÷
+	 * Ï²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½
 	 */
-	function goodsAction($id = 0){
-		sleep(4);
+	function goodsAction($id = 0,$config){
+		sleep($config->sleep);
 		$db = JFactory::getDbo();
 	    $query_c = "update #__content set goods = goods +1 where id = ".$id;
 			
@@ -52,10 +53,10 @@ $para = $_POST['para'];
 		}
 	}
 	/*
-	 * ²»Ï²»¶ÈËÊý×Ô¶¯¼ÓÒ»²Ù×÷
+	 * ï¿½ï¿½Ï²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½
 	 */
-	function badsAction($id = 0){
-		sleep(4);
+	function badsAction($id = 0,$config){
+		sleep($config->sleep);
 		$db = JFactory::getDbo();
 	    $query_c = "update #__content set bads = bads +1 where id = ".$id;
 			
@@ -72,10 +73,10 @@ $para = $_POST['para'];
 	}
 
 	/*
-	 * °®ÈËÊý×Ô¶¯¼ÓÒ»²Ù×÷
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½
 	 */
-	function lovesAction($id = 0){
-		sleep(4);
+	function lovesAction($id = 0,$config){
+		sleep($config->sleep);
 		$db = JFactory::getDbo();
 	    $query_c = "update #__content set loves = loves +1 where id = ".$id;
 			
