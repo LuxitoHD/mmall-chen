@@ -88,7 +88,7 @@ echo '		<dl class="pic_text">';
 echo '      	<dt><img title="'.$this->lead_items->title.'" alt="'.$this->lead_items->title.'" src="'.$images->image_intro.'"></dt>';
 echo '        	<dd>';
 echo '         		<h3><a title="" href="'.$link.'">'.$this->lead_items->title.'</a></h3>';
-echo '          	<p class="desc">'.cut_str($this->lead_items->introtext,20,0,'UTF-8').'……<a title="查看" href="'.$link.'">[查看]</a></p>';
+echo '          	<p class="desc">'.cut_str(strip_tags($this->lead_items->introtext),20,0,'UTF-8').'……<a title="查看" href="'.$link.'">[查看]</a></p>';
 echo '        	</dd>';
      //  echo $this->lead_items->title;
      
@@ -112,6 +112,8 @@ echo '	<div id="js_focusWrap" class="focusWrap">
       <div class="focus_pics" id="js_focus_pics">
         <ul style="width: 2100px; left: 0px;">';
 			foreach ($this->images as $i => $image){
+				if($i==6)
+					break;
 				echo '<li><a href="#"><img title="" alt="" style="width:700px;" src="'.$baseUri.$image->path_relative.'"></a></li>';
 			}
 //          <li><a href="#"><img title="" alt="" style="width:700px;" src="/mmall/images/phocagallery/style/european/20120404033.jpg"></a></li>
@@ -120,11 +122,20 @@ echo '	<div id="js_focusWrap" class="focusWrap">
 echo'        </ul>
       </div>
       <div class="focus_handle" id="js_focus_handle">
-        <ul>
-          <li class="on"><a href="###">1</a></li>
-          <li class=""><a href="###">2</a></li>
-          <li class=""><a href="###">3</a></li>
-        </ul>
+        <ul>';
+foreach ($this->images as $i => $image){
+	$j = $i+1;
+	if($i==6){
+		break;
+	}
+	if($i==0)
+		echo ' <li class="on"><a href="###">1</a></li>';
+	else {
+		echo '<li class=""><a href="###">'.$j.'</a></li>';
+	}
+}      	
+
+echo'        </ul>
       </div>
       <a hidefocus="true" id="prev" class="prev" title="" href="###">&lt;</a><a hidefocus="true" id="next" class="next" title="" href="###">&gt;</a> </div>';
 echo '</div>';

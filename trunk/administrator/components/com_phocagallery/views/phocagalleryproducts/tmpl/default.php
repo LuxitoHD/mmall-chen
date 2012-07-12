@@ -73,6 +73,9 @@ $saveOrder	= 'a.ordering';
 					<th width="10%"  class="title">
 						<?php echo JHTML::_('grid.sort',  'COM_PHOCAGALLERY_FIELD_SOURCE_LABEL1', 'source',$listDirn, $listOrder ); ?>
 					</th>
+					<th width="15%"  class="title">
+						<?php echo '标签'; ?>
+					</th>
 					
 					<th width="10%"  class="title">
 						<?php echo JHTML::_('grid.sort',  'COM_PHOCAGALLERY_FIELD_SOURCE_LABEL2', 'catname',$listDirn, $listOrder ); ?>
@@ -215,6 +218,10 @@ echo '</td>';
 
 echo '<td class="center">';
 echo $this->escape($item->source);
+echo '</td>';
+
+echo '<td class="center">';
+echo $item->tag;
 echo '</td>';
 
 echo '<td class="center">';

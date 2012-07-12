@@ -44,7 +44,8 @@ defined('_JEXEC') or die;
      	}
      }
 ?>
-<div class="waterSupposed_body">
+<?php $firstItem = $list[0];?>
+<div class="waterSupposed">
 	<?php foreach ($list as $item) : ?>
 	    <dl>
 		    <?php $images = json_decode($item->images);?>
@@ -54,8 +55,8 @@ defined('_JEXEC') or die;
 		    <dd>
 		   	<h3>
 		   	<?php if ($params->get('link_titles') == 1) : ?>
-			<a class="mod-articles-category-title <?php echo $item->active; ?>" href="<?php echo $item->link; ?>">
-			<?php echo $item->title; ?>
+			<a class="mod-articles-category-title <?php echo $item->active; ?>" title="<?php echo $item->title?>" href="<?php echo $item->link; ?>">
+			<?php echo cut_str1($item->title,20,0,'UTF-8'); ?>
 	        <?php if ($item->displayHits) :?>
 				<span class="mod-articles-category-hits">
 	            (<?php echo $item->displayHits; ?>)  </span>
@@ -70,10 +71,11 @@ defined('_JEXEC') or die;
 	        </h3>
 	
 			<p class="mod-articles-category-introtext">
-				<?php echo htmlspecialchars(cut_str1($item->introtext,100,0,'UTF-8')); ?>
+				<?php echo htmlspecialchars(cut_str1(strip_tags($item->introtext),100,0,'UTF-8')); ?>
 			</p>
 	
 			</dd>
 		</dl>
 	<?php endforeach; ?>
+	<div class="other"><a class="btn-link" title="更多" href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($firstItem->parent_id)); ?>">更多&gt;&gt;</a></div>
 </div>

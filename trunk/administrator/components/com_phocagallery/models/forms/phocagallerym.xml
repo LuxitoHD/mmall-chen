@@ -8,7 +8,7 @@
 		<field name="alias" type="text" class="inputbox" size="40"
 			label="COM_PHOCAGALLERY_FIELD_ALIAS_LABEL" description="COM_PHOCAGALLERY_FIELD_ALIAS_M_DESC" />
 
-		<field name="catid" type="phocagallerycategory" label="COM_PHOCAGALLERY_FIELD_CATEGORY_LABEL"
+		<field name="catid" type="phocagallerycategory" label="COM_PHOCAGALLERY_FIELD_CATEGORY_LABEL" required="true"
 			description="COM_PHOCAGALLERY_FIELD_CATEGORY_DESC" class="inputbox" />
 
 		<field name="published" type="list"

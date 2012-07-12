@@ -68,6 +68,9 @@ $saveOrder	= $listOrder == 'a.ordering';
 				<th width="5%">
 					<?php echo JHtml::_('grid.sort', 'JFEATURED', 'a.featured', $listDirn, $listOrder, NULL, 'desc'); ?>
 				</th>
+				<th width="15%"  class="title">
+					<?php echo '标签'; ?>
+				</th>
 				<th width="10%">
 					<?php echo JHtml::_('grid.sort', 'JCATEGORY', 'category_title', $listDirn, $listOrder); ?>
 				</th>
@@ -130,6 +133,9 @@ $saveOrder	= $listOrder == 'a.ordering';
 				</td>
 				<td class="center">
 					<?php echo JHtml::_('contentadministrator.featured', $item->featured, $i, $canChange); ?>
+				</td>
+				<td class="center">
+					<?php echo $this->escape($item->tag); ?>
 				</td>
 				<td class="center">
 					<?php echo $this->escape($item->category_title); ?>

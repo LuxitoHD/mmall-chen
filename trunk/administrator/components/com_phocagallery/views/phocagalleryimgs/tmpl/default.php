@@ -77,6 +77,10 @@ if (isset($this->tmpl['notapproved']->count) && (int)$this->tmpl['notapproved']-
 					</th>
 					
 					<th width="15%"  class="title">
+						<?php echo '标签'; ?>
+					</th>
+					
+					<th width="15%"  class="title">
 						<?php echo JHTML::_('grid.sort',  'COM_PHOCAGALLERY_CATEGORY', 'category_id',$listDirn, $listOrder ); ?>
 					</th>
 					<th width="10%"  class="title">
@@ -210,12 +214,18 @@ echo '<td class="center">'. JHtml::_('jgrid.published', $item->published, $i, 'p
 echo '<td class="center">'. PhocaGalleryJGrid::approved( $item->approved, $i, 'phocagalleryimgs.', $canChange) . '</td>';
 
 echo '<td class="center">';
+echo $item->tag;
+echo '</td>';
+
+echo '<td class="center">';
 if ($canEditCat) {
 	echo '<a href="'. JRoute::_($linkCat).'">'. $this->escape($item->category_title).'</a>';
 } else {
 	echo $this->escape($item->category_title);
 }
 echo '</td>';
+
+
 
 echo '<td class="center">';
 echo $this->escape($item->source);

@@ -89,7 +89,7 @@ $img_small = $this->item->fileThumbnail_small;
 					<!--<span class="BSHARE_COUNT bshare-share-count">0</span>-->
 			</div>
 			<div class="share" style="width:20%">
-				<a  href="javascript:void(0)" onclick="test_love(<?php echo $this->item->id; ?>)" title="" class="ico_love"  id="loves_id"></a>
+				<a  href="javascript:void(0)"  title="" class="ico_love"  id="loves_id"></a>
 				<span id="loading_l" style="display:none;"><img src="images/info/loader.gif"></span>
 				<a href="javascript:void(0)" onclick="test_good(<?php echo $this->item->id; ?>)" title="" class="ico_like"  id="goods_id"></a>
 				<span id="loading_g" style="display:none;"><img src="images/info/loader.gif"></span>

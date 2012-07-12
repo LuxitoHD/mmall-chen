@@ -133,7 +133,7 @@ $title = $this->escape($this->item->category_title);
 			<span class="txt-data"><?php $keyword = $this->item->metakey;echo $keyword; ?></span>
 		  </div>
           <div class="share">
-          			<a  href="javascript:void(0)" onclick="test_love(<?php echo $this->item->id; ?>)" title="" class="ico_love"  id="lid<?php echo $this->item->id;?>"><?php echo $this->item->loves;?></a>
+          			<a  href="javascript:void(0)" title="" class="ico_love"  id="lid<?php echo $this->item->id;?>"><?php echo $this->item->hits;?></a>
 					<span id="loading_l<?php echo $this->item->id;?>" style="display:none;"><img src="images/info/loader.gif"></span>
 					<a href="javascript:void(0)" onclick="test_good(<?php echo $this->item->id; ?>)" title="" class="ico_like"   id="gid<?php echo $this->item->id;?>"><?php echo $this->item->goods;?></a>
 					<span id="loading_g<?php echo $this->item->id;?>" style="display:none;"><img src="images/info/loader.gif"></span>

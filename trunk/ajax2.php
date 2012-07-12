@@ -12,7 +12,8 @@
 	}
 	
 	require_once JPATH_BASE.'/includes/framework.php';
-	
+	require_once JPATH_BASE.'/hmconfig.php';
+	$config = new HMConfig();
 	
 	/*$para = JRequest::getVar('para');
 	$id = JRequest::getVar('id');
@@ -23,19 +24,19 @@ $para = $_POST['para'];
 	$id = (int)$id;
 	if($para == "good"){
 		//喜欢操作
-		echo goodsAction($id);
+		echo goodsAction($id,$config);
 	}elseif($para == "bad"){
 		//不喜欢操作
-		echo badsAction($id);
+		echo badsAction($id,$config);
 	}elseif($para == "love"){
-		echo lovesAction($id);
+		echo lovesAction($id,$config);
 	}
 //----------------------------	
 	/*
 	 * 喜欢人数自动加一操作
 	 */
-	function goodsAction($id = 0){
-		sleep(4);
+	function goodsAction($id = 0,$config){
+		sleep($config->sleep);
 		$db = JFactory::getDbo();
 	    $query_c = "update #__phocagallery set goods = goods +1 where id = ".$id;
 			
@@ -54,8 +55,8 @@ $para = $_POST['para'];
 	/*
 	 * 不喜欢人数自动加一操作
 	 */
-	function badsAction($id = 0){
-		sleep(4);
+	function badsAction($id = 0,$config){
+		sleep($config->sleep);
 		$db = JFactory::getDbo();
 	    $query_c = "update #__phocagallery set bads = bads +1 where id = ".$id;
 			
@@ -74,8 +75,8 @@ $para = $_POST['para'];
 	/*
 	 * 爱人数自动加一操作
 	 */
-	function lovesAction($id = 0){
-		sleep(4);
+	function lovesAction($id = 0,$config){
+		sleep($config->sleep);
 		$db = JFactory::getDbo();
 	    $query_c = "update #__phocagallery set loves = loves +1 where id = ".$id;
 			

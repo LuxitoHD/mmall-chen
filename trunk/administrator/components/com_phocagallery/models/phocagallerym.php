@@ -342,6 +342,7 @@ class PhocaGalleryCpModelPhocaGalleryM extends JModelAdmin
 						$datam['published']		= $data['published'];
 						$datam['catid']			= $category_id;
 						$datam['filename']		= $storedfilename;
+						$datam['source']		= $data['source'];
 						$datam['approved']		= $data['approved'];
 						$datam['language']		= $data['language'];
 						if ($data['title']	!= '') {
@@ -426,57 +427,57 @@ class PhocaGalleryCpModelPhocaGalleryM extends JModelAdmin
 		$relativePath 	= str_replace($origPathServer, '', $fullPath);	
 		
 		// Category doesn't exist
-		if ( $id == -1 ) {
-		  $row =& $this->getTable('phocagalleryc');
-		  $row->published 	= $data['published'];
-		  $row->approved	= $data['approved'];
-		  $row->language	= $data['language'];
-		  $row->parent_id 	= $parentId;
-		  $row->title 		= $categoryName;
-		  
-		  // Create the timestamp for the date
-		  $row->date 		= gmdate('Y-m-d H:i:s');
-		 // $row->alias 		= PhocaGalleryText::getAliasName($categoryName);
-		  $row->userfolder	= ltrim(str_replace(DS, '/', JPath::clean($relativePath )), '/');
-		  $row->ordering 	= $row->getNextOrder( "parent_id = " . $this->_db->Quote($row->parent_id) );				
-		
-		  if (!$row->check()) {
-			JError::raiseError(500, $row->getError('Check Problem') );
-		  }
-
-		  if (!$row->store()) {
-			JError::raiseError(500, $row->getError('Store Problem') );
-		  }
-		  
-		  $category 			= new JObject();
-		  $category->title 		= $categoryName ;
-		  $category->parent_id 	= $parentId;
-		  $category->id 		= $row->id;
-		  $totalresult->category_count++;
-		  $id = $category->id;
-		  $existingCategories[] = &$category ;
-		  $this->setCategoryCount(1);//This subcategory was added
-		}
+//		if ( $id == -1 ) {
+//		  $row =& $this->getTable('phocagalleryc');
+//		  $row->published 	= $data['published'];
+//		  $row->approved	= $data['approved'];
+//		  $row->language	= $data['language'];
+//		  $row->parent_id 	= $parentId;
+//		  $row->title 		= $categoryName;
+//		  
+//		  // Create the timestamp for the date
+//		  $row->date 		= gmdate('Y-m-d H:i:s');
+//		 // $row->alias 		= PhocaGalleryText::getAliasName($categoryName);
+//		  $row->userfolder	= ltrim(str_replace(DS, '/', JPath::clean($relativePath )), '/');
+//		  $row->ordering 	= $row->getNextOrder( "parent_id = " . $this->_db->Quote($row->parent_id) );				
+//		
+//		  if (!$row->check()) {
+//			JError::raiseError(500, $row->getError('Check Problem') );
+//		  }
+//
+//		  if (!$row->store()) {
+//			JError::raiseError(500, $row->getError('Store Problem') );
+//		  }
+//		  
+//		  $category 			= new JObject();
+//		  $category->title 		= $categoryName ;
+//		  $category->parent_id 	= $parentId;
+//		  $category->id 		= $row->id;
+//		  $totalresult->category_count++;
+//		  $id = $category->id;
+//		  $existingCategories[] = &$category ;
+//		  $this->setCategoryCount(1);//This subcategory was added
+//		}
 		
 		
 
 		// Add all images from this folder
-		$totalresult->image_count += $this->_addAllImagesFromFolder( $existingImages, $id, $path, $relativePath, $data );
+		$totalresult->image_count += $this->_addAllImagesFromFolder( $existingImages, $parentId, $path, $relativePath, $data );
 		$this->setImageCount($totalresult->image_count);
 		
 		// Do sub folders
 		$parentId 		= $id;		
 		$folderList 	= JFolder::folders( $path, $filter = '.', $recurse = false, $fullpath = true, $exclude = array('thumbs') );		
 		// Iterate over the folders if they exist
-		if ($folderList !== false) {
-			foreach ($folderList as $folder) {
-				//$this->setCategoryCount(1);//This subcategory was added
-				$folderName = $relativePath .'/' . str_replace($origPathServer, '', $folder);
-				$result = $this->_createCategoriesRecursive( $origPathServer, $folder, $existingCategories, $existingImages, $id , $data);
-				$totalresult->image_count += $result->image_count ;
-				$totalresult->category_count += $result->category_count ;
-			}
-		}
+//		if ($folderList !== false) {
+//			foreach ($folderList as $folder) {
+//				//$this->setCategoryCount(1);//This subcategory was added
+//				$folderName = $relativePath .'/' . str_replace($origPathServer, '', $folder);
+//				$result = $this->_createCategoriesRecursive( $origPathServer, $folder, $existingCategories, $existingImages, $id , $data);
+//				$totalresult->image_count += $result->image_count ;
+//				$totalresult->category_count += $result->category_count ;
+//			}
+//		}
 		return $totalresult ;
 	}
 

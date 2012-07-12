@@ -40,7 +40,7 @@ JHtml::_('behavior.formvalidation');
 		
 		<ul class="adminformlist">
 			<?php 
-			$formArray = array ('title', 'alias', 'link_ext','is_cy','tag_cat', 'filename','link_cat', 'ordering');
+			$formArray = array ('title', 'alias','hits', 'link_ext','is_cy','tag_cat', 'filename','link_cat', 'ordering');
 			foreach ($formArray as $value) {
 				echo '<li>'.$this->form->getLabel($value) . $this->form->getInput($value).'</li>' . "\n";
 			} ?>

@@ -80,6 +80,9 @@ $saveOrder	= 'a.ordering';
 			<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_LANGUAGE', 'a.language', $listDirn, $listOrder); ?>
 		</th> */ ?>
 		<th width="1%" nowrap="nowrap">
+			<?php echo JHtml::_('grid.sort', '点击数', 'a.hits', $listDirn, $listOrder); ?>
+		</th>
+		<th width="1%" nowrap="nowrap">
 			<?php echo JHtml::_('grid.sort', 'COM_PHOCAGALLERY_ID', 'a.id', $listDirn, $listOrder); ?>
 		</th>
 		
@@ -184,7 +187,7 @@ echo '</td>';
 	}
 	?>
 </td> */ ?>
-	
+	<td class="center"><?php echo (int) $item->hits; ?></td>
 	<td class="center"><?php echo (int) $item->id; ?></td>
 </tr>
 <?php } ?>
