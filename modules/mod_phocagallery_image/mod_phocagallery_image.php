@@ -654,7 +654,7 @@ if ($images) {
 		
 		$medium_img = PhocaGalleryFileThumbnail::getThumbnailName($valueImages->filename, 'medium');
 			
-		$medium_img_Link		= JURI::base(true) . '/' . $medium_img->rel;
+		$medium_img_Link		=  $medium_img->rel;
 		
 		/*if (JFile::exists($medium_img->abs)) {
 			$medium_img_m = $medium_img_Link;//当前缩略大图片
