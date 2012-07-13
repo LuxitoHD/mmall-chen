@@ -8,7 +8,7 @@ if ($this->tmpl['phocagallerywidth'] != '') {
 	}
 	echo '<div id="phocagallery" style="width:'. $this->tmpl['phocagallerywidth'].'px;'.$centerPage.'" class="pg-categories-view'.$this->params->get( 'pageclass_sfx' ).'">';
 } else {
-	echo '<div id="phocagallery" class="pg-categories-view'.$this->params->get( 'pageclass_sfx' ).'">';
+	echo '<div id="content">';
 }
 
 if ( $this->params->get( 'show_page_heading' ) ) { 
@@ -321,3 +321,4 @@ echo '</div>';
 
 echo '</div>';
 echo PhocaGalleryUtils::footer();
+
