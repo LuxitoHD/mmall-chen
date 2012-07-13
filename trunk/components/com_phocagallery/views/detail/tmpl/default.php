@@ -11,12 +11,13 @@ $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/j
 //$document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery.photos.js');
 $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/underscore-1.3.1.min.js');
 //css
+/*
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/base.css');
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/global.css');
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/info.css');
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/layout.css');
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/reset.css');
-
+*/
 $img_large = $this->item->fileThumbnail_large;
 $img_small = $this->item->fileThumbnail_small;
 ?>
