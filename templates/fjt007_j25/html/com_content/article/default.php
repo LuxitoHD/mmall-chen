@@ -16,12 +16,13 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 $document			= &JFactory::getDocument();
 $document->addScript(JURI::base(true).'/components/com_phocagallery/assets/jss/jquery-1.7.2.min.js');
 //css
+/*
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/base.css');
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/global.css');
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/info.css');
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/layout.css');
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/reset.css');
-
+*/
 // Create shortcuts to some parameters.
 $params		= $this->item->params;
 //$canEdit	= $this->item->params->get('access-edit');

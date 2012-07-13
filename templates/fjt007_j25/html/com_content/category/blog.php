@@ -14,11 +14,13 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 $document			= &JFactory::getDocument();
 
 //css
+/*
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/base.css');
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/global.css');
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/info.css');
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/layout.css');
 $document->addStyleSheet(JURI::base(true).'/components/com_phocagallery/assets/css/reset.css');
+*/
 ?>
 <div id="content"> 
   <div class="articleWrap"> 
