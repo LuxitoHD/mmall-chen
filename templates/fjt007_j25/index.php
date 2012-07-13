@@ -148,61 +148,24 @@ $config = new HMConfig();?>
 		        </div>
 		    <?php endif; ?>                  
 		</div>
-		        	
-		<div id="main"> 
-					<?php if ($this->countModules('slideshow')) : ?> 
-		                <div id="slide-w"><div id="slide-i">
-		                    <jdoc:include type="modules" name="slideshow"  style="none"/>           
-		                </div></div>
-		            <?php endif; ?>        
-			<div id="wrapper">
-		 		<div id="main-content">  
-		  		<div id="message">
-				    <jdoc:include type="message" />
-				</div>
-							<?php if ($this->countModules('user1 or user2 or user3')) : ?>
-		                     <div id="mods1" class="spacer<?php echo $mainmod1_width; ?>">
-		                                <jdoc:include type="modules" name="user1" style="jaw" />
-		                                <jdoc:include type="modules" name="user2" style="jaw" />
-		                                <jdoc:include type="modules" name="user3" style="jaw" />
-		                                <div class="clr"></div>
-		                    </div>
-		                    <?php endif; ?>        
-		        <div class="full">                        
-		                    <div id="comp_<?php echo $compwidth ?>">
-		                                <div id="comp-i">
-		                                    <?php if ($this->countModules('breadcrumbs')) : ?>
-		                                    <div id="breadcrumbs">
-		                                    	<jdoc:include type="modules" name="breadcrumbs"  style="none"/>
-		                                    </div>
-		                                    <?php endif; ?>
-		                                    <?php include "html/template.php"; ?>
-		                                    <jdoc:include type="component" />
-		                                    <div class="clr"></div>
-		                                </div>
-		                    </div>
-		                    <?php if ($this->countModules('left')) : ?>
-		                    <div id="leftbar-w">
-		                            <div id="sidebar">
-		                                <jdoc:include type="modules" name="left" style="jaw" />
-		                            </div>
-		                    </div>
-		                    <?php endif; ?>
-				<div class="clr"></div>
-		        </div>
-		                    <div id="mods2" class="spacer">
-		                    	<div class="module" style="float: left;width: 500px;">
-		                    		<jdoc:include type="modules" name="user4" style="jaw" />
-		                    		<jdoc:include type="modules" name="user5" style="jaw" />
-		                    	</div>
-		                        <div class="module" style="float: right;width: 500px;">
-		                            <jdoc:include type="modules" name="user6" style="jaw" />
-		                        </div>
-		                        <div class="clr"></div>
-		                    </div>
-		        </div>        
-		  </div>  
+
+		<?php include "html/template.php"; ?>
+		<jdoc:include type="component" />
+		<div class="clr"></div>
+
+		<?php if(JRequest::getVar('view') == "categories"){  ?>
+		<div class="sectionWrap" style="width:1000px;margin:0 auto;margin-bottom:30px">
+			<div class="module" style="float: left;width: 500px;">
+				<jdoc:include type="modules" name="user4" style="jaw" />
+				<jdoc:include type="modules" name="user5" style="jaw" />
+			</div>
+			<div class="module" style="float: right;width: 500px;">
+				<jdoc:include type="modules" name="user6" style="jaw" />
+			</div>
+			<div class="clr"></div>
 		</div>
+		<?php }  ?> 
+		
 		<div id="footer">
 			<div class="footer_body">
 		
